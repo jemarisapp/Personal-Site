@@ -1,0 +1,62 @@
+
+import Image from 'next/image'
+
+export const metadata = {
+  title: 'Music Industry Analytics Dashboard',
+  description: 'A comprehensive data analytics system for tracking and visualizing Billboard Hot 100 chart performance.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <Image
+    src="/music-analytics.avif"
+    alt="Music Industry Analytics Dashboard"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl object-cover"
+    priority
+  />
+</div>
+
+# Music Industry Analytics Dashboard
+
+This project is a comprehensive data analytics system for tracking and visualizing Billboard Hot 100 chart performance. It combines a SQLite database for data storage, Python scripts for data processing, and Power BI for interactive visualizations and dashboards.
+
+*   [Live Preview](#)
+*   [GitHub Repository](#)
+
+## Project Overview
+
+### The Challenge
+
+Music industry executives and fans struggle to understand performance dynamics in today's fragmented landscape. Traditional chart rankings present data in ways that make cross-platform analysis difficult as single ranking numbers don't show what drives success. Separate charts for streams, airplay, & sales exist but aren't easily compared.
+
+### The Solution
+
+This dashboard transforms fragmented Billboard data into strategic intelligence by consolidating streams, airplay, and sales into unified views that reveal why songs succeed on different platforms. Instead of separate charts that require manual correlation, executives can instantly see how streaming dominance, radio reach, and sales patterns combine to create chart success.
+
+> [!NOTE]
+> *Dashboard is optimized for desktop experience*
+
+## Technical Implementation
+
+### Database Design & Data Engineering
+
+Built a normalized SQLite database schema with five interconnected tables handling complex artist-song relationships and multi-dimensional performance metrics. Developed intelligent Python parsing algorithms that automatically process collaborative artist credits (handling separators like "feat.", "x", "&" while protecting edge cases like "Tyler, The Creator").
+
+### Data Pipeline & Processing
+
+Created automated ETL pipeline using Python scripts for weekly chart data ingestion, featuring batch processing capabilities, data validation, and upsert operations. The system handles format variations (K/M/B numeric suffixes) and maintains data integrity across multiple chart weeks and artist collaborations.
+
+### Analytics & Visualization Layer
+
+Engineered Power BI dashboard with 50+ custom DAX measures enabling dynamic filtering by week, artist, and performance metric. Built interactive visualizations that reveal streaming-versus-airplay discrepancies and cross-platform ranking variations in real-time.
+
+## Business Impact
+
+### Strategic Decision Support
+
+The solution exposes critical performance gaps across platforms, enabling data-driven promotional strategies. Industry professionals can identify where artists dominate (streaming vs radio vs sales) and allocate marketing resources accordingly, transforming gut-feel decisions into evidence-based strategy.
+
+### Operational Efficiency
+
+Automated weekly data processing eliminates manual chart tracking, while interactive dashboards provide instant access to historical trends and competitive analysis previously requiring hours of spreadsheet work.

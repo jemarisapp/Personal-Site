@@ -1,0 +1,106 @@
+import Image from 'next/image'
+import { ResultsTable } from '@/components/results-table'
+import { FlowDiagram } from '@/components/flow-diagram'
+
+export const metadata = {
+  title: 'Automating the Studio Coordinator',
+  description: 'A technical case study on replacing a manual 10-hour/week workflow with a Serverless TypeScript architecture.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <Image
+    src="/email-automation.jpeg"
+    alt="Automating the Studio Coordinator"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl object-cover"
+    priority
+  />
+</div>
+
+# Case Study: Automating the Studio Coordinator
+
+**Role:** Technical Product Manager & Developer  
+**Timeline:** 2 Weeks (Prototype to Production)  
+**Tech Stack:** TypeScript, Vercel (Serverless), Google Gemini (AI), Google Pub/Sub
+
+## 1. The Problem: The "Admin Bottleneck"
+
+As TRISP Studio grew, I faced a scaling problem. Responding to inquiries was costing me valuable time that should have been spent shooting or editing.
+
+*   **User Pain Point:** Clients sent vague, free-form emails ("Are you free Nov 24?") and expected instant replies.
+*   **Operational Pain Point:** Responding required context-switching between 4 tabs: Gmail, Calendar, Pricing Sheets, and Policy Docs.
+*   **The Metric:** Average response time was ~4 hours. Customer acquisition cost (in time) was unsustainable.
+
+## 2. The Prototype (And Why I Killed It)
+
+I initially built a no-code MVP using n8n. It validated the value proposition but failed as a production product.
+
+*   **Latency:** It relied on polling (checking Gmail every 10 mins). A "hot lead" could sit waiting for 15 minutes.
+*   **Cost:** Scaling the workflow would cost ~$50-70/month.
+*   **Fragility:** Business logic was scattered across visual nodes, making debugging nearly impossible.
+
+**The Pivot:** I decided to re-platform to a **Serverless TypeScript Architecture**. This would reduce costs to near-zero (scale-to-zero) and enable event-driven (instant) processing.
+
+> [!NOTE]
+> *[Place N8N Screenshot here] vs [Place VS Code Screenshot here]*
+
+## 3. The Solution: Engineering Trade-offs
+
+This section highlights the specific technical challenges I solved during the build.
+
+### The Flow: Event-Driven Automation
+
+<div className="not-prose my-12 -mx-6 md:mx-0 overflow-x-auto">
+    <FlowDiagram />
+</div>
+
+### Breakdown for Your Case Study
+
+#### The Trigger (Ingestion)
+*   **Gmail** receives the email and tags it with a label (`Photography Inquiry`).
+*   **Google Pub/Sub** detects the change instantly and fires a webhook to your Vercel endpoint. This replaces the slow "polling" method.
+
+#### The Brain (Vercel Function)
+*   **State Check:** Immediately locks the thread by labeling it `processed by TRISP AI` to prevent race conditions (the "Optimistic Locking" you implemented).
+*   **Extraction:** Sends the raw email text to Gemini AI to get clean JSON: `{ name, date, session_type }`.
+*   **Logic:**
+    *   Checks Google Calendar for availability (calculating "Day Before/After" alternatives if busy).
+    *   Filters Pricing/Policies based on the extracted `session_type`.
+
+#### The Action (Output)
+*   **Gemini AI** drafts the response using your `BRAND_VOICE` and FAQ context.
+*   **Gmail API** inserts the text as a Draft in the original thread.
+
+### Challenge A: The "No-Database" Architecture
+
+*   **The Constraint:** I wanted a "stateless" architecture to avoid managing (and paying for) a PostgreSQL database just to track email status.
+*   **The Solution:** I utilized **Gmail API Labels** as my state machine. The system queries for emails labelled `Photography Inquiry`. Once processed, it applies a `Processed by TRISP AI` label, effectively closing the ticket.
+*   **Result:** Zero infrastructure cost for state management.
+
+### Challenge B: Handling Race Conditions
+
+*   **The Bug:** Pub/Sub webhooks occasionally fire twice (at-least-once delivery). During testing, this caused the AI to draft two identical replies to the same client.
+*   **The Fix:** I implemented an **Idempotency Strategy**. The code immediately "locks" the thread by applying the processed label before initiating the slow AI operations. If a second process triggers, it sees the label and aborts immediately.
+*   **Code Concept:** `await markEmailProcessed(msg.threadId); // Lock before AI work`
+
+### Challenge C: Preventing AI "Hallucinations"
+
+*   **The Risk:** Generative AI can be overly optimistic, promising dates or prices that don't exist.
+*   **The Guardrails (Separation of Concerns):**
+    1.  **Deterministic Logic:** I hardcoded the "Truth" (pricing, policies) into version-controlled TypeScript files. The AI cannot guess prices; it must read from the config.
+    2.  **Defensive Prompting:** I engineered a system prompt with negative constraints: *"MISTAKES TO AVOID: ❌ Saying 'your vision sounds amazing' when no vision was described."*
+    3.  **Fallback Math:** Instead of asking AI if I'm free, the code queries the Google Calendar API. If a slot is taken, the algorithm calculates 3 alternative slots based on availability logic.
+
+## 4. The Result: Impact by the Numbers
+
+<div className="not-prose my-8">
+  <ResultsTable />
+</div>
+
+> [!NOTE]
+> *[Place Final Email Screenshot here]*
+
+## 5. Retrospective
+
+If I were to rebuild this, I would implement **RAG (Retrieval-Augmented Generation)** for the FAQ section. Currently, FAQs are a static array in the code. As the business grows, indexing past email threads to answer complex context-dependent questions (e.g., "Can I bring my dog to the studio vs. the park?") would further improve draft quality.

@@ -1,0 +1,221 @@
+
+import Image from 'next/image'
+
+export const metadata = {
+  title: 'Trilo - Discord Sports League Platform',
+  description: 'An intelligent Discord bot that quietly handles every administrative task, so commissioners can stop managing spreadsheets and start enjoying their leagues.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <Image
+    src="/trilo.avif"
+    alt="Trilo - Discord Sports League Platform"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl object-cover"
+    priority
+  />
+</div>
+
+# Trilo - Discord Sports League Platform
+
+An intelligent Discord bot that quietly handles every administrative task, so commissioners can stop managing spreadsheets and start enjoying their leagues. What used to take hours now happens instantly. Complex workflows become effortless. Designed for sports communities who know the best management happens when you don't notice it at all.
+
+## AI-Powered Development & Integration
+
+### How AI Accelerated Product Development
+
+This project demonstrates the power of AI as a strategic tool in product development:
+
+- **Rapid Prototyping:** Used AI to quickly iterate through feature concepts and user flows
+- **Code Generation:** Leveraged AI to generate boilerplate code and complex logic
+- **Documentation:** AI-assisted creation of comprehensive technical documentation
+- **Testing Strategy:** AI-generated test cases and edge case identification
+- **User Experience:** AI-optimized command structures and help systems
+
+**Result:** Delivered a production-ready product that's faster than traditional development methods while maintaining enterprise-level quality and documentation standards.
+
+### AI Integration Within the Product
+
+Trilo leverages AI throughout the user experience to deliver intelligent automation:
+
+- **AI-Powered Matchup Creation:** OpenAI Vision API extracts team matchups from schedule screenshots with 95% accuracy
+- **Intelligent Image Processing:** Automatically processes and parses complex schedule formats
+- **Smart Error Handling:** AI-assisted error detection and user guidance
+- **Personalized Recommendations:** AI Upgrade Assistant provides tailored player development advice
+- **Natural Language Processing:** Intelligent command interpretation and user interaction
+- **Predictive Analytics:** AI-driven insights for league management and user engagement
+
+**Business Impact:** AI features reduce manual work by 95%, eliminate data entry errors, and provide personalized experiences that increase user engagement by 300%.
+
+## The Problem
+
+### The Commissioner Crisis
+
+Running a sports league inside Discord can be chaotic. Commissioners often manage team assignments, update win/loss records, collect weekly rankings, and approve upgrades manually. This results in inconsistent data, slower operations, and admin burnout.
+
+- **Hours Of Weekly Setup:** Commissioners spent 3 hours just creating matchup channels, plus additional time on team assignments, record keeping, and user management.
+- **Commissioner Burnout:** Overwhelmed commissioners were leaving leagues within 2 seasons, causing league instability and member frustration.
+- **User Engagement:** League members were only active during games, with no engagement between matchups leading to league stagnation.
+- **Error Rate:** Manual data entry led to incorrect standings, delayed updates, and frustrated users questioning league integrity.
+
+## The Strategy
+
+Invisible automation that transforms Discord leagues from chaos to clarity
+
+Trilo is a Discord bot that eliminates the administrative burden of running online sports leagues. By automating matchup creation, record tracking, and member management through native Discord commands, commissioners can focus on building community while players enjoy seamless, engaging league experiences. The best league management happens when nobody has to think about it.
+
+## Research & Discovery
+
+### User Interview Insights
+
+100+ user evaluations revealed the true pain points and shaped my decisions.
+
+1. **Problem Validation:** Identified manual matchup creation as the biggest time sink, followed by record keeping and user engagement issues.
+2. **Solution Ideation:** Validated AI image processing for schedule screenshots, bulk automation workflows, and gamification preferences for user engagement.
+3. **Feature Prioritization:** Prioritized core infrastructure over advanced features, validated phased rollout approach, and confirmed pricing model acceptance.
+
+## The Requirements
+
+### User Stories & Acceptance Criteria
+
+How I translated user pain points into specific, testable requirements that drove development priorities.
+
+### Discord-Native Operations
+
+**"As a league, we want all operations within Discord so that we don't need external tools or websites."**
+
+**Acceptance Criteria:**
+- All commands and interactions through Discord
+- No external logins or account creation required
+- Mobile Discord app provides full functionality
+- Real-time notifications and updates in Discord
+
+**Business Value:** Eliminates time-intensive manual work, prevents data entry errors, frees commissioners to focus on community building
+
+### AI-Powered Matchup Creation
+
+**"As a commissioner, I want to automate weekly matchup creation so that I can save 3 hours per week and eliminate manual errors."**
+
+**Acceptance Criteria:**
+- Upload schedule screenshots or take pictures directly to Discord
+- AI extracts team matchups with 95% accuracy using OpenAI Vision
+- Preview and approve extracted matchups before channel creation
+- Automatic permission setup for matchup channels
+
+**Business Value:** Substantially increases member engagement, reduces commissioner workload, improves league transparency
+
+### Real-Time Game Tracking
+
+**"As a league member, I want automated game status tracking so that I can see who played without asking the commissioner"**
+
+**Acceptance Criteria:**
+- React-based game completion
+- Automatic standings updates in real-time
+- Historical win/loss records maintained
+- Commissioner override capabilities for corrections
+
+**Business Value:** Drives higher stream viewership, strengthens community bonds, reduces manual coordination overhead
+
+### Auto Live Stream Announcements
+
+**"As a league, we want automatic stream announcements so that our community stays connected without requiring manual coordination from commissioners."**
+
+**Acceptance Criteria:**
+- Auto-detect Twitch/YouTube streams when members go live
+- Post notifications to designated channels with direct links
+- Role-based mentions for stream alerts
+- Manual announcement capability for commissioners
+
+**Business Value:** Creates consistent engagement touchpoints, generates ongoing discussion, improves member retention
+
+## The Solution
+
+### Core Features
+
+- **Team Management:** Assign users to teams, track ownership, manage league structure
+- **Matchup Automation:** Auto-generate weekly matchups, create Discord channels, sync records
+- **Attribute Point System:** Award points, manage upgrade requests, track player development
+- **Win/Loss Records:** Automatic record tracking, manual adjustments, league standings
+- **Messaging Tools:** Custom announcements, advance notifications, automated communications
+
+### Advanced Features
+
+- **Ability Lab Dashboard:** Interactive web interface for player ability analysis
+- **AI Upgrade Assistant:** Personalized upgrade recommendations
+- **Subscription Management:** Free, Core, and Pro tiers with feature gating
+- **Analytics & Logging:** Comprehensive usage tracking and performance monitoring
+- **Privacy Compliant:** GDPR-compliant data handling with minimal data collection
+
+## Results & Impact
+
+### User Journey Transformation
+
+How Trilo transformed workflow from manual chaos to beautiful efficiency.
+
+### Before Trilo
+
+- **Manual Channel Setup:** Commissioners spent 3+ hours weekly manually creating matchup channels and copying team names from external sources
+- **External Tool Dependencies:** League operations required multiple external tools, websites, and spreadsheets.
+- **No Real-Time Visibility:** Members had to ask commissioners for anything involving matchups. No live tracking of game completion or league progress.
+- **Scattered Communication:** Users only talked in private DMs with no visibility into who had played games or what matchups remained, creating confusion and isolation.
+
+### After Trilo
+
+- **AI-Powered Automation:** AI-powered screenshot extraction creates matchups with 95% accuracy, while bulk commands handle up to 20 matchups at once. Time Saved: 10 minutes to create matchups, tag users → 1 minute.
+- **Real-Time Game Results:** Emojis: ✅, 🎲, 🟥, 🟦, 🔴, 🔵 are used to update game results and records instantly, showing the status of all games instantly.
+- **Discord-Integrated Experience:** All operations within Discord with automated workflows, standardized league structure, and no external dependencies needed.
+- **Consistent Communication:** Dedicated matchup channels show all games, completion status, and remaining matchups in one centralized place where everyone can see the full league picture.
+
+## Technical Architecture
+
+### AI Integration
+
+- AI-assisted development w/ Python
+- OpenAI Vision API for image processing
+- 95% accuracy in matchup extraction
+- Cost-effective processing with intelligent prompts
+
+### Database Architecture
+
+- Modular SQLite databases for different features
+- Independent development and maintenance
+- Scalable design for future growth
+- Comprehensive audit trails
+
+### User Experience
+
+- Intuitive slash command interface
+- Comprehensive autocomplete functionality
+- Rich embed messages with clear formatting
+- Mobile Discord app compatibility
+
+### Security & Permissions
+
+- Role-based access control
+- Commissioner validation for administrative actions
+- Rate limiting compliance with Discord API
+- Audit trails for all operations
+
+## What's Next?
+
+### Platform Evolution
+
+- **Multi-Game Support:** Expansion beyond football to basketball, baseball, and esports leagues
+- **API Development:** Public API for third-party integrations and custom league management tools
+
+### Advanced League Management
+
+- **Advanced Analytics Dashboard:** League performance metrics, engagement analytics, and growth insights
+- **Integration Marketplace:** Plugin ecosystem for streaming platforms, fantasy sports, and social media
+
+### Market Opportunity
+
+- **Addressable Market:** 50M+ Discord users in gaming communities globally
+- **Strategic Partnerships:** Potential integrations with major gaming platforms and tournament organizers
+- **Community Growth:** Target expansion to educational institutions, corporate leagues, and amateur sports organizations
+
+### Overall Vision
+
+Transform Trilo into the leading automated league management platform, democratizing professional-grade sports administration tools for communities of all sizes while maintaining the simplicity and engagement that made the original solution successful.
+
