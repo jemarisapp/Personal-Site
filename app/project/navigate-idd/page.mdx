@@ -1,5 +1,5 @@
 
-import Image from 'next/image'
+import { ZoomableImage } from '@/components/ui/zoomable-image'
 
 export const metadata = {
   title: 'Navigate IDD',
@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 <div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-  <Image
+  <ZoomableImage
     src="/navigate-idd.jpg"
     alt="Navigate IDD"
     width={1200}

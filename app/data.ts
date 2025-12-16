@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     description:
       'Architecting an event-driven, serverless pipeline that combines Generative AI with deterministic logic to handle real-time bookings.',
     link: '/project/automating-studio-coordinator',
-    image: '/email-automation.jpeg',
+    image: '/automating email.png',
     id: 'project3',
   },
   {

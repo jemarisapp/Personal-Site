@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { ResultsTable } from '@/components/results-table'
 import { FlowDiagram } from '@/components/flow-diagram'
+import { ZoomableImage } from '@/components/ui/zoomable-image'
 
 export const metadata = {
   title: 'Automating the Studio Coordinator',
@@ -8,8 +9,8 @@ export const metadata = {
 }
 
 <div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-  <Image
-    src="/email-automation.jpeg"
+  <ZoomableImage
+    src="/automating email.png"
     alt="Automating the Studio Coordinator"
     width={1200}
     height={675}
@@ -36,11 +37,11 @@ As TRISP Studio grew, I faced a scaling problem. Responding to inquiries was cos
 
 I initially built a no-code MVP using n8n. It validated the value proposition but failed as a production product.
 
-*   **Latency:** It relied on polling (checking Gmail every 10 mins). A "hot lead" could sit waiting for 15 minutes.
-*   **Cost:** Scaling the workflow would cost ~$50-70/month.
-*   **Fragility:** Business logic was scattered across visual nodes, making debugging nearly impossible.
+*   **Latency (Execution Overhead):** The workflow was "heavy." For every single inquiry, it had to connect to Google Drive, download my policy PDFs, and extract the text before it could even start thinking. This added significant friction and failure points.
+*   **Fragility:** Business logic was hidden inside the proprietary JSON configurations of visual nodes. Versioning meant duplicating the entire workflow file.
+*   **Cost:** Running these heavy file-processing workflows at scale would cost ~$50-70/month.
 
-**The Pivot:** I decided to re-platform to a **Serverless TypeScript Architecture**. This would reduce costs to near-zero (scale-to-zero) and enable event-driven (instant) processing.
+**The Pivot:** I decided to re-platform to a **Serverless TypeScript Architecture**. By hardcoding the policies into lightweight TypeScript files, I eliminated the need for file downloads, reducing execution time from minutes to milliseconds.
 
 > [!NOTE]
 > *[Place N8N Screenshot here] vs [Place VS Code Screenshot here]*
@@ -55,33 +56,35 @@ This section highlights the specific technical challenges I solved during the bu
     <FlowDiagram />
 </div>
 
-### Breakdown for Your Case Study
 
-#### The Trigger (Ingestion)
-*   **Gmail** receives the email and tags it with a label (`Photography Inquiry`).
-*   **Google Pub/Sub** detects the change instantly and fires a webhook to your Vercel endpoint. This replaces the slow "polling" method.
+#### 1. Trigger: Pub/Sub Webhook
+Gmail receives the email (`Photography Inquiry`). Google Pub/Sub detects the change instantly and fires a webhook to Vercel.
 
-#### The Brain (Vercel Function)
-*   **State Check:** Immediately locks the thread by labeling it `processed by TRISP AI` to prevent race conditions (the "Optimistic Locking" you implemented).
-*   **Extraction:** Sends the raw email text to Gemini AI to get clean JSON: `{ name, date, session_type }`.
-*   **Logic:**
-    *   Checks Google Calendar for availability (calculating "Day Before/After" alternatives if busy).
-    *   Filters Pricing/Policies based on the extracted `session_type`.
+#### 2. Check State: Gmail API (Read)
+Immediately locks the thread by labeling it `processed by TRISP AI` to prevent race conditions (Optimistic Locking).
 
-#### The Action (Output)
-*   **Gemini AI** drafts the response using your `BRAND_VOICE` and FAQ context.
-*   **Gmail API** inserts the text as a Draft in the original thread.
+#### 3. Extract: Gemini AI (JSON)
+Sends the raw email text to Gemini AI to get clean JSON: `{ name, date, session_type }`.
+
+#### 4. Availability: Google Calendar API
+Checks Google Calendar for availability (calculating "Day Before/After" alternatives if busy).
+
+#### 5. Draft: Gemini AI + Config Files
+Drafts the response using the full configuration suite: Filtered Pricing, Policies (Deposits/Late Fees), FAQs, Brand Voice, and Sample Emails.
+
+#### 6. Save: Gmail API (Write)
+Inserts the generated text as a Draft in the original thread.
 
 ### Challenge A: The "No-Database" Architecture
 
 *   **The Constraint:** I wanted a "stateless" architecture to avoid managing (and paying for) a PostgreSQL database just to track email status.
-*   **The Solution:** I utilized **Gmail API Labels** as my state machine. The system queries for emails labelled `Photography Inquiry`. Once processed, it applies a `Processed by TRISP AI` label, effectively closing the ticket.
+*   **The Solution:** I utilized **Gmail API Labels** as my state machine. The system applies a `Processed by TRISP AI` label the moment ingestion begins, flagging the thread as 'in-progress' to prevent other processes from touching it.
 *   **Result:** Zero infrastructure cost for state management.
 
 ### Challenge B: Handling Race Conditions
 
 *   **The Bug:** Pub/Sub webhooks occasionally fire twice (at-least-once delivery). During testing, this caused the AI to draft two identical replies to the same client.
-*   **The Fix:** I implemented an **Idempotency Strategy**. The code immediately "locks" the thread by applying the processed label before initiating the slow AI operations. If a second process triggers, it sees the label and aborts immediately.
+*   **The Fix:** I implemented a multi-layered **Idempotency Strategy**. First, the system checks if a draft already exists. Second, it immediately "locks" the thread by applying the processed label before initiating the slow AI operations.
 *   **Code Concept:** `await markEmailProcessed(msg.threadId); // Lock before AI work`
 
 ### Challenge C: Preventing AI "Hallucinations"

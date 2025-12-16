@@ -5,22 +5,24 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 
 const metrics = [
     {
-        metric: 'Response Time',
-        before: '~4 Hours',
-        mvp: '~15 Minutes',
-        final: '< 20 Seconds',
+        metric: 'Architecture',
+        before: 'Heavy Execution (Drive Download + PDF Parsing)',
+        final: 'Lightweight (Pre-compiled Config & Logic)',
     },
     {
-        metric: 'OpEx Cost',
-        before: '$0 (Time = $$)',
-        mvp: '~$50/mo',
-        final: '~$0.05/mo',
+        metric: 'Data Source',
+        before: 'PDF Documents in Google Drive',
+        final: 'TypeScript Config Files (pricing.ts)',
     },
     {
-        metric: 'Maintenance',
-        before: 'High (Context Switching)',
-        mvp: 'Med (Visual Debugging)',
-        final: 'Low (Git Versioned)',
+        metric: 'Latency',
+        before: 'Slow (File I/O + Sequential Chains)',
+        final: 'Real-Time (< 20 Seconds)',
+    },
+    {
+        metric: 'Cost',
+        before: '~$50/mo (Workflow Volume)',
+        final: '~$0 (Free Tier)',
     },
 ]
 
@@ -32,9 +34,8 @@ export function ResultsTable() {
                     <thead className="border-b border-zinc-200 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
                         <tr>
                             <th className="px-6 py-4 font-medium">Metric</th>
-                            <th className="px-6 py-4 font-medium">Before (Manual)</th>
-                            <th className="px-6 py-4 font-medium">MVP (N8N)</th>
-                            <th className="px-6 py-4 font-medium">Final (Serverless)</th>
+                            <th className="px-6 py-4 font-medium">Before (No-Code/N8N)</th>
+                            <th className="px-6 py-4 font-medium">Final (Serverless Code)</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
@@ -45,9 +46,6 @@ export function ResultsTable() {
                                 </td>
                                 <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">
                                     {item.before}
-                                </td>
-                                <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">
-                                    {item.mvp}
                                 </td>
                                 <td className="px-6 py-4 font-medium text-zinc-900 dark:text-white">
                                     {item.final}

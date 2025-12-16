@@ -68,8 +68,8 @@ function SchemaConnections() {
 
             {/* Vercel -> Gmail API (Up). Brain Y=290 (top 250). Gmail API Top=50, Center~90. */}
             <path d="M 920 250 C 920 200, 920 150, 920 130" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
-            <rect x="870" y="160" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="920" y="175" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Check State</text>
+            <rect x="870" y="175" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="920" y="190" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Check State</text>
 
             {/* Vercel -> Gemini Extraction (Right Up). Brain Y=290. Gemini Top=150. Center~190. X=1150+70=1220 */}
             <path d="M 990 290 C 1060 290, 1100 190, 1150 190" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
@@ -86,9 +86,10 @@ function SchemaConnections() {
             <rect x="870" y="415" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
             <text x="920" y="430" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">4. Generate Reply</text>
 
-            {/* Gemini Drafting -> Config. Draft Bottom~520. Config Top=600. */}
-            <path d="M 920 560 L 920 600" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
-            <text x="940" y="585" className="text-[10px] fill-zinc-500 dark:fill-zinc-400">Uses</text>
+            {/* Gemini Drafting -> Config. Draft Bottom~560. Config Top=680. (Moved down) */}
+            <path d="M 920 570 L 920 680" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
+            <rect x="895" y="615" width="50" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="920" y="630" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400">Uses</text>
 
         </svg>
     )
@@ -120,7 +121,7 @@ export function FlowDiagram() {
                    Applied Zoom transform
                 */}
                 <div
-                    className="relative h-[700px] min-w-[1400px] mx-auto origin-top-left transition-transform duration-200 ease-out"
+                    className="relative h-[800px] min-w-[1400px] mx-auto origin-top-left transition-transform duration-200 ease-out"
                     style={{ transform: `scale(${zoom})`, transformOrigin: 'top left' }}
                 >
                     <SchemaConnections />
@@ -164,8 +165,8 @@ export function FlowDiagram() {
                         <Node icon={Sparkles} label="Gemini AI" subLabel="(Drafting)" color="blue" />
                     </div>
 
-                    {/* Row 5: Config. Y=600 */}
-                    <div className="absolute top-[600px] left-[850px]">
+                    {/* Row 5: Config. Y=680 */}
+                    <div className="absolute top-[680px] left-[850px]">
                         <Node icon={FileJson} label="Config Files" subLabel="(Pricing/Policies)" color="gray" />
                     </div>
 

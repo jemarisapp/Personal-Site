@@ -31,7 +31,7 @@ export type MorphingDialogContextType = {
 const MorphingDialogContext =
   React.createContext<MorphingDialogContextType | null>(null)
 
-function useMorphingDialog() {
+export function useMorphingDialog() {
   const context = useContext(MorphingDialogContext)
   if (!context) {
     throw new Error(
@@ -190,7 +190,7 @@ function MorphingDialogContent({
         setLastFocusableElement(
           focusableElements[focusableElements.length - 1] as HTMLElement,
         )
-        ;(focusableElements[0] as HTMLElement).focus()
+          ; (focusableElements[0] as HTMLElement).focus()
       }
     } else {
       document.body.classList.remove('overflow-hidden')
