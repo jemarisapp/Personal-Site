@@ -1,5 +1,8 @@
 
 import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { NavigateIDDFeaturesTable } from '@/components/navigate-idd-features-table'
+import { NavigateIDDTechStackTable } from '@/components/navigate-idd-tech-stack-table'
+import { NavigateIDDMetricsTable } from '@/components/navigate-idd-metrics-table'
 
 export const metadata = {
   title: 'Navigate IDD',
@@ -17,133 +20,68 @@ export const metadata = {
   />
 </div>
 
-# Navigate IDD - Medicaid Waiver Education System
+# Navigate IDD
 
-**Role:** AI Systems Product Designer  
-**Timeline:** Sep 2025 - Oct 2025  
+**Role:** AI Systems Product Designer | **Timeline:** Sep 2025 - Oct 2025  
 **Tech Stack:** n8n, OpenAI GPT-4 & Claude Sonnet 4.5, Pinecone, Synthesia
+
+---
 
 ## Overview
 
-An AI-assisted, policy-grounded education system that transforms Medicaid waiver regulations into multilingual videos with verified accuracy and human oversight. Built to simplify complex disability services information for families, while maintaining compliance, traceability, governed AI practices, and trust.
+Navigate IDD is a governed AI system designed to transform complex Medicaid waiver regulations into verified, multilingual educational videos. In a domain where accuracy is critical, this system bridges the gap between dense policy documents and accessible family guidance, ensuring compliance while drastically reducing content production time.
 
-## My Role
+## The Challenge
 
-Led technical architecture and automation development for a four-person team. Designed and implemented the RAG policy retrieval layer, multi-agent AI pipelines, and human review controls. Built end-to-end workflows for script generation, translation, video production, and social publishing. Ensured scalability, auditability, and alignment with regulated environment requirements to support policy validation workflows.
+Families seeking disability services often face a barrier of dense regulations and confusing waiver language.
+*   **Accessibility:** Critical information is locked in complex legal text, often unavailable in languages other than English.
+*   **Scalability:** Traditional video production is slow, expensive, and difficult to update when policies change.
+*   **Compliance:** Generative AI solutions often struggle with "hallucination," which is unacceptable in regulated healthcare environments.
 
-## The Problem
+## The Solution
 
-Families seeking disability services face dense rules, long waitlists, and confusing waiver language. Learning the system often takes weeks, and multilingual guidance is rare. Traditional solutions rely on manual translation, manual video creation, and slow updates when rules change.
+I architected and built an end-to-end **Retrieval-Augmented Generation (RAG)** pipeline that grounds AI outputs strictly in verified policy documents. The system automates the creation of scripts, translations, and video production, all while maintaining a rigid human-in-the-loop governance model.
 
-This slows access to care, increases administrative burden, and leaves underserved communities behind.
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+  <video
+    src="/navigate-idd/idd-video.mp4"
+    controls
+    className="w-full"
+  />
+</div>
 
-## Solution Overview
+### System Architecture
 
-Navigate IDD is a governed AI system that turns verified Medicaid waiver policy into plain-language videos across multiple languages. The system uses retrieval-augmented generation (RAG), agent workflows, and human review controls to ensure accuracy, compliance, and accessibility.
+1.  **Policy Knowledge Layer:** Official Medicaid waiver files are indexed in **Pinecone**, creating a searchable vector database that prevents hallucination.
+    <div className="not-prose my-4 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <ZoomableImage src="/navigate-idd/knowledge-layer.avif" alt="Knowledge Layer Architecture" width={800} height={400} className="w-full object-cover" />
+    </div>
 
-This enables reliable guidance at scale while preserving trust and accountability in a regulated domain.
+2.  **RAG Script Generation:** AI agents retrieve relevant policy sections to draft accurate, structured scripts.
+    <div className="not-prose my-4 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <ZoomableImage src="/navigate-idd/retrieval-augmented-script-generation.avif" alt="RAG Script Generation Workflow" width={800} height={400} className="w-full object-cover" />
+    </div>
 
-## System Architecture Overview
+3.  **Human Governance:** A dedicated dashboard allows subject matter experts to review and approve scripts before production.
+    <div className="not-prose my-4 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <ZoomableImage src="/navigate-idd/human-review-and-approval.avif" alt="Human Review Dashboard" width={800} height={400} className="w-full object-cover" />
+    </div>
 
-Core pipelines powering policy retrieval, multilingual script generation, review workflows, and automated video publishing.
+4.  **Multilingual Production:** Approved scripts are translated and converted into video explainers using **Synthesia**, ensuring consistent tone and meaning across languages.
+    <div className="not-prose my-4 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <ZoomableImage src="/navigate-idd/video-generation.avif" alt="AI Video Generation Process" width={800} height={400} className="w-full object-cover" />
+    </div>
 
-### Content Generation Pipeline
-
-**Pinecone Vector Store Management**
-*   **Data Source Monitor:** Triggers when new source documents are added.
-*   **Vector Processing:** Embeds and stores source documents for retrieval.
-*   **Knowledge Base:** Maintains up-to-date waiver information for AI reference.
-
-### Retrieval Augmented Script Generation
-
-*   **Short Topic Workflow:** Creates 1-1.5 minute educational videos.
-*   **Long Topic Workflow:** Creates 4-5 minute comprehensive videos.
-*   **Data Sources:** Monitors Google Drive for new topic files.
-*   **AI Processing:** Uses GPT-4 models with Pinecone vector store for RAG.
-*   **Output:** Structured scripts ready for human review.
-
-
-
-### Document Creation & Approval
-
-**English Document Creation**
-*   **Google Docs Integration:** Creates formatted documents from generated scripts.
-*   **Dashboard Updates:** Tracks script status in Google Sheets.
-*   **Approval Workflow:** Routes scripts for human review and approval.
-
-### AI Script Translation
-
-*   **Multi-language Support:** Translates approved scripts into Spanish, Chinese, and other languages.
-*   **Cultural Adaptation:** Maintains appropriate tone and terminology for target languages.
-*   **Quality Control:** Ensures translations meet accessibility standards.
-
-### Video Production & Processing
-
-**AI Video Generation**
-*   **Multi-language Video Creation:** Generates videos in English, Chinese, and Spanish.
-*   **Avatar Selection:** Uses different avatars for different languages.
-*   **Background Customization:** Applies appropriate backgrounds for each content type.
-*   **Status Tracking:** Monitors video generation progress.
-
-**Video Processing Pipeline**
-*   **Status Monitoring:** Checks video completion status via Synthesia API.
-*   **Download Management:** Automatically downloads completed videos.
-*   **Google Drive Storage:** Saves videos with organized naming conventions.
-*   **Completion Tracking:** Updates status in Google Sheets.
-
-### Distribution & Publishing
-
-**YouTube Upload & Management**
-*   **Automated Upload:** Uploads videos to YouTube with proper metadata.
-*   **SEO Optimization:** Generates titles, descriptions, and tags using AI.
-*   **Metadata Management:** Updates video information for discoverability.
-*   **Completion Tracking:** Marks uploads as complete in tracking systems.
-
-## Workflow Walkthrough
-
-1.  **Upload Verified Waiver Documents**
-    Agencies upload official Medicaid waiver files. Policy language is stored as a structured data source to ensure all content remains grounded in verified regulations.
-
-2.  **Build Policy Knowledge Layer**
-    Documents are embedded and indexed in Pinecone as a vector database. This creates a searchable policy memory, preventing hallucination and ensuring traceability.
-
-3.  **Define Topics for Education**
-    Short topic files trigger content generation for specific waiver sections. This gives program managers control over curriculum and rollout priorities.
-
-4.  **Script Generation with RAG**
-    AI retrieves relevant policy text and drafts clear, structured scripts based on verified rules. Every script references source material and prepares for human review.
-
-5.  **Human Review and Approval**
-    Scripts appear in a dashboard for evaluation. Reviewers validate accuracy, tone, and clarity. Approved scripts advance for localization and production while revisions loop back into review.
-
-6.  **Multilingual Content Pipeline**
-    When a script is approved, users select languages. The system regenerates each script using the same verified policy layer to preserve meaning beyond literal translation.
-
-7.  **AI Video Production**
-    Approved scripts are converted into video explainers using Synthesia. Generated videos return to the dashboard for verification before public release. This maintains a full governance loop from regulation to final output.
-
-8.  **Distribution and Accessibility**
-    Agent workflows generate captions, titles, and metadata, then prepare videos for distribution across YouTube, TikTok, Instagram, and Facebook.
-
-    Human validation remains in place before content goes live. The result is accurate, accessible policy education delivered where families already learn.
-
-## Monitoring & Maintenance
-
-*   Real-time dashboard oversight
-
-
-
-import { NavigateIDDFeaturesTable } from '@/components/navigate-idd-features-table'
+5.  **Automated Distribution:** The system handles metadata generation and publishing to social platforms (YouTube, etc.).
+    <div className="not-prose my-4 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <ZoomableImage src="/navigate-idd/social-media-upload.avif" alt="Social Media Distribution" width={800} height={400} className="w-full object-cover" />
+    </div>
 
 ## Key Features
-
-Designed with regulated-domain rigor: full audit trail, source verification, human governance.
 
 <div className="not-prose my-8">
   <NavigateIDDFeaturesTable />
 </div>
-
-import { NavigateIDDTechStackTable } from '@/components/navigate-idd-tech-stack-table'
 
 ## Technical Stack
 
@@ -151,32 +89,17 @@ import { NavigateIDDTechStackTable } from '@/components/navigate-idd-tech-stack-
   <NavigateIDDTechStackTable />
 </div>
 
-## Results and Impact
+## Impact & Results
 
-*   **Approximately 90% reduction** in content creation time.
-*   **Verified source traceability** for every script.
-*   **Automated multilingual support** for expanded access.
-*   **Human-in-the-loop checkpoints** ensure accuracy and compliance.
-*   **Modular workflow design** allows rapid deployment beyond Medicaid programs.
-
-### Key Outcomes
-*   Reduced content creation time from weeks to minutes.
-*   Scaled to multiple languages with consistent tone and accuracy.
-*   Maintained human control and policy compliance across all outputs.
-*   Created structured, searchable knowledge base of Medicaid policy references.
-*   Delivered repeatable, auditable content pipeline suitable for healthcare and public service environments.
-*   Increased accessibility for non-English speaking and underserved families.
-*   Demonstrated governed AI deployment, not one-off generation.
-
-import { NavigateIDDMetricsTable } from '@/components/navigate-idd-metrics-table'
-
-### Performance Metrics
+The system validated that AI can responsibly scale public sector education.
 
 <div className="not-prose my-8">
   <NavigateIDDMetricsTable />
 </div>
 
-## Conclusion
+*   **90% Reduction** in content creation time (weeks to minutes).
+*   **Zero Hallucinations** in production content due to strict RAG enforcement.
+*   **Expanded Access** for non-English speaking families through automated localization.
+*   **Full Audit Trail** ensuring every video frame is traceable to a specific policy clause.
 
-Navigate IDD demonstrates how AI can responsibly expand access to public resources when paired with verified data, human oversight, and repeatable workflows. The system converts complex Medicaid rules into clear guidance in multiple languages and delivers it across the channels families already use. This approach scales to other regulated programs and shows a practical template for trustworthy, high-impact AI in the public sector.
 

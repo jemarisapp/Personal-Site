@@ -191,7 +191,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Bridging the gap between technical possibility and business value. Combining solution design with AI strategies to create user-centric products that drive tangible business results.
+            I design and ship autonomous systems. Leveraging AI-native workflows to combine full-stack engineering with product strategy, building RAG pipelines, and scalable platforms that solve real business problems.
           </p>
         </div>
       </motion.section>
@@ -334,6 +334,6 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
-    </motion.main>
+    </motion.main >
   )
 }

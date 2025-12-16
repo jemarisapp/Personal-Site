@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
     id: 'project1',
   },
   {
-    name: 'The Serverless Booking Agent',
+    name: 'Serverless Booking Agent',
     description:
       'Architecting an event-driven, serverless pipeline that combines Generative AI with deterministic logic to handle real-time bookings.',
     link: '/project/serverless-booking-agent',
@@ -46,17 +46,18 @@ export const PROJECTS: Project[] = [
     id: 'project3',
   },
   {
-    name: 'Music Industry Analytics Dashboard',
+    name: 'Music Industry Analytics',
     description:
       'A comprehensive data analytics system for tracking and visualizing Billboard Hot 100 chart performance.',
     link: '/project/music-industry-analytics',
     image: '/music-analytics.avif',
     id: 'project4',
   },
+
   {
-    name: 'Trilo - Discord Sports League Platform',
+    name: 'Trilo: The AI Sports Commissioner',
     description:
-      'An intelligent Discord bot that quietly handles every administrative task, so commissioners can stop managing spreadsheets and start enjoying their leagues.',
+      'Autonomous league management system using Computer Vision to track stats and run operations within Discord.',
     link: '/project/trilo',
     image: '/trilo.avif',
     id: 'project2',
@@ -65,44 +66,36 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Trilo - AI-Powered Sports League Automation Platform (Independent Project)',
-    title: 'Product Owner',
+    company: 'Trilo: The AI Sports Commissioner',
+    title: 'Founder & Product Engineer',
     start: 'Nov 2024',
     end: 'Present',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
+    link: '/project/trilo',
     id: 'work1',
   },
   {
-    company: 'Medicaid Waiver Education System (Team Project)',
-    title: 'AI Systems Product Designer',
-    start: 'Sep 2025',
-    end: 'Oct 2025',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
-    id: 'work2',
+    company: 'TRISP Studio',
+    title: 'Founder & Technical Product Manager',
+    start: 'Dec 2016',
+    end: 'Present',
+    link: '/project/serverless-booking-agent',
+    id: 'work5',
   },
   {
-    company: 'Music Industry Analytics Dashboard (Independent Project)',
-    title: 'Business Intelligence & Data Analyst',
+    company: 'Music Industry Analytics',
+    title: 'Business Intelligence Analyst',
     start: 'July 2025',
     end: 'Aug 2025',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
+    link: '/project/music-industry-analytics',
     id: 'work3',
   },
   {
-    company: 'Georgia State University, J. Mack Robinson College of Business',
+    company: 'Georgia State University',
     title: 'Graduate Research Assistant',
     start: 'Aug 2025',
     end: 'Present',
     link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
     id: 'work4',
-  },
-  {
-    company: 'TRISP Studio',
-    title: 'Founder & Visual Designer',
-    start: 'Dec 2016',
-    end: 'Present',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
-    id: 'work5',
   },
   {
     company: 'Tomorrow Pictures',

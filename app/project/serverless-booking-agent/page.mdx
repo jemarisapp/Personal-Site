@@ -1,10 +1,11 @@
+
 import Image from 'next/image'
 import { ResultsTable } from '@/components/results-table'
 import { FlowDiagram } from '@/components/flow-diagram'
 import { ZoomableImage } from '@/components/ui/zoomable-image'
 
 export const metadata = {
-  title: 'The Serverless Booking Agent: 4 Hours to 20 Seconds',
+  title: 'Serverless Booking Agent',
   description: 'A technical case study on replacing a manual 10-hour/week workflow with a Serverless TypeScript architecture.',
 }
 
@@ -19,90 +20,62 @@ export const metadata = {
   />
 </div>
 
-# The Serverless Booking Agent: 4 Hours to 20 Seconds
+# Serverless Booking Agent
 
-**Role:** Technical Product Manager & Developer  
-**Timeline:** 2 Weeks (Prototype to Production)  
-**Tech Stack:** TypeScript, Vercel (Serverless), Google Gemini (AI), Google Pub/Sub
+**Role:** Technical Product Manager & Developer | **Timeline:** Oct 2025 - Present  
+**Tech Stack:** TypeScript, Vercel Serverless Functions, Google Gemini AI, Google Pub/Sub, Gmail API
 
-## 1. The Problem: The "Creative vs. Admin" Conflict
+---
 
-As TRISP Studio grew, I hit a critical ceiling. I was losing 5+ hours/week to manual inquiry triage, but the real cost was the context switching.
+## Overview
 
-*   **The Conflict (User Pain):** As a solo operator, I am often in deep editing flow for 4-6 hours at a time. Every "Are you free?" email forced me to stop, switch gears, and cross-reference three different documents (Calendar, Pricing PDF, Policy Doc). This fragmentation killed my creative productivity.
-*   **The Business Impact:** Because I couldn't interrupt my shoots to reply instantly, my average response time lagged to ~4 hours. High-intent leads were going cold or booking competitors before I could even open my laptop.
+A fully automated, event-driven system that handles photography inquiries instantly. By replacing a manual triage process with a serverless architecture, I reduced response times from 4 hours to 20 seconds and eliminated context switching, demonstrating how lightweight automation can drive tangible business value.
 
-## 2. The Prototype (And Why I Killed It)
+## The Challenge
 
-I initially built a no-code MVP using n8n. It validated the value proposition but failed as a production product.
+As a solo studio operator, managing inquiries became a bottleneck that penalized creative work.
+*   **Context Switching:** Every inquiry interrupted deep work, requiring me to cross-reference calendars, pricing PDFs, and policy documents.
+*   **Latency:** Average response time lagged to ~4 hours, allowing high-intent leads to go cold.
+*   **Scalability:** Existing no-code solutions (n8n) were too slow (minutes to execution) and expensive to scale (~$70/mo).
 
-*   **Latency (Execution Overhead):** The workflow was "heavy." For every single inquiry, it had to connect to Google Drive, download my policy PDFs, and extract the text before it could even start thinking. This added significant friction and failure points.
-*   **Fragility:** Business logic was hidden inside the proprietary JSON configurations of visual nodes. Versioning meant duplicating the entire workflow file.
-*   **Cost:** Running these heavy file-processing workflows at scale would cost ~$50-70/month.
+## The Solution
 
-**The Pivot:** I decided to re-platform to a **Serverless TypeScript Architecture**. By hardcoding the policies into lightweight TypeScript files, I eliminated the need for file downloads, reducing execution time from minutes to milliseconds.
+I engineered a **Serverless TypeScript architecture** that treats email inquiries as events. The system parses intent using LLMs, checks real-time availability, and drafts context-aware responses without human intervention.
 
-> [!NOTE]
-> *[Place N8N Screenshot here] vs [Place VS Code Screenshot here]*
+### System Architecture
 
-## 3. The Solution: Engineering Trade-offs
-
-This section highlights the specific technical challenges I solved during the build.
-
-### The Flow: Event-Driven Automation
+The pipeline is entirely event-driven, ensuring zero idle costs and sub-second triggers.
 
 <div className="not-prose my-12 -mx-6 md:mx-0 overflow-x-auto">
     <FlowDiagram />
 </div>
 
+1.  **Ingestion (Pub/Sub):** Gmail webhook fires immediately upon email receipt.
+2.  **State Management (Gmail Labels):** The system "locks" the thread using a specific label (`processed-by-ai`) to prevent race conditions and ensure idempotency.
+3.  **Intent Extraction (Gemini AI):** Raw text is converted into structured JSON (`{ intent, date, session_type }`).
+4.  **Business Logic:**
+    *   **Availability:** Queries Google Calendar API. If busy, an algorithm calculates 3 nearest alternative slots.
+    *   **Guardrails:** Hardcoded TypeScript configuration files serve as the "source of truth" for pricing and policies, preventing AI hallucination.
+5.  **Response Generation:** Gemini drafts the email using the structured data and brand voice guidelines.
+6.  **Action:** The draft is inserted into the thread for final one-click approval (or auto-send).
 
-#### 1. Trigger: Pub/Sub Webhook
-Gmail receives the email (`Photography Inquiry`). Google Pub/Sub detects the change instantly and fires a webhook to Vercel.
+## Key Technical Decisions
 
-#### 2. Check State: Gmail API (Read)
-Immediately locks the thread by labeling it `processed by TRISP AI` to prevent race conditions (Optimistic Locking).
+### Sentinel Labels for State
+Instead of maintaining a dedicated database (Postgres/Redis) for a simple workflow, I used Gmail Labels as a **finite state machine**. This kept the architecture stateless and strictly free-tier.
 
-#### 3. Extract: Gemini AI (JSON)
-Sends the raw email text to Gemini AI to get clean JSON: `{ name, date, session_type }`.
+### Deterministic Guardrails
+To solve the risk of "AI hallucinations" (e.g., inventing low prices), I separated concerns:
+*   **AI** handles language and tone.
+*   **Code** handles facts (Price, Availability, Policy).
+The AI is provided strict context and cannot "guess" numbers.
 
-#### 4. Availability: Google Calendar API
-Checks Google Calendar for availability (calculating "Day Before/After" alternatives if busy).
-
-#### 5. Draft: Gemini AI + Config Files
-Drafts the response using the full configuration suite: Filtered Pricing, Policies (Deposits/Late Fees), FAQs, Brand Voice, and Sample Emails.
-
-#### 6. Save: Gmail API (Write)
-Inserts the generated text as a Draft in the original thread.
-
-### Challenge A: The "No-Database" Architecture
-
-*   **The Constraint:** I wanted a "stateless" architecture to avoid managing (and paying for) a PostgreSQL database just to track email status.
-*   **The Solution:** I utilized **Gmail API Labels** as my state machine. The system applies a `Processed by TRISP AI` label the moment ingestion begins, flagging the thread as 'in-progress' to prevent other processes from touching it.
-*   **Result:** Zero infrastructure cost for state management.
-
-### Challenge B: Handling Race Conditions
-
-*   **The Bug:** Pub/Sub webhooks occasionally fire twice (at-least-once delivery). During testing, this caused the AI to draft two identical replies to the same client.
-*   **The Fix:** I implemented a multi-layered **Idempotency Strategy**. First, the system checks if a draft already exists. Second, it immediately "locks" the thread by applying the processed label before initiating the slow AI operations.
-*   **Code Concept:** `await markEmailProcessed(msg.threadId); // Lock before AI work`
-
-### Challenge C: Preventing AI "Hallucinations"
-
-*   **The Risk:** Generative AI can be overly optimistic, promising dates or prices that don't exist.
-*   **The Guardrails (Separation of Concerns):**
-    1.  **Deterministic Logic:** I hardcoded the "Truth" (pricing, policies) into version-controlled TypeScript files. The AI cannot guess prices; it must read from the config.
-    2.  **Defensive Prompting:** I engineered a system prompt with negative constraints: *"MISTAKES TO AVOID: Saying 'your vision sounds amazing' when no vision was described."*
-    3.  **Fallback Math:** Instead of asking AI if I'm free, the code queries the Google Calendar API. If a slot is taken, the algorithm calculates 3 alternative slots based on availability logic.
-
-## 4. The Result: Impact by the Numbers
+## Impact & Results
 
 <div className="not-prose my-8">
   <ResultsTable />
 </div>
 
-> [!NOTE]
-> *[Place Final Email Screenshot here]*
-
-## 5. Retrospective
-
-If I were to rebuild this, I would implement **RAG (Retrieval-Augmented Generation)** for the FAQ section. Currently, FAQs are a static array in the code. As the business grows, indexing past email threads to answer complex context-dependent questions (e.g., "Can I bring my dog to the studio vs. the park?") would further improve draft quality.
+*   **99% Reduction** in response latency (4 hours → ~20 seconds).
+*   **Zero infrastructure cost** (running entirely on Vercel free tier).
+*   **Waitlist Growth:** Faster responses led to higher conversion and a booked-out calendar.

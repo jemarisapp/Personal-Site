@@ -19,48 +19,54 @@ export const metadata = {
 
 # Music Industry Analytics Dashboard
 
-**Role:** Business Intelligence & Data Analyst  
-**Timeline:** July 2025 - Aug 2025  
+**Role:** Business Intelligence & Data Analyst | **Timeline:** July 2025 - Aug 2025  
 **Tech Stack:** Python, SQLite, Power BI, DAX
 
-This project is a comprehensive data analytics system for tracking and visualizing Billboard Hot 100 chart performance. It combines a SQLite database for data storage, Python scripts for data processing, and Power BI for interactive visualizations and dashboards.
+---
 
-*   [Live Preview](#)
-*   [GitHub Repository](#)
+## Overview
 
-## Project Overview
+A comprehensive analytics system designed to transform fragmented Billboard chart data into actionable strategic intelligence. By consolidating streams, airplay, and sales into a unified view, this dashboard empowers music executives to make evidence-based promotional decisions.
 
-### The Challenge
+## The Challenge
 
-Music industry executives and fans struggle to understand performance dynamics in today's fragmented landscape. Traditional chart rankings present data in ways that make cross-platform analysis difficult as single ranking numbers don't show what drives success. Separate charts for streams, airplay, & sales exist but aren't easily compared.
+Music industry decision-making is hindered by data fragmentation.
+*   **Siloed Data:** Streaming, airplay, and sales data exist in separate reporting streams, making cross-channel analysis difficult.
+*   **Lack of Context:** Traditional rankings show *who* is #1 but not *why* (e.g., is it radio-driven or viral streaming?).
+*   **Manual Effort:** Analysts spend hours manually correlating weekly charts in spreadsheets.
 
-### The Solution
+## The Solution
 
-This dashboard transforms fragmented Billboard data into strategic intelligence by consolidating streams, airplay, and sales into unified views that reveal why songs succeed on different platforms. Instead of separate charts that require manual correlation, executives can instantly see how streaming dominance, radio reach, and sales patterns combine to create chart success.
+I built a full-stack analytics pipeline that automates data ingestion and delivers interactive insights.
 
-> [!NOTE]
-> *Dashboard is optimized for desktop experience*
+### System Architecture
 
-## Technical Implementation
+1.  **Data Engineering (Python/SQLite):**
+    *   Developed automated ETL pipelines to ingest weekly chart data.
+    *   Implemented intelligent parsing algorithms to handle complex artist collaboration strings (e.g., "feat.", "x").
+    *   Designed a normalized database schema to track artist-song relationships over time.
 
-### Database Design & Data Engineering
+2.  **Visualization (Power BI/DAX):**
+    *   Created 50+ custom DAX measures for dynamic time-series analysis.
+    *   Built interactive views comparing Streaming vs. Airplay performance.
 
-Built a normalized SQLite database schema with five interconnected tables handling complex artist-song relationships and multi-dimensional performance metrics. Developed intelligent Python parsing algorithms that automatically process collaborative artist credits (handling separators like "feat.", "x", "&" while protecting edge cases like "Tyler, The Creator").
+## Impact & Results
 
-### Data Pipeline & Processing
+*   **Strategic Clarity:** Enabled executives to identify platform-specific performance gaps (e.g., high streaming but low radio).
+*   **Operational Efficiency:** Eliminated manual weekly data entry, saving hours of analyst time per week.
+*   **Unified Truth:** Created a single source of truth for cross-platform performance metrics.
 
-Created automated ETL pipeline using Python scripts for weekly chart data ingestion, featuring batch processing capabilities, data validation, and upsert operations. The system handles format variations (K/M/B numeric suffixes) and maintains data integrity across multiple chart weeks and artist collaborations.
+## Live Dashboard
 
-### Analytics & Visualization Layer
+Interact with the real Power BI report below. (Best viewed on Desktop).
 
-Engineered Power BI dashboard with 50+ custom DAX measures enabling dynamic filtering by week, artist, and performance metric. Built interactive visualizations that reveal streaming-versus-airplay discrepancies and cross-platform ranking variations in real-time.
-
-## Business Impact
-
-### Strategic Decision Support
-
-The solution exposes critical performance gaps across platforms, enabling data-driven promotional strategies. Industry professionals can identify where artists dominate (streaming vs radio vs sales) and allocate marketing resources accordingly, transforming gut-feel decisions into evidence-based strategy.
-
-### Operational Efficiency
-
-Automated weekly data processing eliminates manual chart tracking, while interactive dashboards provide instant access to historical trends and competitive analysis previously requiring hours of spreadsheet work.
+<div className="not-prose my-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <iframe 
+    title="Hot100 Dashboard"
+    src="https://app.powerbi.com/view?r=eyJrIjoiNzAyZmZiOTQtNjg1Ny00OTNmLWJjODEtZDBhZDEwYjgzMTU5IiwidCI6IjA1YjE4MTU5LTkyMWEtNDJjNi04OGViLTdhMDNjYmVmYTI1NyIsImMiOjZ9" 
+    frameBorder="0" 
+    allowFullScreen={true}
+    style={{ width: '100%', height: '600px' }}
+    className="rounded-xl w-full"
+  ></iframe>
+</div>
