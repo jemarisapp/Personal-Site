@@ -38,10 +38,10 @@ export const PROJECTS: Project[] = [
     id: 'project1',
   },
   {
-    name: 'Automating the Studio Coordinator',
+    name: 'The Serverless Booking Agent',
     description:
       'Architecting an event-driven, serverless pipeline that combines Generative AI with deterministic logic to handle real-time bookings.',
-    link: '/project/automating-studio-coordinator',
+    link: '/project/serverless-booking-agent',
     image: '/automating email.png',
     id: 'project3',
   },
