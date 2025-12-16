@@ -51,41 +51,37 @@ function SchemaConnections() {
             </defs>
 
             {/* Client -> Inbox (0 to 250) centers: 70 to 320. start x=140, end x=250 */}
-            <path d="M 140 400 L 250 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 140 400 L 250 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
 
             {/* Inbox -> PubSub (250 to 550) centers: 320 to 620. start x=390, end x=550 */}
-            <path d="M 390 400 L 550 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 390 400 L 550 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
 
             {/* PubSub -> Vercel (550 to 850) centers: 620 to 920. start x=690, end x=850  */}
-            <path d="M 690 400 L 850 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 690 400 L 850 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
 
             {/* Vercel -> Gmail API (Up). Center X = 920 */}
-            <path d="M 920 320 C 920 280, 920 180, 920 140" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 920 320 C 920 280, 920 180, 920 140" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
             <rect x="870" y="210" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
             <text x="920" y="225" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Check State</text>
 
             {/* Vercel -> Gemini Extraction (Right Up). Vercel X=920, Gemini Right=1150+70=1220 */}
-            <path d="M 990 400 C 1060 400, 1110 260, 1150 260" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 990 400 C 1060 400, 1110 260, 1150 260" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
             <rect x="1040" y="310" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
             <text x="1090" y="325" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">2. Extract Data</text>
 
             {/* Vercel -> Calendar (Right Down). Right=1150 */}
-            <path d="M 990 420 C 1060 420, 1110 540, 1150 540" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 990 420 C 1060 420, 1110 540, 1150 540" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
             <rect x="1040" y="470" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
             <text x="1090" y="485" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">3. Check Dates</text>
 
             {/* Vercel -> Gemini Drafting (Down) */}
-            <path d="M 920 480 C 920 530, 920 600, 920 650" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 920 445 C 920 500, 920 600, 920 650" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
             <rect x="870" y="550" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
             <text x="920" y="565" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">4. Generate Reply</text>
 
             {/* Gemini Drafting -> Config */}
-            <path d="M 920 750 L 920 800" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <path d="M 920 750 L 920 800" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
             <text x="940" y="780" className="text-[10px] fill-zinc-500 dark:fill-zinc-400">Uses</text>
-
-            {/* Gmail API -> Vercel (Dashed return) */}
-            <path d="M 860 140 C 800 140, 860 260, 880 320" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" className="dark:stroke-zinc-700 opacity-50" />
-            <text x="820" y="200" className="text-[10px] fill-zinc-500/70 dark:fill-zinc-400/70">5. Save Draft</text>
 
         </svg>
     )
