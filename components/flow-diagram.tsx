@@ -10,7 +10,7 @@ import {
     User,
 } from 'lucide-react'
 
-// Condensed Node Component
+// Node Component
 function Node({
     icon: Icon,
     label,
@@ -45,45 +45,47 @@ function SchemaConnections() {
     return (
         <svg className="absolute inset-0 pointer-events-none w-full h-full overflow-visible z-0">
             <defs>
-                <marker id="arrowhead-gray-lg" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+                <marker id="arrowhead-gray-xl" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
                     <path d="M0,0 L6,2 L0,4" fill="#9ca3af" />
                 </marker>
             </defs>
 
-            {/* Client -> Inbox */}
-            <path d="M 140 350 L 190 350" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
+            {/* Client -> Inbox (0 to 250) centers: 70 to 320. start x=140, end x=250 */}
+            <path d="M 140 400 L 250 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
 
-            {/* Inbox -> PubSub */}
-            <path d="M 330 350 L 380 350" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
+            {/* Inbox -> PubSub (250 to 550) centers: 320 to 620. start x=390, end x=550 */}
+            <path d="M 390 400 L 550 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
 
-            {/* PubSub -> Vercel */}
-            <path d="M 520 350 L 570 350" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
+            {/* PubSub -> Vercel (550 to 850) centers: 620 to 920. start x=690, end x=850  */}
+            <path d="M 690 400 L 850 400" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
 
-            {/* Vercel -> Gmail API (Up) */}
-            <path d="M 640 280 C 640 250, 640 180, 640 140" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
-            <rect x="590" y="190" width="100" height="20" rx="4" fill="var(--bg-card)" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="640" y="205" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Check State</text>
+            {/* Vercel -> Gmail API (Up). Center X = 920 */}
+            <path d="M 920 320 C 920 280, 920 180, 920 140" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <rect x="870" y="210" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="920" y="225" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Check State</text>
 
-            {/* Vercel -> Gemini Extraction (Right Up) */}
-            <path d="M 710 350 C 760 350, 800 220, 840 220" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
-            <rect x="740" y="260" width="100" height="20" rx="4" fill="var(--bg-card)" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="790" y="275" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">2. Extract Data</text>
+            {/* Vercel -> Gemini Extraction (Right Up). Vercel X=920, Gemini Right=1150+70=1220 */}
+            <path d="M 990 400 C 1060 400, 1110 260, 1150 260" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <rect x="1040" y="310" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="1090" y="325" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">2. Extract Data</text>
 
-            {/* Vercel -> Calendar (Right Down) */}
-            <path d="M 710 370 C 760 370, 800 480, 840 480" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
-            <rect x="740" y="420" width="100" height="20" rx="4" fill="var(--bg-card)" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="790" y="435" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">3. Check Dates</text>
+            {/* Vercel -> Calendar (Right Down). Right=1150 */}
+            <path d="M 990 420 C 1060 420, 1110 540, 1150 540" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <rect x="1040" y="470" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="1090" y="485" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">3. Check Dates</text>
 
             {/* Vercel -> Gemini Drafting (Down) */}
-            <path d="M 640 420 C 640 450, 640 520, 640 560" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
-            <rect x="590" y="470" width="100" height="20" rx="4" fill="var(--bg-card)" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="640" y="485" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">4. Generate Reply</text>
+            <path d="M 920 480 C 920 530, 920 600, 920 650" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <rect x="870" y="550" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="920" y="565" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">4. Generate Reply</text>
 
             {/* Gemini Drafting -> Config */}
-            <path d="M 640 650 L 640 690" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-lg)" className="dark:stroke-zinc-700" />
+            <path d="M 920 750 L 920 800" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-xl)" className="dark:stroke-zinc-700" />
+            <text x="940" y="780" className="text-[10px] fill-zinc-500 dark:fill-zinc-400">Uses</text>
 
             {/* Gmail API -> Vercel (Dashed return) */}
-            <path d="M 580 140 C 530 140, 580 230, 600 280" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" className="dark:stroke-zinc-700 opacity-50" />
+            <path d="M 860 140 C 800 140, 860 260, 880 320" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" className="dark:stroke-zinc-700 opacity-50" />
+            <text x="820" y="200" className="text-[10px] fill-zinc-500/70 dark:fill-zinc-400/70">5. Save Draft</text>
 
         </svg>
     )
@@ -93,60 +95,61 @@ export function FlowDiagram() {
     return (
         <div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/20 group">
             {/* Scrollable container */}
-            <div className="w-full overflow-auto p-8 cursor-grab active:cursor-grabbing hide-scrollbar">
+            <div className="w-full overflow-auto p-8 cursor-grab active:cursor-grabbing">
                 {/* 
-                   Canvas: 1100px width for extra spacious layout
+                   Canvas: 1400px width for extra wide spacing
                 */}
-                <div className="relative h-[800px] min-w-[1100px] mx-auto">
+                <div className="relative h-[900px] min-w-[1400px] mx-auto">
                     <SchemaConnections />
 
-                    {/* Nodes - EXPANDED GRID */}
+                    {/* Nodes - WIDE LAYOUT */}
 
                     {/* Row 1: Gmail API - Up Top */}
-                    <div className="absolute top-[40px] left-[570px]">
+                    <div className="absolute top-[40px] left-[850px]">
                         <Node icon={Mail} label="Gmail API" subLabel="(Read/Write)" color="blue" />
                     </div>
 
                     {/* Row 2: Gemini Extraction */}
-                    <div className="absolute top-[160px] left-[840px]">
+                    <div className="absolute top-[200px] left-[1150px]">
                         <Node icon={Sparkles} label="Gemini AI" subLabel="(Extraction)" color="blue" />
                     </div>
 
-                    {/* Main Row: Input Workflow - Centered Y=350ish */}
-                    <div className="absolute top-[315px] left-0">
+                    {/* Main Row: Input Workflow - Centered Y=365ish */}
+                    {/* 0 -> 250 -> 550 -> 850 */}
+                    <div className="absolute top-[365px] left-0">
                         <Node icon={User} label="Client Email" color="gray" />
                     </div>
-                    <div className="absolute top-[315px] left-[190px]">
+                    <div className="absolute top-[365px] left-[250px]">
                         <Node icon={Mail} label="Gmail Inbox" color="blue" />
                     </div>
-                    <div className="absolute top-[315px] left-[380px]">
+                    <div className="absolute top-[365px] left-[550px]">
                         <Node icon={Zap} label="Google Pub/Sub" color="blue" />
                     </div>
 
                     {/* Center Brain */}
-                    <div className="absolute top-[280px] left-[570px]">
+                    <div className="absolute top-[320px] left-[850px]">
                         <Node icon={Cpu} label="Vercel Function" subLabel="(The Brain)" color="black" className="scale-110 shadow-xl ring-4 ring-zinc-100 dark:ring-zinc-800" />
                     </div>
 
                     {/* Row 3: Calendar */}
-                    <div className="absolute top-[440px] left-[840px]">
+                    <div className="absolute top-[480px] left-[1150px]">
                         <Node icon={Calendar} label="Google Calendar" subLabel="API" color="blue" />
                     </div>
 
                     {/* Row 4: Gemini Drafting */}
-                    <div className="absolute top-[560px] left-[570px]">
+                    <div className="absolute top-[650px] left-[850px]">
                         <Node icon={Sparkles} label="Gemini AI" subLabel="(Drafting)" color="blue" />
                     </div>
 
                     {/* Row 5: Config */}
-                    <div className="absolute top-[700px] left-[570px]">
+                    <div className="absolute top-[800px] left-[850px]">
                         <Node icon={FileJson} label="Config Files" subLabel="(Pricing/Policies)" color="gray" />
                     </div>
 
                     {/* Labels for Input Flow */}
-                    <div className="absolute top-[335px] left-[145px] text-[10px] text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-1">Arrives</div>
-                    <div className="absolute top-[335px] left-[335px] text-[10px] text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-1">Push</div>
-                    <div className="absolute top-[335px] left-[530px] text-[10px] text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-1">Webhook</div>
+                    <div className="absolute top-[385px] left-[175px] text-[10px] text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-1">Arrives</div>
+                    <div className="absolute top-[385px] left-[440px] text-[10px] text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-1">Push Notification</div>
+                    <div className="absolute top-[385px] left-[730px] text-[10px] text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-1">Webhook POST</div>
                 </div>
             </div>
             {/* Hint overlay */}
