@@ -118,7 +118,7 @@ const AnimationComponent: React.FC<{
   const content =
     per === 'line' ? (
       <motion.span variants={variants} className="block">
-        {segment}
+        {segment || '\u00A0'}
       </motion.span>
     ) : per === 'word' ? (
       <motion.span
@@ -234,12 +234,12 @@ export function TextEffect({
 
   const customStagger = hasTransition(variants?.container?.visible ?? {})
     ? (variants?.container?.visible as TargetAndTransition).transition
-        ?.staggerChildren
+      ?.staggerChildren
     : undefined
 
   const customDelay = hasTransition(variants?.container?.visible ?? {})
     ? (variants?.container?.visible as TargetAndTransition).transition
-        ?.delayChildren
+      ?.delayChildren
     : undefined
 
   const computedVariants = {

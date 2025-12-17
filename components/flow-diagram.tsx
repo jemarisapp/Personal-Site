@@ -68,23 +68,23 @@ function SchemaConnections() {
 
             {/* Vercel -> Gmail API (Up). Brain Y=290 (top 250). Gmail API Top=50, Center~90. */}
             <path d="M 920 250 C 920 200, 920 150, 920 130" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
-            <rect x="870" y="175" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="920" y="190" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Check State</text>
+            <rect x="860" y="175" width="120" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="920" y="190" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">1. Idempotency Check</text>
 
             {/* Vercel -> Gemini Extraction (Right Up). Brain Y=290. Gemini Top=150. Center~190. X=1150+70=1220 */}
             <path d="M 990 290 C 1060 290, 1100 190, 1150 190" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
-            <rect x="1040" y="210" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="1090" y="225" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">2. Extract Data</text>
+            <rect x="1030" y="210" width="120" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="1090" y="225" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">2. LLM Intent Extraction</text>
 
             {/* Vercel -> Calendar (Right Down). Brain Y=290. Calendar Top=350. Center~390. */}
             <path d="M 990 320 C 1060 320, 1100 420, 1150 420" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
             <rect x="1040" y="370" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="1090" y="385" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">3. Check Dates</text>
+            <text x="1090" y="385" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">3. Calendar API Query</text>
 
             {/* Vercel -> Gemini Drafting (Down). Brain Bottom~330. Draft Top=480. Center~520. */}
             <path d="M 920 370 C 920 420, 920 450, 920 480" stroke="#d1d5db" strokeWidth="1.5" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
-            <rect x="870" y="415" width="100" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
-            <text x="920" y="430" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">4. Generate Reply</text>
+            <rect x="850" y="415" width="140" height="20" rx="4" className="fill-zinc-50 dark:fill-zinc-900" />
+            <text x="920" y="430" textAnchor="middle" className="text-[10px] fill-zinc-500 dark:fill-zinc-400 font-semibold">4. Context-Aware Draft Generation</text>
 
             {/* Gemini Drafting -> Config. Draft Bottom~560. Config Top=680. (Moved down) */}
             <path d="M 920 570 L 920 680" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead-gray-xl)" fill="none" className="dark:stroke-zinc-700" />
