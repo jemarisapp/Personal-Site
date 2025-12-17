@@ -81,14 +81,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: '/project/serverless-booking-agent',
     id: 'work5',
   },
-  {
-    company: 'Music Industry Analytics',
-    title: 'Business Intelligence Analyst',
-    start: 'July 2025',
-    end: 'Aug 2025',
-    link: '/project/music-industry-analytics',
-    id: 'work3',
-  },
+
   {
     company: 'Georgia State University',
     title: 'Graduate Research Assistant',

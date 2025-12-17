@@ -1,41 +1,53 @@
-<img src="/public/cover.jpg" alt="Cover image representing Nim, a personal website template" width="100%" />
+# Jemari Sapp | AI Product Engineer & Technical PM
 
-Nim is a free and open-source personal website template built with Next.js 15, React 19, Tailwind CSS v4, and Motion. Designed for developers, designers, and founders, it combines minimalism with delightful animated components powered by [Motion-Primitives](https://motion-primitives.com).
+Welcome to my personal portfolio repository. I design and ship autonomous systems, leveraging AI-native workflows to combine full-stack engineering with product strategy.
 
-Live demo: [https://nim-fawn.vercel.app](https://nim-fawn.vercel.app)
+## 🚀 Projects
 
-## Features
+### [Navigate IDD](/app/project/navigate-idd)
+AI-assisted Medicaid waiver education system converting policy into multilingual videos.
 
-- Minimal one-page portfolio layout.
-- Blog support with MDX.
-- Responsive and accessible design.
-- Easy to use
-- [Motion-Primitives](https://motion-primitives.com) for animated components.
+### [Serverless Booking Agent](/app/project/serverless-booking-agent)
+Event-driven, serverless pipeline combining Generative AI with deterministic logic to handle real-time bookings.
 
-## Getting Started
+### [Music Industry Analytics](/app/project/music-industry-analytics)
+Comprehensive data analytics system for tracking and visualizing billboard Hot 100 chart performance.
 
-For detailed setup instructions, refer to the [Installation Guide](./INSTALLATION.md).
+### [Trilo: The AI Sports Commissioner](/app/project/trilo)
+Autonomous league management system using Computer Vision to track stats and run operations within Discord.
+
+## 🛠️ Tech Stack
+
+Built with a focus on performance, minimalism, and meaningful interactions.
+
+- **Framework:** [Next.js 15](https://nextjs.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations:** [Motion](https://motion.dev/) & [Motion-Primitives](https://motion-primitives.com)
+- **Deployment:** [Vercel](https://vercel.com)
+
+## 🏃‍♂️ Getting Started
+
+To run this project locally:
 
 ```bash
-git clone https://github.com/ibelick/nim.git
+# Clone the repository
+git clone https://github.com/jemarisapp/nim.git
+
+# Navigate to the project directory
 cd nim
+
+# Install dependencies
 npm install
+
+# Start the development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Contributing
+## 📫 Connect
 
-Contributions are welcome! Feel free to open issues or submit pull requests to improve Nim.
-
-## Deployment
-
-You can deploy your site to any hosting platform that supports Next.js. For the easiest deployment experience, consider using Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fibelick%2Fnim&env=NEXT_PUBLIC_SITE_URL&project-name=nim&repository-name=nim&redirect-url=https%3A%2F%2Ftwitter.com%2Fibelick&demo-title=Nim&demo-description=Nim%20is%20a%20free%20and%20open-source%20minimal%20personal%20website%20template%20built%20with%20Next.js%2015%2C%20React%2019%2C%20and%20Motion-Primitives.&demo-url=https%3A%2F%2Fnim.vercel.app&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2Fibelick%2Fnim%2Frefs%2Fheads%2Fmain%2F.github%2Fassets%2Freadme.png&teamSlug=ibelick)
-
-## About
-
-Nim is designed to make personal branding effortless and beautiful. If you enjoy it, consider sharing it and exploring [Motion-Primitives Pro](https://pro.motion-primitives.com/).
-
+- **Email:** [jsapp9@student.gsu.edu](mailto:jsapp9@student.gsu.edu)
+- **LinkedIn:** [Jemari Sapp](https://www.linkedin.com/in/jemari-sapp-b3984821b/)
+- **GitHub:** [@jemarisapp](https://github.com/jemarisapp)
