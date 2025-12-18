@@ -8,8 +8,44 @@ import { TextEffect } from '@/components/ui/text-effect'
 
 type Tab = 'inquiry' | 'processing' | 'draft'
 
-export function BookingAgentDemo() {
+export function BookingAgentDemo({
+    autoPlay = false,
+    onComplete,
+    compact = false
+}: {
+    autoPlay?: boolean
+    onComplete?: () => void
+    compact?: boolean
+}) {
     const [activeTab, setActiveTab] = useState<Tab>('inquiry')
+    const [draftStep, setDraftStep] = useState(0)
+
+    useEffect(() => {
+        if (!autoPlay) return
+
+        const sequence = async () => {
+            setActiveTab('inquiry')
+            await new Promise(r => setTimeout(r, 2000)) // Read email
+
+            setActiveTab('processing')
+            await new Promise(r => setTimeout(r, 2500)) // Process
+
+            setActiveTab('draft')
+            // Draft animation handled by TextEffect. We wait for it.
+            // TextEffect total duration approx: 1.5s * 4 steps + delays. Let's guess 8s.
+            await new Promise(r => setTimeout(r, 8000))
+
+            onComplete?.()
+        }
+
+        sequence()
+    }, [autoPlay, onComplete])
+
+    useEffect(() => {
+        if (activeTab === 'draft') {
+            setDraftStep(0)
+        }
+    }, [activeTab])
 
     return (
         <div className="group relative my-8 w-full overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950">
@@ -117,7 +153,15 @@ export function BookingAgentDemo() {
                                         speedReveal={1.5}
                                         className="whitespace-pre-wrap"
                                     >
-                                        {`Hi Jada,
+                                        {compact ? `Hi Jada,
+
+Congratulations on your upcoming graduation! Your vision sounds amazing.
+
+✓ November 12, 2025 at 2:00 PM is available.
+
+I've attached package options for studio + on-campus sessions starting at $450.
+
+Looking forward to working with you!` : `Hi Jada,
 
 Thank you so much for reaching out, and congratulations on your upcoming graduation!
 

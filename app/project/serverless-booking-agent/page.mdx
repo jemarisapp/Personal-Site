@@ -44,6 +44,14 @@ As a solo studio operator, managing inquiries became a bottleneck that penalized
 
 I engineered a **Serverless TypeScript architecture** that treats email inquiries as events. The system parses intent using LLMs, checks real-time availability, and drafts context-aware responses without human intervention.
 
+{/* Video placeholder - uncomment when ready:
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+    <div className="aspect-video flex items-center justify-center text-zinc-400">
+        <span className="text-sm">Video Demo Embed Placeholder (YouTube/Loom)</span>
+    </div>
+</div>
+*/}
+
 ### System Architecture
 
 The pipeline is entirely event-driven with zero idle costs, ensuring sub-second triggers.
@@ -61,19 +69,8 @@ The pipeline is entirely event-driven with zero idle costs, ensuring sub-second 
 5.  **Response Generation:** Gemini drafts the email using the structured data and brand voice guidelines.
 6.  **Action:** The draft is inserted into the thread for final one-click approval.
 
-### Live Demo
 
-<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
-    <div className="aspect-video flex items-center justify-center text-zinc-400">
-        <span className="text-sm">Video Demo Embed Placeholder (YouTube/Loom)</span>
-    </div>
-</div>
 
-### Interactive Demo
-
-See the system in action:
-
-<BookingAgentDemo />
 
 ## Key Technical Decisions
 
@@ -88,6 +85,12 @@ To solve the risk of "AI hallucinations" (e.g., inventing low prices), I separat
 *   **AI** handles language and tone.
 *   **Code** handles facts (Price, Availability, Policy).
 The AI is provided strict context and cannot "guess" numbers.
+
+### Interactive Demo
+
+See the system in action—click through the tabs to explore the flow:
+
+<BookingAgentDemo />
 
 ## Impact & Results
 
