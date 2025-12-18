@@ -13,7 +13,7 @@ const comparisonData = [
         metric: 'Time per Inquiry',
         manual: '15-20 Minutes',
         aiApp: '5-10 Minutes',
-        system: '< 20 Seconds',
+        system: '< 30 Seconds',
     },
     {
         metric: 'Context Switching',

@@ -44,13 +44,19 @@ As a solo studio operator, managing inquiries became a bottleneck that penalized
 
 I engineered a **Serverless TypeScript architecture** that treats email inquiries as events. The system parses intent using LLMs, checks real-time availability, and drafts context-aware responses without human intervention.
 
-{/* Video placeholder - uncomment when ready:
 <div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
-    <div className="aspect-video flex items-center justify-center text-zinc-400">
-        <span className="text-sm">Video Demo Embed Placeholder (YouTube/Loom)</span>
-    </div>
+    <video 
+        className="w-full aspect-video" 
+        controls 
+        autoPlay 
+        muted 
+        loop
+        playsInline
+    >
+        <source src="/email-automation/Email-Agent-Render.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
 </div>
-*/}
 
 ### System Architecture
 
@@ -88,7 +94,7 @@ The AI is provided strict context and cannot "guess" numbers.
 
 ### Interactive Demo
 
-See the system in action—click through the tabs to explore the flow:
+See the system in action. Click through the tabs to explore the flow:
 
 <BookingAgentDemo />
 

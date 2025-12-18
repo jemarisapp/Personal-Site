@@ -17,12 +17,12 @@ const metrics = [
     {
         metric: 'Latency',
         before: 'Slow (File I/O + Sequential Chains)',
-        final: 'Real-Time (< 20 Seconds)',
+        final: 'Real-Time (< 30 Seconds)',
     },
     {
         metric: 'Cost',
-        before: '~$50/mo (Workflow Volume)',
-        final: '~$0 (Free Tier)',
+        before: 'High (~$70/mo)',
+        final: 'Low (< $10/mo)',
     },
 ]
 
