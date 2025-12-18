@@ -21,8 +21,8 @@ const metrics = [
     },
     {
         metric: 'Cost',
-        before: 'High (~$70/mo)',
-        final: 'Low (< $10/mo)',
+        before: 'Fixed subscriptions ($20 to $50 per month)',
+        final: 'Over 60% reduction (serverless means no idle costs)',
     },
 ]
 

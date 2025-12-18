@@ -1,4 +1,4 @@
-# Jemari Sapp | AI Product Engineer & Technical PM
+# Jemari Sapp | MSIS Candidate | AI For Business Innovation
 
 Welcome to my personal portfolio repository. I design and ship autonomous systems, leveraging AI-native workflows to combine full-stack engineering with product strategy.
 

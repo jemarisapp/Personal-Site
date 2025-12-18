@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Jemari Sapp - AI Product Engineer',
+    default: 'Jemari Sapp - MSIS Candidate | AI For Business Innovation',
     template: '%s | Jemari Sapp'
   },
-  description: 'Portfolio of Jemari Sapp, an AI Product Engineer & Technical PM building autonomous systems.',
+  description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
 };
 
 const geist = Geist({
