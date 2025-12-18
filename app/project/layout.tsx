@@ -3,7 +3,9 @@ import { TextMorph } from '@/components/ui/text-morph'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { PROJECTS } from '../data'
 
 function CopyButton() {
   const [text, setText] = useState('Copy')
@@ -35,6 +37,11 @@ export default function LayoutProject({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+  const currentIndex = PROJECTS.findIndex((project) => project.link === pathname)
+  const prevProject = PROJECTS[currentIndex - 1]
+  const nextProject = PROJECTS[currentIndex + 1]
+
   return (
     <>
       <div className="pointer-events-none fixed left-0 top-0 z-10 h-12 w-full bg-gray-100 to-transparent backdrop-blur-xl [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] dark:bg-zinc-950" />
@@ -57,6 +64,41 @@ export default function LayoutProject({
           <CopyButton />
         </div>
         {children}
+
+        <div className="mt-16 grid grid-cols-2 gap-4 border-t border-gray-200 pt-8 dark:border-zinc-800">
+          <div>
+            {prevProject && (
+              <Link
+                href={prevProject.link}
+                className="group flex flex-col gap-1 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+              >
+                <div className="flex items-center gap-1 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-100">
+                  <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                  <span>Previous</span>
+                </div>
+                <div className="font-medium text-zinc-900 dark:text-zinc-100">
+                  {prevProject.name}
+                </div>
+              </Link>
+            )}
+          </div>
+          <div className="flex justify-end">
+            {nextProject && (
+              <Link
+                href={nextProject.link}
+                className="group flex flex-col items-end gap-1 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+              >
+                <div className="flex items-center gap-1 text-sm text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-100">
+                  <span>Next</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </div>
+                <div className="font-medium text-zinc-900 dark:text-zinc-100">
+                  {nextProject.name}
+                </div>
+              </Link>
+            )}
+          </div>
+        </div>
       </main>
     </>
   )
