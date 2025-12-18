@@ -7,8 +7,8 @@ Welcome to my personal portfolio repository. I design and ship autonomous system
 ### [Navigate IDD](/app/project/navigate-idd)
 AI-assisted Medicaid waiver education system converting policy into multilingual videos.
 
-### [Serverless Booking Agent](/app/project/serverless-booking-agent)
-Event-driven, serverless pipeline combining Generative AI with deterministic logic to handle real-time bookings.
+### [Autonomous Booking System](/app/project/autonomous-booking-system)
+Re-architecting a manual triage workflow into a fully automated serverless system, eliminating operational bottlenecks and enabling 24/7 inquiry handling.
 
 ### [Music Industry Analytics](/app/project/music-industry-analytics)
 Comprehensive data analytics system for tracking and visualizing billboard Hot 100 chart performance.

@@ -38,10 +38,10 @@ export const PROJECTS: Project[] = [
     id: 'project1',
   },
   {
-    name: 'Serverless Booking Agent',
+    name: 'Autonomous Booking System',
     description:
-      'Architecting an event-driven, serverless pipeline that combines Generative AI with deterministic logic to handle real-time bookings.',
-    link: '/project/serverless-booking-agent',
+      'Re-architecting a manual triage workflow into a fully automated serverless system, eliminating operational bottlenecks and enabling 24/7 inquiry handling.',
+    link: '/project/autonomous-booking-system',
     image: '/automating email.png',
     id: 'project3',
   },
@@ -78,7 +78,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Founder & Technical Product Manager',
     start: 'Dec 2016',
     end: 'Present',
-    link: '/project/serverless-booking-agent',
+    link: '/project/autonomous-booking-system',
     id: 'work5',
   },
 
