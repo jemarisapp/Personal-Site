@@ -108,7 +108,7 @@ export default function AboutPage() {
                     </p>
                     <div className="pt-4">
                         <a
-                            href="https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari-Sapp-Web-Resume-Online.pdf?rlkey=etulofdgodno67svers842xwh&st=wc2nvxs0&dl=0"
+                            href="/resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-600 dark:text-zinc-100 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"

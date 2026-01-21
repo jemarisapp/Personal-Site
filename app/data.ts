@@ -12,7 +12,6 @@ type WorkExperience = {
   title: string
   start: string
   end: string
-  link: string
   id: string
 }
 
@@ -89,7 +88,6 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Graduate Assistant',
     start: 'Aug 2025',
     end: 'Present',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
     id: 'work4',
   },
   {
@@ -97,7 +95,6 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Founder & Developer',
     start: 'Nov 2024',
     end: 'Present',
-    link: '/project/trilo',
     id: 'work1',
   },
   {
@@ -105,7 +102,6 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Founder & Designer',
     start: 'Dec 2016',
     end: 'Present',
-    link: '/project/autonomous-booking-system',
     id: 'work5',
   },
 ]
