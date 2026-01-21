@@ -15,6 +15,7 @@ import Image from 'next/image'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
+  DESIGN_PROJECTS,
 
   BLOG_POSTS,
   EMAIL,
@@ -208,7 +209,6 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <Link
@@ -287,11 +287,49 @@ export default function Personal() {
         </div>
       </motion.section> */}
 
+      <div className="h-px w-full bg-zinc-200/50 dark:bg-zinc-800/50" />
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <div className="grid grid-cols-1 gap-6">
+          {DESIGN_PROJECTS.map((project) => (
+            <Link
+              key={project.name}
+              href={project.link}
+              className="group relative flex items-center justify-between rounded-2xl bg-zinc-50/40 p-4 ring-1 ring-zinc-200/50 ring-inset transition-all duration-300 hover:ring-zinc-400/50 dark:bg-zinc-950/40 dark:ring-zinc-800/50 dark:group-hover:ring-zinc-600/50"
+            >
+              <div className="flex-1 pr-4">
+                <h4 className="font-base font-[450] text-zinc-900 dark:text-zinc-50">
+                  {project.name}
+                  <span className="ml-1 inline-block opacity-0 transition-opacity duration-200 group-hover:opacity-100">→</span>
+                </h4>
+                <p className="line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+                  {project.description}
+                </p>
+              </div>
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+                {project.image && (
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </motion.section>
+
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Connect</h3>
+
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           Feel free to contact me at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>

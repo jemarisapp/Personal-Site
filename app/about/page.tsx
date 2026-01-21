@@ -65,7 +65,7 @@ export default function AboutPage() {
                         <MorphingDialogTrigger>
                             <div className="h-24 w-24 shrink-0 cursor-zoom-in overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
                                 <img
-                                    src="/me.jpg"
+                                    src="/headshot-2.jpg"
                                     alt="Jemari Sapp"
                                     className="h-full w-full object-cover"
                                 />
@@ -74,7 +74,7 @@ export default function AboutPage() {
                         <MorphingDialogContainer>
                             <MorphingDialogContent className="relative rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
                                 <img
-                                    src="/me.jpg"
+                                    src="/headshot-2.jpg"
                                     alt="Jemari Sapp"
                                     className="h-[50vh] w-auto rounded-xl object-cover md:h-[70vh]"
                                 />
@@ -98,13 +98,13 @@ export default function AboutPage() {
                 </div>
                 <div className="prose prose-zinc dark:prose-invert text-zinc-600 dark:text-zinc-400">
                     <p>
-                        My journey began in the visual arts, where I honed my eyes for design and storytelling as a graphic designer. Creating visuals was rewarding, but I found myself increasingly drawn to the systems and logic <i>behind</i> the creative process. This curiosity led me to pivot from static design to dynamic, intelligent systems.
+                        My journey began in the visual arts, where I honed my eye for design and storytelling as a graphic designer. Creating visuals was rewarding, but I found myself increasingly drawn to the systems and logic <i>behind</i> the creative process. This curiosity led me to pivot from static design to dynamic, intelligent systems.
                     </p>
                     <p>
                         Now, pursuing a Master of Science in Information Systems with a focus on AI for Business Innovation at Georgia State University, I operate at the intersection of creative problem-solving and technical engineering. I don't just design interfaces; I build the AI-native workflows, RAG pipelines, and automated backends that power them.
                     </p>
                     <p>
-                        From founding my own design studio to leading cross-functional teams in building AI video pipelines, my goal is to create products that are not only technically robust but also intuitively designed. I am currently seeking a role where I can leverage this unique blend of product sense and technical capability to build impactful software.
+                        From founding my own design studio to building AI inquiry management platforms and leading cross-functional teams creating multilingual AI video pipelines, my goal is to create products that are not only technically robust but also intuitively designed. I am currently seeking a role where I can leverage this unique blend of product sense and technical capability to build impactful software.
                     </p>
                     <div className="pt-4">
                         <a
@@ -166,39 +166,39 @@ export default function AboutPage() {
                     <div className="space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                             <div>
-                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Graduate Research Assistant</h4>
+                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Graduate Assistant</h4>
                                 <p className="text-zinc-500 dark:text-zinc-400">Georgia State University, J. Mack Robinson College of Business</p>
                             </div>
                             <span className="text-zinc-400 text-sm whitespace-nowrap">Aug 2025 - Present</span>
                         </div>
                         <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-                            Developing content strategies for graduate recruiting and producing social media content that has doubled engagement.
+                            Produced 3+ weekly video posts and blog content for LinkedIn and Instagram, contributing to 2x engagement growth. Advised prospective students via Unibuddy platform and coordinated student events with admissions teams.
                         </p>
                     </div>
 
                     <div className="space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                             <div>
-                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Creator | Product Engineer</h4>
-                                <p className="text-zinc-500 dark:text-zinc-400">Trilo</p>
+                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Founder & Developer</h4>
+                                <p className="text-zinc-500 dark:text-zinc-400">Trilo | <a href="https://trilo.gg" target="_blank" rel="noopener noreferrer" className="underline hover:text-zinc-600 dark:hover:text-zinc-300">trilo.gg</a></p>
                             </div>
                             <span className="text-zinc-400 text-sm whitespace-nowrap">Nov 2024 - Present</span>
                         </div>
                         <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-                            Built an OpenAI Vision pipeline reducing schedule creation time by 90% and designed an async Python backend supporting 200+ users.
+                            Built an OpenAI Vision pipeline that automated schedule creation, reducing setup time from 2 hours to under 10 minutes. Designed multi-tenant async Python backend with PostgreSQL supporting 200+ concurrent users. Conducted 100+ user evaluations to shape pricing model and feature roadmap.
                         </p>
                     </div>
 
                     <div className="space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                             <div>
-                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Founder | Designer & Automation Engineer</h4>
-                                <p className="text-zinc-500 dark:text-zinc-400">TRISP Studio</p>
+                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Founder & Designer</h4>
+                                <p className="text-zinc-500 dark:text-zinc-400">TRISP Studio | <a href="https://trispstudio.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-zinc-600 dark:hover:text-zinc-300">trispstudio.com</a></p>
                             </div>
                             <span className="text-zinc-400 text-sm whitespace-nowrap">Dec 2016 - Present</span>
                         </div>
                         <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-                            Delivered 500+ projects for major clients (UMG, APG) and built event-driven automation systems to streamline client operations.
+                            Managed a rolling portfolio of clientele, delivering 1000+ design & photography projects across diverse industries. Led full creative cycles from client brief to final execution, operating in fast-paced, deadline-critical workflows.
                         </p>
                     </div>
                 </div>
@@ -212,16 +212,24 @@ export default function AboutPage() {
                 <h3 className="text-lg font-medium">Skills</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 text-sm text-zinc-600 dark:text-zinc-400">
                     <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">AI & ML</h4>
-                        <p>OpenAI, LangChain, RAG, Pinecone, Prompt Engineering, Agentic Workflows</p>
+                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Product</h4>
+                        <p>Product Management, User Research, Pricing Strategy, Roadmap Planning, Go-to-Market Strategy</p>
                     </div>
                     <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Product & Technical</h4>
-                        <p>Python, SQL, REST APIs, Workflow Automation, Power BI, ETL Pipelines</p>
+                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">AI/ML</h4>
+                        <p>OpenAI Vision, Gemini, Prompt Engineering, RAG, Structured Output Design, Model Evaluation</p>
+                    </div>
+                    <div>
+                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Technical</h4>
+                        <p>Python, TypeScript, React/Next.js, PostgreSQL, REST APIs, Webhooks, Git, System Architecture</p>
+                    </div>
+                    <div>
+                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Integrations & Data</h4>
+                        <p>Stripe, Supabase, Discord API, Google Calendar API, Postmark, SQL, Pandas, NumPy</p>
                     </div>
                     <div>
                         <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Design</h4>
-                        <p>Figma, Adobe Creative Suite, UI/UX Design, Motion Design</p>
+                        <p>Figma, Adobe Creative Suite, UI/UX Design</p>
                     </div>
                 </div>
             </motion.section>

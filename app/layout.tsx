@@ -22,6 +22,43 @@ export const metadata: Metadata = {
     template: '%s | Jemari Sapp'
   },
   description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
+  keywords: ['AI', 'Product Management', 'MSIS', 'Autonomous Systems', 'Business Innovation', 'Jemari Sapp'],
+  authors: [{ name: 'Jemari Sapp', url: 'https://www.jemarisapp.com' }],
+  creator: 'Jemari Sapp',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.jemarisapp.com',
+    siteName: 'Jemari Sapp',
+    title: 'Jemari Sapp - AI For Business Innovation',
+    description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
+    images: [
+      {
+        url: '/cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Jemari Sapp Portfolio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jemari Sapp - AI For Business Innovation',
+    description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
+    images: ['/cover.jpg'],
+    creator: '@jemarisapp',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const geist = Geist({
@@ -44,6 +81,22 @@ export default function RootLayout({
       <body
         className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Jemari Sapp",
+              "url": "https://www.jemarisapp.com",
+              "jobTitle": "MSIS Candidate & AI For Business Innovation Specialist",
+              "description": "Building autonomous systems and AI-powered solutions for business innovation.",
+              "sameAs": [
+                "https://www.linkedin.com/in/jemarisapp"
+              ]
+            })
+          }}
+        />
         <ThemeProvider
           enableSystem={true}
           attribute="class"

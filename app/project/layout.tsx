@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { PROJECTS } from '../data'
+import { PROJECTS, DESIGN_PROJECTS } from '../data'
+
+const ALL_PROJECTS = [...PROJECTS, ...DESIGN_PROJECTS]
 
 function CopyButton() {
   const [text, setText] = useState('Copy')
@@ -38,9 +40,9 @@ export default function LayoutProject({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const currentIndex = PROJECTS.findIndex((project) => project.link === pathname)
-  const prevProject = PROJECTS[currentIndex - 1]
-  const nextProject = PROJECTS[currentIndex + 1]
+  const currentIndex = ALL_PROJECTS.findIndex((project) => project.link === pathname)
+  const prevProject = ALL_PROJECTS[currentIndex - 1]
+  const nextProject = ALL_PROJECTS[currentIndex + 1]
 
   return (
     <>

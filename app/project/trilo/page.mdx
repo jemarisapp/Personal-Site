@@ -1,15 +1,24 @@
 
 import Image from 'next/image'
+import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { PhoneMockup } from '@/components/ui/phone-mockup'
+import { TriloTechStackTable } from '@/components/trilo-tech-stack-table'
+import { TriloProductDecisionsTable } from '@/components/trilo-product-decisions-table'
+import { TriloMetricsTable } from '@/components/trilo-metrics-table'
+import { TriloArchitectureDiagram } from '@/components/trilo-architecture-diagram'
+import { TriloMatchupPreview } from '@/components/trilo-matchup-preview'
+import { SkillsDemonstrated } from '@/components/skills-demonstrated'
+import { TriloCompetitiveAnalysis } from '@/components/trilo-competitive-analysis'
 
 export const metadata = {
-  title: 'Trilo: The AI Sports Commissioner',
-  description: 'An intelligent Discord bot that quietly handles every administrative task, so commissioners can stop managing spreadsheets and start enjoying their leagues.',
+  title: 'Trilo: Full-Stack SaaS for Sports League Automation',
+  description: 'A Discord bot and marketing site that automates fantasy football league management, featuring AI-powered schedule extraction, Stripe subscriptions, and a dual-database architecture.',
 }
 
 <div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
   <Image
     src="/trilo.avif"
-    alt="Trilo - Discord Sports League Platform"
+    alt="Trilo - Full-Stack SaaS Platform"
     width={1200}
     height={675}
     className="w-full rounded-xl object-cover"
@@ -17,60 +26,264 @@ export const metadata = {
   />
 </div>
 
-# Trilo: The AI Sports Commissioner
+# Trilo: Full-Stack SaaS for Sports League Automation
 
-**Role:** Founder / Product Engineer | **Timeline:** Nov 2024 - Present  
-**Tech Stack:** Python, OpenAI Vision API, SQLite, Discord API
+**Role:** Founder & Technical Product Manager | **Timeline:** Nov 2024 - Present
+**Tech Stack:** Python, React, TypeScript, PostgreSQL, OpenAI Vision API, Stripe, Discord OAuth
 
 ---
 
-## Overview
+## Executive Summary
 
-Trilo is an intelligent Discord bot that automates sports league administration. By handling matchup creation, record tracking, and user management through native Discord commands, it transforms chaotic manual processes into seamless experiences, allowing commissioners to focus on community building rather than spreadsheets.
+Built a full-stack SaaS product from 0→1: a Discord bot automating fantasy football league management (reducing commissioner workload from 3+ hours/week to under 5 minutes) plus a conversion-optimized marketing site with Stripe payments and Discord OAuth. End-to-end ownership from AI feature development to user acquisition funnels.
 
-## The Challenge
+---
 
-Running a sports league inside Discord is often chaotic and manual.
-*   **Administrative Burden:** Commissioners spent 3+ hours weekly manually creating channels, updating records, and policing schedules.
-*   **Burnout:** High friction led to commissioner fatigue, causing leagues to fold within two seasons.
-*   **Engagement:** Without automated updates, member activity dropped significantly between games.
-*   **Data Integrity:** Manual entry led to errors in standings, disputes, and reduced trust in the league.
+## The Problem
+
+Running a fantasy football dynasty league on Discord is operationally brutal.
+
+*   **Administrative Burden:** Commissioners spend 3+ hours weekly creating matchup channels, tracking records, and managing team rosters manually.
+*   **Commissioner Burnout:** High friction causes 40%+ of leagues to fold within two seasons due to organizer fatigue.
+*   **Fragmented Tools:** Existing solutions either require external websites (friction) or charge per-league pricing ($15-35/league), making multi-league management expensive.
+*   **No AI Integration:** Manual schedule entry from game screenshots is tedious and error-prone.
+
+---
 
 ## The Solution
 
-I built a "invisible" automation platform that lives entirely within Discord. Trilo handles the complex logic of league operations while presenting a simple, command-based interface to users.
+I built **two interconnected products** that form a complete SaaS business:
 
-### Key Capabilities
+### 1. Trilo Bot (Discord)
+An intelligent Discord bot that automates league operations through slash commands. Commissioners interact where their community already lives-no external tools required.
 
-*   **AI-Powered Matchup Creation:** OpenAI Vision API extracts team matchups from schedule screenshots with 95% accuracy, turning a 3-hour task into a 1-minute task.
-*   **Real-Time Game Tracking:** Automated standings updates triggered by simple emoji reactions.
-*   **Discord-Native Operations:** No external websites or logins required; everything happens where the community lives.
-*   **Auto-Stream Announcements:** Automatically detects and posts when members go live on Twitch/YouTube.
+### 2. Trilo Website (React)
+A marketing site that handles user acquisition, Discord OAuth authentication, Stripe payments, and license key delivery via Discord DM.
 
-## Technical Architecture
+<ZoomableImage
+  src="/trilo/homepage.png"
+  alt="Trilo.gg homepage - Hero section with 'Dynasty League Management, Automated' headline and Discord bot invite CTA"
+  width={1200}
+  height={675}
+  className="rounded-xl"
+/>
 
-### AI Integration
-*   **Vision API Pipeline:** Prototyped and refined prompts to extract structured data from diverse schedule screenshot formats.
-*   **Natural Language Processing:** Interprets user intent for complex administrative commands.
-*   **Predictive Analytics:** Provides personalized "Upgrade Assistant" recommendations for player development.
+---
 
-### Engineering Decisions
-*   **Modular SQLite Databases:** Decoupled data stores for league structure, user stats, and subscription handling to ensure scalability.
-*   **Role-Based Access Control:** Strict permissioning ensures only verified commissioners can alter league states.
-*   **Rate Limiting & Caching:** Optimized interactions to stay within Discord API limits while serving real-time responses.
+## System Architecture
 
-## Impact & Results
+The platform is fully event-driven across both products, with shared state in Supabase.
 
-Trilo transformed the user journey from "Manual Chaos" to "Beautiful Efficiency."
+<div className="not-prose my-12 -mx-6 md:mx-0 overflow-x-auto">
+    <TriloArchitectureDiagram />
+</div>
 
-*   **95% Reduction** in weekly administrative time (3 hours → 10 minutes).
-*   **300% Increase** in user engagement due to real-time stats and automated announcements.
-*   **Zero Data Entry Errors** thanks to automated schedule parsing.
-*   **Retention:** Stabilized leagues that previously churned due to commissioner burnout.
+### Data Flow
 
-## Future Roadmap
+1.  **Acquisition:** User visits trilo.gg → authenticates via Discord OAuth
+2.  **Conversion:** Stripe checkout creates subscription → webhook fires
+3.  **Fulfillment:** License key generated → delivered via Discord DM
+4.  **Activation:** User runs `/admin activate` in Discord → bot validates against Supabase
+5.  **Usage:** Bot handles all league operations, storing data in PostgreSQL
 
-*   **Multi-Game Expansion:** extending support to basketball, baseball, and esports.
-*   **Public API:** Allowing third-party tools to integrate with Trilo league data.
-*   **SaaS Model:** Tiered subscription management (Free, Core, Pro) with feature gating.
+---
+
+## Key Features
+
+### AI-Powered Matchup Creation
+
+The flagship feature: upload a schedule screenshot and Trilo extracts team matchups automatically.
+
+<div className="not-prose my-8">
+  <TriloMatchupPreview />
+</div>
+
+**Technical Implementation:**
+*   OpenAI Vision API (gpt-4o-mini) processes images with structured JSON schema enforcement
+*   95% extraction accuracy achieved through prompt engineering
+*   Cost-optimized: ~10x cheaper than GPT-4 Vision with comparable results
+
+### Discord-Native Operations
+
+Everything happens where the community lives. No external dashboards.
+
+<div className="not-prose my-8">
+  <PhoneMockup src="/trilo/commands.png" alt="Discord slash commands showing /teams, /matchups, and /attributes commands" />
+</div>
+
+**Command Groups:**
+*   `/teams` - Assign users to teams, view rosters, auto-updating list embeds
+*   `/matchups` - Create game channels, sync records, AI schedule import
+*   `/attributes` - Award points, approve upgrades, track spending
+*   `/settings` - Configure roles, channels, league type (CFB/NFL)
+
+### Reaction-Based Game Status
+
+Single-tap interactions for marking games complete.
+
+<div className="not-prose my-8">
+  <PhoneMockup src="/trilo/game-status.png" alt="Matchup channel showing game status reactions - ✅ (played), 🎲 (simmed), 🟥/🟦 (force win)" />
+</div>
+
+### Conversion-Optimized Website
+
+<ZoomableImage
+  src="/trilo/pricing.png"
+  alt="Trilo pricing page with Monthly/Annual toggle, Discord user avatar, and Continue to Checkout CTA"
+  width={1200}
+  height={675}
+  className="rounded-xl"
+/>
+
+**UX Decisions:**
+*   Discord OAuth pre-checkout reduces friction
+*   License key delivered via Discord DM (arrives where they'll use it)
+*   Interactive setup guide with progress tracking
+
+---
+
+## Technical Stack
+
+<div className="not-prose my-8">
+  <TriloTechStackTable />
+</div>
+
+---
+
+## Key Product Decisions
+
+This table represents the core PM thinking behind the product-weighing trade-offs and making defensible choices.
+
+<div className="not-prose my-8">
+  <TriloProductDecisionsTable />
+</div>
+
+---
+
+## Database Architecture
+
+A critical technical decision: supporting both SQLite (local dev) and PostgreSQL (production) through a unified abstraction layer.
+
+**Why This Matters:**
+*   **Local dev:** Zero setup friction with SQLite-just `python -m src.bot`
+*   **Production:** PostgreSQL with connection pooling (2-10 connections) for concurrent Discord servers
+*   **Abstraction:** Auto-converts `?` placeholders to `$1, $2` for PostgreSQL
+
+### Schema Design
+
+```
+server_settings     → Per-guild configuration
+cfb_teams/nfl_teams → Team assignments (user_id, team_name, server_id)
+cfb_matchups        → Matchup data with game status tracking
+attribute_points    → User balances (available, total_earned)
+attribute_requests  → Pending upgrades with approval workflow
+server_subscriptions → Subscription status, expiration, license keys
+command_usage       → Analytics (timestamp, execution_time, success/failure)
+```
+
+---
+
+## User Journey & Conversion Funnel
+
+**Funnel Stages:**
+1.  **Awareness:** User lands on trilo.gg via Discord community referral
+2.  **Consideration:** Explores features page, interactive setup guide
+3.  **Conversion:** Connects Discord, completes Stripe checkout ($69.99/year)
+4.  **Fulfillment:** Webhook generates license key → DM'd to user
+5.  **Activation:** `/admin activate TRILO-XXXX-XXXX-XXXX` in their server
+6.  **Retention:** Daily bot usage for league operations
+
+---
+
+## Impact & Metrics
+
+<div className="not-prose my-8 flex flex-wrap justify-center gap-4 md:gap-8 text-center">
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">95%</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Time Saved</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">95%</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">AI Accuracy</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">3</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Servers/License</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">~60%</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">vs Competitor</div>
+    </div>
+</div>
+
+<div className="not-prose my-8">
+  <TriloMetricsTable />
+</div>
+
+---
+
+## Competitive Analysis
+
+<div className="not-prose my-8">
+  <TriloCompetitiveAnalysis />
+</div>
+
+**Positioning:** Only solution combining AI automation with flat-rate multi-league pricing.
+
+---
+
+## Challenges & Learnings
+
+### Challenge 1: SQLite → PostgreSQL Migration
+*   **Problem:** Started with SQLite; needed production-grade database
+*   **Solution:** Built abstraction layer that auto-converts query syntax
+*   **Learning:** Would start with PostgreSQL from day one in future projects
+
+### Challenge 2: Discord's 3-Second Interaction Timeout
+*   **Problem:** AI operations exceed Discord's response window
+*   **Solution:** `interaction.response.defer()` for long operations, then `followup.send()`
+*   **Learning:** Always design for async-first in chatbot architectures
+
+### Challenge 3: License Key Delivery UX
+*   **Problem:** Email delivery adds friction; users might not check email
+*   **Solution:** Discord OAuth + DM delivery-key arrives where they'll use it
+*   **Learning:** Deliver value in the channel where users already are
+
+### Challenge 4: Pricing Strategy
+*   **Problem:** Per-league pricing is industry standard but punishes power users
+*   **Solution:** Flat rate for 3 servers-competitive moat for multi-league commissioners
+*   **Learning:** Understand user behavior (2-3 leagues typical) before pricing
+
+---
+
+## What I'd Do Differently
+
+*   **Start with PostgreSQL:** Avoid migration complexity
+*   **Add analytics earlier:** No conversion tracking currently-would add GA/Mixpanel from day one
+*   **User interviews before building:** More upfront research on pricing sensitivity
+*   **Build webhook monitoring:** Dashboard for Stripe webhook failures
+
+---
+
+## Skills Demonstrated
+
+<div className="not-prose my-8">
+  <SkillsDemonstrated skills={[
+    { name: "Technical Product Management", evidence: "Defined requirements, prioritized features, made trade-off decisions" },
+    { name: "Full-Stack Development", evidence: "Python bot + React site + serverless APIs" },
+    { name: "Database Architecture", evidence: "Dual-mode abstraction, connection pooling, schema design" },
+    { name: "AI/ML Integration", evidence: "OpenAI Vision API, prompt engineering, structured outputs" },
+    { name: "Payments & Billing", evidence: "Stripe integration, webhooks, license key system" },
+    { name: "User Experience", evidence: "Discord-native design, OAuth flow, conversion optimization" },
+    { name: "Go-to-Market", evidence: "Competitive analysis, pricing strategy, value positioning" },
+  ]} />
+</div>
+
+---
+
+## Links
+
+*   **Live Site:** [trilo.gg](https://trilo.gg)
+*   **Discord Bot:** [Invite Link](https://discord.com/oauth2/authorize?client_id=1312633145216077854)
+*   **Support Server:** [Join](https://discord.com/invite/zRQzvJWnUt)
 
