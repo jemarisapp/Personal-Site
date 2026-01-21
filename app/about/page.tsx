@@ -192,6 +192,19 @@ export default function AboutPage() {
                     <div className="space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                             <div>
+                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Brand & Motion Design Intern</h4>
+                                <p className="text-zinc-500 dark:text-zinc-400">Tomorrow Pictures Inc</p>
+                            </div>
+                            <span className="text-zinc-400 text-sm whitespace-nowrap">Dec 2022 - Apr 2023</span>
+                        </div>
+                        <p className="text-zinc-600 dark:text-zinc-400 text-sm">
+                            Delivered visual assets for company rebrand including logo design and brand animations. Enhanced client presentations with motion graphics for healthcare and corporate projects. Created reusable After Effects templates, reducing project delivery time by 2+ days and standardizing team workflow.
+                        </p>
+                    </div>
+
+                    <div className="space-y-2">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                            <div>
                                 <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Founder & Designer</h4>
                                 <p className="text-zinc-500 dark:text-zinc-400">TRISP Studio | <a href="https://trispstudio.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-zinc-600 dark:hover:text-zinc-300">trispstudio.com</a></p>
                             </div>

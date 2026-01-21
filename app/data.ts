@@ -98,6 +98,13 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     id: 'work1',
   },
   {
+    company: 'Tomorrow Pictures Inc',
+    title: 'Brand & Motion Design Intern',
+    start: 'Dec 2022',
+    end: 'Apr 2023',
+    id: 'work2',
+  },
+  {
     company: 'TRISP Studio',
     title: 'Founder & Designer',
     start: 'Dec 2016',
