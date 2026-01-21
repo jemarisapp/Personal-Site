@@ -101,6 +101,16 @@ export default function LayoutProject({
             )}
           </div>
         </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/"
+            className="flex items-center gap-1 text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back Home</span>
+          </Link>
+        </div>
       </main>
     </>
   )
