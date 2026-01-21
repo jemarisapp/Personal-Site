@@ -1,0 +1,376 @@
+
+import Image from 'next/image'
+import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { InquiflyTechStackTable } from '@/components/inquifly-tech-stack-table'
+import { InquiflyProductDecisionsTable } from '@/components/inquifly-product-decisions-table'
+import { InquiflyMetricsTable } from '@/components/inquifly-metrics-table'
+import { InquiflyArchitectureDiagram } from '@/components/inquifly-architecture-diagram'
+import { InquiflyAIPipeline } from '@/components/inquifly-ai-pipeline'
+
+export const metadata = {
+  title: 'Inquifly: AI-Powered Inquiry Management for Photographers',
+  description: 'A SaaS platform that automates photographer inquiry responses from 20 minutes to 30 seconds using AI, Google Calendar integration, and personalized brand voice.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  {/* IMAGE PLACEHOLDER: Inquifly hero image */}
+  <div className="w-full rounded-xl bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-emerald-500/20 aspect-video flex items-center justify-center">
+    <p className="text-zinc-500 dark:text-zinc-400 text-sm">📸 IMAGE PLACEHOLDER: Inquifly dashboard or hero mockup</p>
+  </div>
+</div>
+
+# Inquifly: AI-Powered Inquiry Management for Photographers
+
+**Role:** Founder & Full-Stack Developer | **Timeline:** Oct 2025 - Present
+**Tech Stack:** Next.js 15, TypeScript, Supabase, Google Gemini AI, Google Calendar API, Stripe
+
+---
+
+## Executive Summary
+
+Built a SaaS platform that transforms photographer inquiry management from a 20-minute manual process to a 30-second review-and-send workflow. Features a two-stage AI pipeline (Gemini) for intent extraction and personalized draft generation, real-time Google Calendar availability checking, and Postmark webhook integration for seamless email forwarding. Full subscription management via Stripe with usage-based tiers.
+
+---
+
+## The Problem
+
+**78% of clients book with the first photographer to respond.** Yet most photographers lose bookings because:
+
+*   **Response Time:** 20+ minutes to read email, check calendar, draft response, send
+*   **Inconsistent Voice:** Rushed responses lose brand personality
+*   **Double-Booking Risk:** Manual calendar checking leads to costly errors
+*   **Lost Revenue:** Each slow response risks $500-5,000+ in booking revenue
+*   **Admin Overload:** Time spent on emails = time NOT spent shooting
+
+{/* IMAGE PLACEHOLDER: Before/after workflow comparison */}
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-8 text-center text-zinc-500 dark:text-zinc-400">
+  <p className="text-sm">📸 IMAGE PLACEHOLDER: Side-by-side workflow comparison</p>
+  <p className="text-xs mt-2">Left: Manual process (read → check calendar → draft → send = 20 min)<br/>Right: Inquifly (review draft → send = 30 sec)</p>
+</div>
+
+---
+
+## The Solution
+
+An end-to-end automation pipeline that handles everything from email receipt to personalized draft generation.
+
+### How It Works
+
+```
+Client Email → Gmail Filter → Postmark Webhook → AI Extraction →
+Calendar Check → AI Draft Generation → Photographer Review → Send
+```
+
+**Key Differentiator:** The AI doesn't just respond-it *understands* the inquiry, *checks* real availability, and *sounds* like the photographer.
+
+{/* IMAGE PLACEHOLDER: Product screenshot - inbox with drafts */}
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-8 text-center text-zinc-500 dark:text-zinc-400">
+  <p className="text-sm">📸 IMAGE PLACEHOLDER: Inquifly inbox</p>
+  <p className="text-xs mt-2">Dashboard showing pending drafts with sender, session type, and status</p>
+</div>
+
+---
+
+## System Architecture
+
+The platform orchestrates multiple services through Next.js API routes, with Supabase as the central data store.
+
+<div className="not-prose my-12 -mx-6 md:mx-0 overflow-x-auto">
+    <InquiflyArchitectureDiagram />
+</div>
+
+### Data Flow
+
+1.  **Ingest:** Client emails photographer → Gmail filter forwards to `user@mail.inquifly.com`
+2.  **Process:** Postmark webhook triggers Next.js API → AI extracts intent → Calendar checks availability
+3.  **Generate:** Gemini drafts response using packages, policies, tone, and availability context
+4.  **Review:** Photographer sees draft in inbox → edits if needed → one-click send
+5.  **Track:** Processing logged for analytics → usage counted against subscription
+
+---
+
+## The AI Pipeline
+
+What makes Inquifly different: a **two-stage AI architecture** that separates understanding from generation.
+
+<div className="not-prose my-8">
+    <InquiflyAIPipeline />
+</div>
+
+### Why Two Stages?
+
+| Approach | Problem |
+|----------|---------|
+| **Single prompt** | Can't validate extraction before drafting; can't inject calendar data |
+| **Fine-tuned model** | Expensive; can't update packages without retraining |
+| **Two-stage pipeline** | Extract → validate → enrich with calendar → generate |
+
+**Stage 1 (Extraction)** produces structured JSON that enables calendar lookup *before* drafting.
+
+**Stage 2 (Generation)** receives full context: inquiry + packages + policies + availability + tone settings.
+
+---
+
+## Key Features
+
+### Calendar-Aware Responses
+
+When the photographer is booked, the system doesn't just say "unavailable"-it suggests alternatives.
+
+{/* IMAGE PLACEHOLDER: Calendar alternatives UI */}
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-8 text-center text-zinc-500 dark:text-zinc-400">
+  <p className="text-sm">📸 IMAGE PLACEHOLDER: Draft showing alternative times</p>
+  <p className="text-xs mt-2">"I'm booked on May 15th, but I have availability on May 14th at 2pm or May 16th at 11am..."</p>
+</div>
+
+**Technical Implementation:**
+*   Google Calendar `freebusy` API (minimal permission scope)
+*   3-day window scan: day before, same day, day after
+*   Time slots checked: 9am, 11am, 2pm, 4pm
+*   Only suggests times that are actually free
+
+### Knowledge Base Integration
+
+Photographers configure their business details once. The AI references them in every draft.
+
+{/* IMAGE PLACEHOLDER: Settings page - packages/tone */}
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-8 text-center text-zinc-500 dark:text-zinc-400">
+  <p className="text-sm">📸 IMAGE PLACEHOLDER: Settings page</p>
+  <p className="text-xs mt-2">Packages, add-ons, policies, and tone/voice configuration</p>
+</div>
+
+**Knowledge Base Includes:**
+*   **Packages:** Session types, pricing, duration, inclusions
+*   **Add-ons:** Extra edits, rush delivery, prints
+*   **Policies:** Deposit (%), cancellation, turnaround time
+*   **Tone:** Warm/professional/casual, phrases to use/avoid
+*   **Sample Responses:** Real emails to train style
+
+### Usage Analytics Dashboard
+
+Photographers see exactly how much time Inquifly saves.
+
+{/* IMAGE PLACEHOLDER: Analytics dashboard */}
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-8 text-center text-zinc-500 dark:text-zinc-400">
+  <p className="text-sm">📸 IMAGE PLACEHOLDER: Analytics dashboard</p>
+  <p className="text-xs mt-2">Usage chart, time saved, session type breakdown, busiest times</p>
+</div>
+
+**Metrics Tracked:**
+*   Inquiries processed this billing cycle
+*   Average processing time (ms)
+*   Estimated time saved (hours/month)
+*   Session type distribution
+*   Peak inquiry times
+
+---
+
+## Technical Stack
+
+<div className="not-prose my-8">
+  <InquiflyTechStackTable />
+</div>
+
+---
+
+## Key Product Decisions
+
+This table represents the PM thinking behind the product-every decision has trade-offs.
+
+<div className="not-prose my-8">
+  <InquiflyProductDecisionsTable />
+</div>
+
+---
+
+## Email Forwarding Architecture
+
+The trickiest UX challenge: getting emails from the photographer's inbox into Inquifly.
+
+### Solution: Unique Inbound Addresses
+
+Each photographer gets a unique Postmark inbound address:
+```
+username@mail.inquifly.com
+```
+
+### Setup Flow
+
+1.  User creates account → system generates unique prefix
+2.  User sets up Gmail filter: `from:(-me) → forward to inbound address`
+3.  User sends test inquiry to verify forwarding works
+4.  System marks setup as complete → processing enabled
+
+{/* IMAGE PLACEHOLDER: Setup wizard */}
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-8 text-center text-zinc-500 dark:text-zinc-400">
+  <p className="text-sm">📸 IMAGE PLACEHOLDER: Email setup wizard</p>
+  <p className="text-xs mt-2">Step-by-step Gmail filter configuration with verification status</p>
+</div>
+
+**Why This Approach:**
+*   No Gmail API polling (quota limits, latency)
+*   No direct Gmail access (privacy concerns)
+*   Simple filter rule photographers can set up in 2 minutes
+*   Reliable webhook delivery with Postmark
+
+---
+
+## Subscription Model
+
+Usage-based pricing aligned with photographer inquiry volume.
+
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm">
+            <thead className="border-b border-zinc-200 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                <tr>
+                    <th className="px-6 py-4 font-medium">Tier</th>
+                    <th className="px-6 py-4 font-medium">Inquiries/Month</th>
+                    <th className="px-6 py-4 font-medium">Target User</th>
+                    <th className="px-6 py-4 font-medium">Features</th>
+                </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <tr className="hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
+                    <td className="px-6 py-4 font-medium text-zinc-900 dark:text-zinc-100">Free</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">10</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Try before buy</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Core AI drafting</td>
+                </tr>
+                <tr className="hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50 bg-purple-50/50 dark:bg-purple-900/10">
+                    <td className="px-6 py-4 font-medium text-purple-600 dark:text-purple-400">Founder</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">50</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Early adopters (20 spots)</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Locked-in pricing</td>
+                </tr>
+                <tr className="hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
+                    <td className="px-6 py-4 font-medium text-zinc-900 dark:text-zinc-100">Creator</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">75</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Part-time photographers</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Enhanced analytics</td>
+                </tr>
+                <tr className="hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
+                    <td className="px-6 py-4 font-medium text-zinc-900 dark:text-zinc-100">Pro</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">200</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Full-time professionals</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Time filters, full analytics</td>
+                </tr>
+                <tr className="hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
+                    <td className="px-6 py-4 font-medium text-zinc-900 dark:text-zinc-100">Studio</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Unlimited</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Agencies/teams</td>
+                    <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">Enterprise features</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+**Billing Implementation:**
+*   Stripe subscriptions with webhook handlers
+*   Usage tracked per billing cycle (not calendar month)
+*   Automatic reset on subscription anniversary
+*   Overage handling: soft limit with upgrade prompt
+
+---
+
+## Impact & Metrics
+
+<div className="not-prose my-8 flex flex-wrap justify-center gap-4 md:gap-8 text-center">
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">97%</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Faster Response</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">Zero</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Double-Bookings</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">100%</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">On-Brand Voice</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">~10hrs</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Saved/Month</div>
+    </div>
+</div>
+
+<div className="not-prose my-8">
+  <InquiflyMetricsTable />
+</div>
+
+---
+
+## Challenges & Learnings
+
+### Challenge 1: Gmail Forwarding Complexity
+
+*   **Problem:** Non-technical photographers struggle with Gmail filter setup
+*   **Solution:** Step-by-step wizard with test inquiry verification
+*   **Learning:** Invest heavily in onboarding UX for complex integrations
+
+### Challenge 2: AI Hallucination Prevention
+
+*   **Problem:** LLMs might invent prices or policies
+*   **Solution:** Strict prompt constraints + knowledge base grounding. AI handles *language*, code handles *facts*.
+*   **Learning:** Never let AI generate business-critical numbers without guardrails
+
+### Challenge 3: OAuth Token Management
+
+*   **Problem:** Google OAuth tokens expire; users shouldn't re-authenticate constantly
+*   **Solution:** Store refresh tokens in Supabase; automatic refresh on expiry
+*   **Learning:** Plan for long-lived integrations from the start
+
+### Challenge 4: Usage Tracking Across Billing Cycles
+
+*   **Problem:** Stripe doesn't track usage-only charges
+*   **Solution:** Custom billing period calculation in Supabase
+*   **Learning:** Build your own usage tracking for usage-based SaaS
+
+---
+
+## What I'd Do Differently
+
+*   **Add email open/reply tracking** - measure actual conversion, not just drafts sent
+*   **Build mobile notifications** - photographers check email on phones constantly
+*   **Implement RAG for FAQs** - scale knowledge base beyond structured packages
+*   **A/B test draft styles** - learn which tones convert better
+*   **Add team/multi-user support earlier** - studios need collaboration
+
+---
+
+## Skills Demonstrated
+
+| Skill | Evidence |
+|-------|----------|
+| **Technical Product Management** | Two-stage AI architecture, usage-based pricing tiers |
+| **Full-Stack Development** | Next.js 15 + Supabase + Google APIs + Stripe |
+| **AI/LLM Integration** | Gemini pipeline with structured outputs, hallucination prevention |
+| **API Design** | Webhook handlers, OAuth flows, rate limiting |
+| **Third-Party Integrations** | Google Calendar, Gmail, Postmark, Stripe |
+| **Payments & Billing** | Subscription management with usage-based limits |
+| **UX Design** | Onboarding wizard, analytics dashboard, draft review flow |
+
+---
+
+## Database Schema
+
+```
+clients           → Business profiles (stripe_customer_id, plan, usage)
+users             → Auth profiles (inbound_email_prefix, verified)
+client_settings   → Tone, policies, Google OAuth tokens
+drafts            → AI-generated responses (status: pending/sent/discarded)
+packages          → Service offerings by category
+addons            → Extra services (rush delivery, extra edits)
+faqs              → Knowledge base entries
+policies          → Business rules (deposit %, cancellation)
+processing_logs   → Activity tracking (sender, session_type, time)
+email_templates   → Saved templates by inquiry type
+```
+
+---
+
+## Links
+
+*   **Live Site:** [inquifly.com](https://inquifly.com)
+

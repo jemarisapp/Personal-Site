@@ -30,19 +30,27 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Trilo',
+    description:
+      'Full-stack SaaS automating fantasy football league management with AI-powered schedule extraction, Stripe subscriptions, and Discord-native operations.',
+    link: '/project/trilo',
+    image: '/trilo.avif',
+    id: 'project1',
+  },
+  {
+    name: 'Inquifly',
+    description:
+      'AI-powered inquiry management for photographers. Turns 20-minute email responses into 30-second reviews with calendar-aware, brand-aligned drafts.',
+    link: '/project/inquifly',
+    image: '/inquifly.png',
+    id: 'project2',
+  },
+  {
     name: 'Navigate IDD',
     description:
       'AI-assisted Medicaid waiver education system converting policy into multilingual videos.',
     link: '/project/navigate-idd',
     image: '/navigate-idd.jpg',
-    id: 'project1',
-  },
-  {
-    name: 'Autonomous Booking System',
-    description:
-      'Re-architecting a manual triage workflow into a fully automated serverless system, eliminating operational bottlenecks and enabling 24/7 inquiry handling.',
-    link: '/project/autonomous-booking-system',
-    image: '/automating email.png',
     id: 'project3',
   },
   {
@@ -53,21 +61,39 @@ export const PROJECTS: Project[] = [
     image: '/music-analytics.avif',
     id: 'project4',
   },
+]
 
+export const DESIGN_PROJECTS: Project[] = [
   {
-    name: 'Trilo: The AI Sports Commissioner',
+    name: 'Fast X Soundtrack',
     description:
-      'Autonomous league management system using Computer Vision to track stats and run operations within Discord.',
-    link: '/project/trilo',
-    image: '/trilo.avif',
-    id: 'project2',
+      'Visuals for Spotify Canvas, Apple Music, YouTube, and social media, balancing cinematic energy with platform-specific adaptability.',
+    link: '/project/fast-x-soundtrack',
+    image: '/fast-x/gif.webp',
+    id: 'design1',
+  },
+  {
+    name: 'Camp MODA',
+    description:
+      'A flexible identity system for the Museum of Design Atlanta’s summer program, designed to energize kids and teens.',
+    link: '/project/camp-moda',
+    image: '/camp-moda/gif.webp',
+    id: 'design2',
   },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Trilo: The AI Sports Commissioner',
-    title: 'Founder & Product Engineer',
+    company: 'Georgia State University',
+    title: 'Graduate Assistant',
+    start: 'Aug 2025',
+    end: 'Present',
+    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
+    id: 'work4',
+  },
+  {
+    company: 'Trilo',
+    title: 'Founder & Developer',
     start: 'Nov 2024',
     end: 'Present',
     link: '/project/trilo',
@@ -75,28 +101,11 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'TRISP Studio',
-    title: 'Founder & Technical Product Manager',
+    title: 'Founder & Designer',
     start: 'Dec 2016',
     end: 'Present',
     link: '/project/autonomous-booking-system',
     id: 'work5',
-  },
-
-  {
-    company: 'Georgia State University',
-    title: 'Graduate Research Assistant',
-    start: 'Aug 2025',
-    end: 'Present',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
-    id: 'work4',
-  },
-  {
-    company: 'Tomorrow Pictures',
-    title: 'Brand & Motion Design Intern',
-    start: 'Dec 2022',
-    end: 'Apr 2023',
-    link: 'https://www.dropbox.com/scl/fi/ufpk6tl2l3fh995n2u0vt/Jemari_Sapp_Web_Resume_2025-LINKED.pdf?rlkey=etulofdgodno67svers842xwh&st=76jtf0gv&dl=0',
-    id: 'work6',
   },
 ]
 
