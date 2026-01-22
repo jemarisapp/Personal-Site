@@ -15,21 +15,26 @@ export const metadata = {
     alt="Navigate IDD"
     width={1200}
     height={675}
-    className="w-full rounded-xl object-cover"
+    className="w-full rounded-xl object-cover aspect-video"
     priority
   />
 </div>
 
 # Navigate IDD
 
-**Role:** AI Systems Product Designer | **Timeline:** Sep 2025 - Oct 2025  
-**Tech Stack:** n8n, OpenAI GPT-4 & Claude Sonnet 4.5, Pinecone, Synthesia
+import { ProjectHeader } from '@/components/project-header'
+
+<ProjectHeader
+  role="AI Systems Product Designer"
+  timeline="Sep 2025 - Oct 2025"
+  stack={["n8n", "OpenAI GPT-4", "Claude Sonnet 4.5", "Pinecone", "Synthesia"]}
+/>
 
 ---
 
 ## Overview
 
-Navigate IDD is a governed AI system designed to transform complex Medicaid waiver regulations into verified, multilingual educational videos. In a domain where accuracy is critical, this system bridges the gap between dense policy documents and accessible family guidance, ensuring compliance while drastically reducing content production time.
+Navigate IDD is a governed AI system designed to transform complex Medicaid waiver regulations into verified, multilingual educational videos. Working with a cross-functional team of policy experts & production strategists, I led the AI systems design for this project. In a domain where accuracy is critical, this system bridges the gap between dense policy documents and accessible family guidance, ensuring compliance while drastically reducing content production time.
 
 ## The Challenge
 
@@ -40,7 +45,7 @@ Families seeking disability services often face a barrier of dense regulations a
 
 ## The Solution
 
-I architected and built an end-to-end **Retrieval-Augmented Generation (RAG)** pipeline that grounds AI outputs strictly in verified policy documents. The system automates the creation of scripts, translations, and video production, all while maintaining a rigid human-in-the-loop governance model.
+I architected and built an end-to-end **Retrieval-Augmented Generation (RAG)** pipeline that grounds AI outputs strictly in verified policy documents. Collaborating with subject matter experts and compliance reviewers, the system automates the creation of scripts, translations, and video production, all while maintaining a rigid human-in-the-loop governance model.
 
 <div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
   <video

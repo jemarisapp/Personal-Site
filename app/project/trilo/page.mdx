@@ -21,15 +21,20 @@ export const metadata = {
     alt="Trilo - Full-Stack SaaS Platform"
     width={1200}
     height={675}
-    className="w-full rounded-xl object-cover"
+    className="w-full rounded-xl object-cover aspect-video"
     priority
   />
 </div>
 
 # Trilo: Full-Stack SaaS for Sports League Automation
 
-**Role:** Founder & Technical Product Manager | **Timeline:** Nov 2024 - Present
-**Tech Stack:** Python, React, TypeScript, PostgreSQL, OpenAI Vision API, Stripe, Discord OAuth
+import { ProjectHeader } from '@/components/project-header'
+
+<ProjectHeader
+  role="Founder & Product Engineer"
+  timeline="Nov 2024 - Present"
+  stack={["Python", "React", "TypeScript", "PostgreSQL", "OpenAI Vision API", "Stripe", "Discord OAuth"]}
+/>
 
 ---
 
@@ -55,7 +60,7 @@ Running a fantasy football dynasty league on Discord is operationally brutal.
 I built **two interconnected products** that form a complete SaaS business:
 
 ### 1. Trilo Bot (Discord)
-An intelligent Discord bot that automates league operations through slash commands. Commissioners interact where their community already lives-no external tools required.
+An intelligent Discord bot that automates league operations through slash commands. Commissioners interact where their community already lives. No external tools required.
 
 ### 2. Trilo Website (React)
 A marketing site that handles user acquisition, Discord OAuth authentication, Stripe payments, and license key delivery via Discord DM.
@@ -152,7 +157,7 @@ Single-tap interactions for marking games complete.
 
 ## Key Product Decisions
 
-This table represents the core PM thinking behind the product-weighing trade-offs and making defensible choices.
+This table represents the core PM thinking behind the product. It weighs trade-offs and makes defensible choices.
 
 <div className="not-prose my-8">
   <TriloProductDecisionsTable />
@@ -165,7 +170,7 @@ This table represents the core PM thinking behind the product-weighing trade-off
 A critical technical decision: supporting both SQLite (local dev) and PostgreSQL (production) through a unified abstraction layer.
 
 **Why This Matters:**
-*   **Local dev:** Zero setup friction with SQLite-just `python -m src.bot`
+*   **Local dev:** Zero setup friction with SQLite. Just run `python -m src.bot`
 *   **Production:** PostgreSQL with connection pooling (2-10 connections) for concurrent Discord servers
 *   **Abstraction:** Auto-converts `?` placeholders to `$1, $2` for PostgreSQL
 
@@ -259,7 +264,7 @@ command_usage       → Analytics (timestamp, execution_time, success/failure)
 ## What I'd Do Differently
 
 *   **Start with PostgreSQL:** Avoid migration complexity
-*   **Add analytics earlier:** No conversion tracking currently-would add GA/Mixpanel from day one
+*   **Add analytics earlier:** No conversion tracking currently. I would add GA/Mixpanel from day one
 *   **User interviews before building:** More upfront research on pricing sensitivity
 *   **Build webhook monitoring:** Dashboard for Stripe webhook failures
 

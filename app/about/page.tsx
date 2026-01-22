@@ -179,7 +179,7 @@ export default function AboutPage() {
                     <div className="space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                             <div>
-                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Founder & Developer</h4>
+                                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">Founder & Product Engineer</h4>
                                 <p className="text-zinc-500 dark:text-zinc-400">Trilo | <a href="https://trilo.gg" target="_blank" rel="noopener noreferrer" className="underline hover:text-zinc-600 dark:hover:text-zinc-300">trilo.gg</a></p>
                             </div>
                             <span className="text-zinc-400 text-sm whitespace-nowrap">Nov 2024 - Present</span>
@@ -223,26 +223,60 @@ export default function AboutPage() {
                 className="space-y-6"
             >
                 <h3 className="text-lg font-medium">Skills</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 text-sm text-zinc-600 dark:text-zinc-400">
-                    <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Product</h4>
-                        <p>Product Management, User Research, Pricing Strategy, Roadmap Planning, Go-to-Market Strategy</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700 dark:hover:bg-zinc-900">
+                        <div className="mb-2 flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-semibold text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                Product
+                            </span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            Product Management, User Research, Pricing Strategy, Roadmap Planning, Go-to-Market Strategy
+                        </p>
                     </div>
-                    <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">AI/ML</h4>
-                        <p>OpenAI Vision, Gemini, Prompt Engineering, RAG, Structured Output Design, Model Evaluation</p>
+
+                    <div className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700 dark:hover:bg-zinc-900">
+                        <div className="mb-2 flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-semibold text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                AI/ML
+                            </span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            OpenAI Vision, Gemini, Prompt Engineering, RAG, Structured Output Design, Model Evaluation
+                        </p>
                     </div>
-                    <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Technical</h4>
-                        <p>Python, TypeScript, React/Next.js, PostgreSQL, REST APIs, Webhooks, Git, System Architecture</p>
+
+                    <div className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700 dark:hover:bg-zinc-900">
+                        <div className="mb-2 flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-semibold text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                Technical
+                            </span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            Python, TypeScript, React/Next.js, PostgreSQL, REST APIs, Webhooks, Git, System Architecture
+                        </p>
                     </div>
-                    <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Integrations & Data</h4>
-                        <p>Stripe, Supabase, Discord API, Google Calendar API, Postmark, SQL, Pandas, NumPy</p>
+
+                    <div className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700 dark:hover:bg-zinc-900">
+                        <div className="mb-2 flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-semibold text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                Integrations & Data
+                            </span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            Stripe, Supabase, Discord API, Google Calendar API, Postmark, SQL, Pandas, NumPy
+                        </p>
                     </div>
-                    <div>
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Design</h4>
-                        <p>Figma, Adobe Creative Suite, UI/UX Design</p>
+
+                    <div className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 p-4 transition-colors hover:border-zinc-300 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-700 dark:hover:bg-zinc-900">
+                        <div className="mb-2 flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-semibold text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                Design
+                            </span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            Figma, Adobe Creative Suite, UI/UX Design
+                        </p>
                     </div>
                 </div>
             </motion.section>

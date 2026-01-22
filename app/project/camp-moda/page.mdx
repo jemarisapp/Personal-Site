@@ -1,5 +1,6 @@
 
 import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { SkillsDemonstrated } from '@/components/skills-demonstrated'
 
 export const metadata = {
   title: 'Camp MODA',
@@ -12,46 +13,129 @@ export const metadata = {
     alt="Camp MODA Rebrand"
     width={1200}
     height={675}
-    className="w-full rounded-xl object-cover"
+    className="w-full rounded-xl object-cover aspect-video"
     priority
   />
 </div>
 
 # Camp MODA
 
-**Role:** Visual Designer | **Timeline:** 2023  
-**Project Type:** Speculative Rebrand
+import { ProjectHeader } from '@/components/project-header'
+
+<ProjectHeader
+  role="Visual Designer"
+  timeline="2023"
+  stack={["Illustrator", "Photoshop", "Cinema 4D", "Brand Identity", "3D Design"]}
+/>
 
 ---
 
 ## Overview
 
-Camp MODA is the Museum of Design Atlanta’s summer program for ages 6 - 18. This speculative rebrand creates a flexible identity system that energizes kids and teens across digital and physical platforms.
+A flexible, modular identity system for the Museum of Design Atlanta’s summer program. This speculative rebrand replaced static assets with a dynamic "voxel" system designed to energize a K-12 audience.
 
-## Challenge
+## The Challenge
 
-The original branding felt too static for kids and too generic for teens. MODA needed a system that could attract attention in all environments, span a wide age range, and reflect the camp’s creative, tech-forward mission.
+The original branding felt disconnected: too childish for teens, yet too generic for kids. MODA needed a **visual language** that could:
+*   Span a wide age range (6-18) without feeling patronizing.
+*   Reflect the camp's focus on "building" and "technology."
+*   Work across digital (web, social) and physical (t-shirts, signage) mediums.
 
-## Solution
+## The Solution: A Voxel-Based System
 
-I created a brand system built on two key pillars:
+I moved away from standard flat graphics and developed a **3D Voxel System** inspired by Minecraft and retro gaming. This wasn't just an aesthetic choice. It was a functional one:
 
-**Familiarity** - Inspired by games like Minecraft and Super Mario, I used modular, pixel-style letterforms and bold primary colors to create a playful, approachable look.
+### 1. Modular Typography
+I designed a custom alphabet where every letter is built from the same grid of blocks. This ensures that any new headline feels instantly "on brand" while remaining legible.
 
-**Innovation** - To reflect MODA’s focus on modern design and technology, I introduced a 3D voxel-based aesthetic. This added depth, movement, and dimension, pushing the visual language into a space that felt digital-native, current, and immersive.
+<div className="not-prose my-8">
+   {/* Asset: Logo Variations */}
+   <ZoomableImage src="/camp-moda/logos.avif" alt="Camp MODA Logo Variations" width={1200} height={800} className="w-full rounded-xl object-cover" />
+</div>
 
-## Logo System & Color Variations
+### 2. "MODA Monsters" & 3D Identity
+To add personality, I used the same voxel grid to generate a family of mascots. These "MODA Monsters" act as brand ambassadors. They add energy to social posts or guide kids through wayfinding signage.
 
-To ensure flexibility across formats and age groups, I designed a full suite of logo variations. These included a vibrant, multi-block primary logo, high-contrast mono and duotone options for print and apparel, and staggered layouts inspired by retro games. The system keeps the brand playful, recognizable, and adaptable across digital, print, and motion.
+I paired the blocky structure with a neon-adjacent color palette. The contrast between the rigid grid and the electric colors creates a sense of "organized chaos" that mirrors the creative energy of a design camp.
 
-## 3D Wordmark & MODA Monsters
+<div className="not-prose my-8 space-y-6">
+   {/* Asset: 3D Wordmark (Large Hero) */}
+   <ZoomableImage src="/camp-moda/3dtype.avif" alt="3D Voxel Wordmark" width={1200} height={675} className="w-full rounded-xl object-cover" />
 
-The 3D wordmark reimagines Camp MODA with a voxel-inspired type system built from modular pixel blocks. Bold colors, dynamic lighting, and a tilted layout evoke retro games while capturing the creative energy of summer camp.
+   {/* Asset: 3D Monsters Row */}
+   <ZoomableImage src="/camp-moda/3dmonsters.avif" alt="MODA Monsters" width={800} height={600} className="w-full rounded-xl object-cover" />
+   
+   {/* Asset: Gear/Machine Graphic */}
+   <ZoomableImage src="/camp-moda/type-monsters.avif" alt="Camp MODA Visual Language" width={800} height={600} className="w-full rounded-xl object-cover" />
+</div>
 
-The MODA Monsters are voxel-style mascots designed to reflect that same spirit. With glowing edges and expressive forms, they add playful personality and nostalgic charm across digital, print, and motion.
+### 3. Motion System
+Static pixels are boring. The voxel system was designed to move. It pulses, spins, and assembles to capture the kinetic energy of a kids' camp.
 
-This visual language came to life in a branded poster, combining the 3D branding, MODA Monsters, and STEM-inspired icons to connect with all age groups. I also extended the identity to branded t-shirts.
+<div className="not-prose my-12 space-y-12">
+    {/* Animation 1: Type/Instagram Animation */}
+    <div className="flex justify-center rounded-2xl bg-zinc-100 py-12 dark:bg-zinc-900/50">
+        <div className="relative aspect-[9/16] h-[600px] w-auto overflow-hidden rounded-xl shadow-2xl ring-1 ring-zinc-900/5 dark:ring-zinc-100/10">
+           <iframe
+             src="https://www.youtube.com/embed/5Sfn0aK7qoM?autoplay=1&mute=1&loop=1&playlist=5Sfn0aK7qoM&controls=0&showinfo=0&modestbranding=1&rel=0"
+             className="absolute top-0 left-0 w-full h-full"
+             allow="autoplay; encrypted-media; loop"
+             allowFullScreen
+           />
+        </div>
+    </div>
+
+    {/* Animation 2: Walking Monster Animation */}
+    <div className="flex justify-center rounded-2xl bg-zinc-100 py-12 dark:bg-zinc-900/50">
+        <div className="relative aspect-[9/16] h-[600px] w-auto overflow-hidden rounded-xl shadow-2xl ring-1 ring-zinc-900/5 dark:ring-zinc-100/10">
+           <iframe
+             src="https://www.youtube.com/embed/HRAdO5t-AlA?autoplay=1&mute=1&loop=1&playlist=HRAdO5t-AlA&controls=0&showinfo=0&modestbranding=1&rel=0"
+             className="absolute top-0 left-0 w-full h-full"
+             allow="autoplay; encrypted-media; loop"
+             allowFullScreen
+           />
+        </div>
+    </div>
+</div>
+
+### 4. Application & Merch
+The grid system makes layout effortless across any medium, from vertical digital signage to apparel.
+
+<div className="not-prose my-8">
+    {/* Asset: Web Banner Mock (Full Width for Digital Impact) */}
+    <ZoomableImage src="/camp-moda/web-banner.avif" alt="Web Banner Mockup" width={1200} height={800} className="w-full rounded-xl object-cover border border-zinc-200 dark:border-zinc-800" />
+</div>
+
+<div className="not-prose my-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    {/* Asset: Event Flyer Banner (Long Vertical 9:16) */}
+    <div className="md:row-span-2 flex justify-center sticky top-24">
+        <ZoomableImage src="/camp-moda/event-flyer.png" alt="Event Flyer Banner" width={600} height={1066} className="w-auto max-h-[800px] rounded-lg shadow-xl" />
+    </div>
+
+    {/* Asset: Physical Applications Stack */}
+    <div className="space-y-8">
+        {/* Asset: Event Flyer Mockup (Context Shot) */}
+         <ZoomableImage src="/camp-moda/event-flyer-mock.avif" alt="Flyer Context Mockup" width={800} height={600} className="w-full rounded-xl object-cover" />
+
+        {/* Asset: Clothing Design Mock */}
+        <ZoomableImage src="/camp-moda/shirt-mocks.avif" alt="Apparel Design" width={800} height={600} className="w-full rounded-xl object-cover" />
+    </div>
+</div>
+
+
 
 ## Outcome
 
-Although this was a speculative proposal, the final identity successfully repositioned Camp MODA as vibrant, tech-forward, and age-inclusive. The system captured the camp’s playful spirit while maintaining structure and flexibility across platforms.
+This project demonstrates how **systems thinking** applies to brand identity. By defining the rules (the grid, the voxel), I created a system where unlimited assets can be generated. This ranges from t-shirts to Instagram stories, all while maintaining 100% visual consistency.
+
+---
+
+## Skills Demonstrated
+
+<div className="not-prose my-8">
+  <SkillsDemonstrated skills={[
+    { name: "Identity Systems", evidence: "Building a flexible logo system using voxel blocks" },
+    { name: "3D Typography", evidence: "Custom voxel type design in Cinema 4D" },
+    { name: "Brand Storytelling", evidence: "Creating 'MODA Monsters' mascots" },
+  ]} />
+</div>

@@ -1,0 +1,66 @@
+
+import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { ProjectHeader } from '@/components/project-header'
+import { SkillsDemonstrated } from '@/components/skills-demonstrated'
+
+export const metadata = {
+  title: 'Zaire\'s Valentine',
+  description: 'Short-form animation delivering a personal, cinematic message while teasing an unreleased track.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <ZoomableImage
+    src="/zaire-valentine/gif.webp"
+    alt="Zaire Valentine Animation"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl object-cover aspect-video"
+    priority
+  />
+</div>
+
+# Zaire's Valentine
+
+<ProjectHeader
+  role="Motion Designer"
+  timeline="Feb 2024"
+  stack={["After Effects", "Premiere Pro", "Social Media", "Video Editing"]}
+/>
+
+---
+
+## Overview
+
+For Zaire's Valentine’s Day release, I created a short-form animation that delivered a personal, emotionally resonant message while teasing an unreleased track. The goal was to build anticipation in a way that felt organic, not promotional.
+
+## The Vision
+
+The final piece balanced intimacy with a cinematic tone, aligning with the holiday and reinforcing Zaire’s brand as an artist who speaks directly to his audience. The visual direction prioritized mood and atmosphere, using subtle motion to complement the unreleased audio snippet without overpowering it.
+
+{/* Vertical Video Showcase */}
+<div className="not-prose my-12 flex justify-center rounded-2xl bg-zinc-100 py-12 dark:bg-zinc-900/50">
+    <div className="relative aspect-[9/16] h-[600px] w-auto overflow-hidden rounded-xl shadow-2xl ring-1 ring-zinc-900/5 dark:ring-zinc-100/10">
+       <iframe
+         src="https://www.youtube.com/embed/MAjceSVZnFU?autoplay=1&mute=1&loop=1&playlist=MAjceSVZnFU&controls=0&showinfo=0&modestbranding=1&rel=0"
+         className="absolute top-0 left-0 w-full h-full"
+         allow="autoplay; encrypted-media; loop"
+         allowFullScreen
+       />
+    </div>
+</div>
+
+## Impact
+
+The animation successfully helped Zaire connect with his audience on a deeper level. By giving fans an early emotional bond with his new music, the piece received strong engagement and shares across social platforms. It amplified excitement for the upcoming release while reinforcing his image as an artist who prioritizes connection with his listeners.
+
+---
+
+## Skills Demonstrated
+
+<div className="not-prose my-8">
+  <SkillsDemonstrated skills={[
+    { name: "Motion Design", evidence: "Timing animations to audio beats for emotional resonance" },
+    { name: "Brand Strategy", evidence: "Aligning visual tone with an unreleased track's vibe" },
+    { name: "Social Optimization", evidence: "Creating assets that drive engagement and shares" },
+  ]} />
+</div>

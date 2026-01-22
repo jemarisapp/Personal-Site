@@ -1,5 +1,6 @@
 
 import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { SkillsDemonstrated } from '@/components/skills-demonstrated'
 
 export const metadata = {
   title: 'Fast X Soundtrack',
@@ -12,38 +13,143 @@ export const metadata = {
     alt="Fast X Soundtrack Visuals"
     width={1200}
     height={675}
-    className="w-full rounded-xl object-cover"
+    className="w-full rounded-xl object-cover aspect-video"
     priority
   />
 </div>
 
 # Fast X Soundtrack
 
-**Role:** Visual Designer | **Timeline:** 2023  
-**Client:** Artist Partner Group (APG) / Universal Pictures
+import { ProjectHeader } from '@/components/project-header'
+
+<ProjectHeader
+  role="Art Director"
+  timeline="2023"
+  stack={["After Effects", "Photoshop", "Illustrator", "Social Media", "Motion Design"]}
+/>
 
 ---
 
 ## Overview
 
-Visuals for Spotify Canvas, Apple Music, YouTube, and social media, balancing cinematic energy with platform-specific adaptability.
+A cohesive visual identity system for the Fast X soundtrack rollout, designed to balance the franchise's cinematic intensity with platform-specific adaptability across Spotify, Apple Music, and YouTube.
 
-## Challenge
+## The Challenge
 
-The Fast X soundtrack needed a bold visual identity that matched the franchise’s cinematic intensity while introducing a fresh, engaging look across platforms. The creative direction had to resonate with long-time fans and new listeners, ensuring consistency across cover art, motion content, and promotional rollouts under tight deadlines.
+The Fast X soundtrack needed a visual language that felt fresh while honoring the franchise's massive legacy. The assets effectively needed to:
+*   **Adapt:** Function seamlessly across 16:9 cinematic promos, 1:1 cover art, and 9:16 vertical social clips.
+*   **Unify:** Tie together a diverse lineup of artists under one visual umbrella.
+*   **Engage:** Drive streams through motion-first assets on social media.
 
-## Solution
+## The Solution
 
-Artist Partner Group brought me on to help create the visual system for Fast X soundtrack visuals. I collaborated closely with the SVP of Marketing to design cohesive static and motion visuals for Spotify Canvas, Apple Music, YouTube, and social media, balancing cinematic energy with platform-specific adaptability.
+I collaborated with the SVP of Marketing at APG to develop a modular design system. Instead of treating each asset as a one-off, we built a flexible framework:
 
-## Branded Cover Art System
+### 1. Single Release System
+I created a unified grid layout for single covers. This system allowed us to swap artist imagery and typography while maintaining a consistent "Fast X" look across both static artwork and motion visuals for social platforms.
 
-As part of the visual rollout for the soundtrack, I created a series of branded cover artworks for key singles. Each design followed a unified grid and layout system, while allowing flexibility in typography, material textures, and lighting to match the tone of each track and artist lineup. I also produced motion versions for each cover. This system allowed the soundtrack to feel cohesive yet dynamic, reinforcing the identity of Fast X while giving each release its own distinct visual impact.
+{/* Primary System: 4 Pairs of Static (Square) + Motion (Horizontal) */}
+{/* Layout Note: grid-cols-3 allows the Square (1col) and Horizontal (2cols) to have roughly similar height */}
+<div className="not-prose my-8 space-y-12">
+  {/* Pair 1: Gasolina */}
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-3 items-center">
+    <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+       <ZoomableImage src="/fast-x/gasoline.avif" alt="Gasolina Cover" width={1000} height={1000} className="w-full object-cover aspect-square" />
+    </div>
+    <div className="md:col-span-2 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 relative aspect-video">
+       <iframe
+         src="https://www.youtube.com/embed/ge4LwqkpzNc?autoplay=1&mute=1&loop=1&playlist=ge4LwqkpzNc&controls=0&showinfo=0&modestbranding=1&rel=0"
+         className="absolute top-0 left-0 w-full h-full"
+         allow="autoplay; encrypted-media; loop"
+         allowFullScreen
+       />
+    </div>
+  </div>
 
-## Album Cover Animation
+  {/* Pair 2: Angel */}
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-3 items-center">
+    <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+       <ZoomableImage src="/fast-x/angel.avif" alt="Angel Cover" width={1000} height={1000} className="w-full object-cover aspect-square" />
+    </div>
+    <div className="md:col-span-2 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 relative aspect-video">
+       <iframe
+         src="https://www.youtube.com/embed/V3UVnMBKnpI?autoplay=1&mute=1&loop=1&playlist=V3UVnMBKnpI&controls=0&showinfo=0&modestbranding=1&rel=0"
+         className="absolute top-0 left-0 w-full h-full"
+         allow="autoplay; encrypted-media; loop"
+         allowFullScreen
+       />
+    </div>
+  </div>
 
-While I did not design the official Fast X album cover artwork, I was responsible for animating it for digital rollout. The animation was adapted for Apple Music, Spotify, YouTube, and other social media platforms.
+  {/* Pair 3: Won't Back Down */}
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-3 items-center">
+    <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+       <ZoomableImage src="/fast-x/wbd.avif" alt="Won't Back Down Cover" width={1000} height={1000} className="w-full object-cover aspect-square" />
+    </div>
+    <div className="md:col-span-2 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 relative aspect-video">
+       <iframe
+         src="https://www.youtube.com/embed/EqOUInoLiw4?autoplay=1&mute=1&loop=1&playlist=EqOUInoLiw4&controls=0&showinfo=0&modestbranding=1&rel=0"
+         className="absolute top-0 left-0 w-full h-full"
+         allow="autoplay; encrypted-media; loop"
+         allowFullScreen
+       />
+    </div>
+  </div>
+
+  {/* Pair 4: Toretto */}
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-3 items-center">
+    <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+       <ZoomableImage src="/fast-x/toretto.avif" alt="Toretto Cover" width={1000} height={1000} className="w-full object-cover aspect-square" />
+    </div>
+    <div className="md:col-span-2 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 relative aspect-video">
+       <iframe
+         src="https://www.youtube.com/embed/IszYmtCaCJc?autoplay=1&mute=1&loop=1&playlist=IszYmtCaCJc&controls=0&showinfo=0&modestbranding=1&rel=0"
+         className="absolute top-0 left-0 w-full h-full"
+         allow="autoplay; encrypted-media; loop"
+         allowFullScreen
+       />
+    </div>
+  </div>
+</div>
+
+#### Additional Explorations
+{/* Layout: 3 Squares for the standalone + 2 separate system covers */}
+<div className="not-prose my-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+  <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+     <ZoomableImage src="/fast-x/mycity.avif" alt="My City Cover" width={1000} height={1000} className="w-full object-cover aspect-square" />
+  </div>
+  <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+     <ZoomableImage src="/fast-x/letsride1.avif" alt="Let's Ride Concept 1" width={1000} height={1000} className="w-full object-cover aspect-square" />
+  </div>
+  <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+     <ZoomableImage src="/fast-x/letsride2.avif" alt="Let's Ride Concept 2" width={1000} height={1000} className="w-full object-cover aspect-square" />
+  </div>
+</div>
+
+### 2. Album Launch Animation
+For the official album rollout, I animated the final cover art to create a premium "hero" asset. This motion piece was used across Spotify Canvas, Apple Music, and YouTube to announce the full soundtrack release.
+
+<div className="not-prose my-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 relative aspect-video">
+   <iframe
+     src="https://www.youtube.com/embed/yV-dU5_9HcQ?autoplay=1&mute=1&loop=1&playlist=yV-dU5_9HcQ&controls=0&showinfo=0&modestbranding=1&rel=0"
+     className="absolute top-0 left-0 w-full h-full"
+     allow="autoplay; encrypted-media; loop"
+     allowFullScreen
+   />
+</div>
 
 ## Outcome
 
-The final visuals launched with the Fast X soundtrack, boosting engagement and reinforcing the film’s brand. Animated assets increased shareability, while the cohesive design system elevated the soundtrack’s standalone presence, contributing to over 50 million streams.
+The visual system launched alongside the film, contributing to **500 million+ streams**. The modular approach allowed the marketing team to react quickly to new single drops, maintaining high visual fidelity without the bottleneck of starting from scratch for each release.
+
+---
+
+## Skills Demonstrated
+
+<div className="not-prose my-8">
+  <SkillsDemonstrated skills={[
+    { name: "Design Systems", evidence: "Creating a unified look across multiple singles and platforms" },
+    { name: "Stakeholder Management", evidence: "Collaborating with APG and Universal executives" },
+    { name: "Asset Scalability", evidence: "Adapting cinematic visuals for different aspect ratios" },
+  ]} />
+</div>
