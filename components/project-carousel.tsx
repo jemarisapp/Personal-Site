@@ -5,6 +5,14 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+import {
+    MorphingDialog,
+    MorphingDialogTrigger,
+    MorphingDialogContent,
+    MorphingDialogClose,
+    MorphingDialogContainer,
+} from '@/components/ui/morphing-dialog'
+import { XIcon } from 'lucide-react'
 
 interface ProjectCarouselProps {
     images: string[]
@@ -46,18 +54,54 @@ export function ProjectCarousel({
     return (
         <div className={cn("relative", className)}>
             {/* Carousel container */}
-            <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-black ring-1 ring-zinc-200 dark:ring-zinc-800" ref={emblaRef}>
+            <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-800" ref={emblaRef}>
                 <div className="flex">
                     {images.map((src, index) => (
                         <div className="relative min-w-0 flex-[0_0_100%]" key={index}>
-                            <Image
-                                src={src}
-                                alt={`${alt} - Image ${index + 1}`}
-                                width={1200}
-                                height={675}
-                                className="w-full h-auto"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                            />
+                            <MorphingDialog
+                                transition={{
+                                    type: 'spring',
+                                    bounce: 0,
+                                    duration: 0.3,
+                                }}
+                            >
+                                <MorphingDialogTrigger className="w-full cursor-zoom-in">
+                                    <Image
+                                        src={src}
+                                        alt={`${alt} - Image ${index + 1}`}
+                                        width={1200}
+                                        height={675}
+                                        className="w-full h-auto"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                                    />
+                                </MorphingDialogTrigger>
+                                <MorphingDialogContainer>
+                                    <MorphingDialogContent className="relative rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50 max-w-[90vw] md:max-w-5xl overflow-hidden">
+                                        <div className="relative aspect-video w-full h-[50vh] md:h-[80vh]">
+                                            <Image
+                                                src={src}
+                                                alt={`${alt} - Image ${index + 1}`}
+                                                fill
+                                                className="object-contain"
+                                                priority
+                                            />
+                                        </div>
+                                    </MorphingDialogContent>
+                                    <MorphingDialogClose
+                                        className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
+                                        variants={{
+                                            initial: { opacity: 0 },
+                                            animate: {
+                                                opacity: 1,
+                                                transition: { delay: 0.3, duration: 0.1 },
+                                            },
+                                            exit: { opacity: 0, transition: { duration: 0 } },
+                                        }}
+                                    >
+                                        <XIcon className="h-5 w-5 text-zinc-500" />
+                                    </MorphingDialogClose>
+                                </MorphingDialogContainer>
+                            </MorphingDialog>
                         </div>
                     ))}
                 </div>

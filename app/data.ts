@@ -51,7 +51,15 @@ export const PROJECTS: Project[] = [
     description:
       'Designed a two-touchpoint client experience: portfolio for discovery, premium gallery portal for delivery.',
     link: '/project/trisp-studio',
-    image: '/trisp/cover.png',
+    image: '/trisp/cover_v2.png',
+    images: [
+      '/trisp/cover_v2.png',
+      '/trisp/experience_v2-1.png',
+      '/trisp/experience_v2-2.png',
+      '/trisp/experience_v2-3.png',
+      '/trisp/experience_v2-4.png',
+      '/trisp/experience_v2-5.png',
+    ],
     id: 'project0',
   },
   {

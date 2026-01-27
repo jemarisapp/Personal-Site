@@ -3,7 +3,7 @@
 const decisions = [
     {
         goal: 'Fast gallery browsing',
-        implementation: '3-variant image pipeline—thumbnails load instantly in the grid, full resolution only when needed',
+        implementation: 'Built a 3-variant image pipeline. Thumbnails load instantly in the grid, while full resolution loads only when needed.',
     },
     {
         goal: 'Premium brand feel',
@@ -11,15 +11,15 @@ const decisions = [
     },
     {
         goal: 'Client empowerment',
-        implementation: 'Multi-list favorites with submission workflow—clients curate, I receive structured selections',
+        implementation: 'Engineered a submission workflow for favorites that allows clients to curate lists and send structured data back to me.',
     },
     {
         goal: 'Instant gratification',
-        implementation: 'Streaming ZIP generation—downloads start immediately, no waiting for server processing',
+        implementation: 'Implemented streaming ZIP generation so downloads start immediately without waiting for server processing.',
     },
     {
         goal: 'Zero friction authentication',
-        implementation: 'Email-only guest system—identity without accounts',
+        implementation: 'Developed an email-only guest system to verify identity without forcing account creation.',
     },
 ]
 
