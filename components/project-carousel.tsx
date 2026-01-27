@@ -73,6 +73,7 @@ export function ProjectCarousel({
                                         height={675}
                                         className="w-full h-auto"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                                        unoptimized
                                     />
                                 </MorphingDialogTrigger>
                                 <MorphingDialogContainer>
@@ -84,6 +85,7 @@ export function ProjectCarousel({
                                                 fill
                                                 className="object-contain"
                                                 priority
+                                                unoptimized
                                             />
                                         </div>
                                     </MorphingDialogContent>
