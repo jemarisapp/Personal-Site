@@ -4,6 +4,7 @@ type Project = {
   link: string
   video?: string
   image?: string
+  images?: string[]
   id: string
 }
 
@@ -44,6 +45,14 @@ export const PROJECTS: Project[] = [
     link: '/project/navigate-idd',
     image: '/navigate-idd.jpg',
     id: 'project3',
+  },
+  {
+    name: 'TRISP Studio',
+    description:
+      'Designed a two-touchpoint client experience: portfolio for discovery, premium gallery portal for delivery.',
+    link: '/project/trisp-studio',
+    image: '/trisp/cover.png',
+    id: 'project0',
   },
   {
     name: 'Music Industry Analytics',

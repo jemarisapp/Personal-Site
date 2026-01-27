@@ -1,5 +1,6 @@
 'use client'
-import { motion } from 'motion/react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -139,6 +140,41 @@ function ProjectImage({ src, alt }: ProjectImageProps) {
   )
 }
 
+function ProjectImageCycler({ images, alt }: { images: string[]; alt: string }) {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    if (images.length <= 1) return
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  return (
+    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+      <AnimatePresence mode="popLayout">
+        <motion.div
+          key={images[index]}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0 h-full w-full"
+        >
+          <Image
+            src={images[index]}
+            alt={alt}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  )
+}
+
 function MagneticSocialLink({
   children,
   link,
@@ -223,6 +259,8 @@ export default function Personal() {
                     muted
                     className="aspect-video w-full rounded-xl transition-transform duration-300 group-hover:scale-[1.02]"
                   />
+                ) : project.images && project.images.length > 0 ? (
+                  <ProjectImageCycler images={project.images} alt={project.name} />
                 ) : project.image ? (
                   <Image
                     src={project.image}
@@ -253,7 +291,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Brand & Identity</h3>
+        <h3 className="mb-3 text-lg font-medium">Visual Design</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           Before I built products, I designed systems. This visual foundation shapes everything I ship today.
         </p>

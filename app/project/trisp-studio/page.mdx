@@ -1,0 +1,159 @@
+
+import Image from 'next/image'
+import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { TRISPTechStackTable } from '@/components/trisp-tech-stack-table'
+import { TRISPMetricsTable } from '@/components/trisp-metrics-table'
+import { TRISPDesignDecisionsTable } from '@/components/trisp-design-decisions-table'
+import { SkillsDemonstrated } from '@/components/skills-demonstrated'
+import { ProjectHeader } from '@/components/project-header'
+import { ProjectCarousel } from '@/components/project-carousel'
+
+export const metadata = {
+  title: 'TRISP Studio: Designing the End-to-End Client Experience',
+  description: 'A two-touchpoint experience for a creative studio: portfolio for acquisition, premium gallery portal for delivery.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <Image
+    src="/trisp/cover.png"
+    alt="TRISP Studio - Portfolio and Client Portal"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl object-cover aspect-video"
+    priority
+  />
+</div>
+
+# TRISP Studio
+
+<ProjectHeader
+  role="Founder & Technical Product Designer"
+  stack={["Figma", "React 19", "TypeScript", "Supabase", "Tailwind CSS"]}
+/>
+
+---
+
+**Designing the end-to-end client experience for a creative studio.**
+
+I designed and engineered a custom platform to own the complete client journey for my creative studio. Rather than relying on fragmented third-party tools, I built two interconnected experiences that guide clients from their first interaction to the final delivery of their assets.
+
+<div className="not-prose my-8 flex flex-wrap justify-center gap-4 md:gap-8 text-center">
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">50+</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Clients Served</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">100%</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Branded Touchpoints</div>
+    </div>
+    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 px-6 py-4">
+        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">Zero</div>
+        <div className="text-sm text-emerald-700 dark:text-emerald-300">Third-Party URLs</div>
+    </div>
+</div>
+
+---
+
+## The Problem
+
+The previous client experience was disjointed and relied on external tools that broke brand immersion.
+
+*   **Broken Journey:** Clients would discover my work on a portfolio site but receive deliverables via generic WeTransfer links. This created two disconnected experiences.
+*   **Unprofessional Delivery:** Generic file-sharing links undermined the premium perception established by the creative work itself.
+*   **Selection Friction:** Asking clients to "screenshot your favorites" forced them to work around the tools rather than with them.
+*   **No Brand Continuity:** Every external URL represented a moment where clients left my ecosystem.
+
+---
+
+## The Design Approach
+
+I treated the client relationship as a single journey supported by two distinct applications.
+
+### Experience 1: Discovery & Acquisition
+
+**Hosted at [trispstudio.com](https://trispstudio.com)**
+
+The goal was to build trust, showcase craft, and reduce the friction to inquiry.
+
+*   **Dual-Mode Filtering:** Clients can browse by output (Photography, Brand Systems) or by methodology (Motion Design, SaaS Development). This surfaces relevant work quickly and demonstrates range without overwhelming the user.
+*   **Service-Specific Landing Pages:** Each service line features dedicated pages with clear package details to remove ambiguity about offerings.
+*   **Conditional Contact Form:** The intake flow adapts to the user. Photography inquiries ask about dates and locations, while design inquiries focus on timelines and budgets.
+
+<ProjectCarousel
+  images={[
+      "/trisp/experience-1.png",
+      "/trisp/experience-2.png",
+      "/trisp/experience-3.png",
+      "/trisp/experience-4.png",
+      "/trisp/experience-5.png"
+  ]}
+  alt="TRISP Studio portfolio features"
+  className="my-8"
+/>
+
+### Experience 2: Delivery & Delight
+
+**Hosted at [clients.trispstudio.com](https://clients.trispstudio.com)**
+
+The goal was to create a premium, branded delivery system that empowers the client.
+
+*   **Masonry Gallery:** Images are presented in a curated layout that respects the aspect ratio of each photo rather than a generic grid.
+*   **Multi-List Favorites:** Clients can create named lists (like "For Instagram" or "Print These") instead of taking screenshots. These selections are submitted directly to me through the platform.
+*   **No Account Required:** Guests enter their email once to access their gallery. The system remembers them without requiring passwords or account creation.
+*   **One-Click Downloads:** Clients can select photos and download them immediately as a ZIP file without navigating complex file trees.
+
+<ProjectCarousel
+  images={[
+      "/trisp/client-portal-1.png",
+      "/trisp/client-portal-2.png",
+      "/trisp/client-portal-3.png",
+      "/trisp/client-portal-4.png",
+      "/trisp/client-portal-5.png"
+  ]}
+  alt="TRISP Client Portal with masonry gallery and favorites system"
+  className="my-8"
+/>
+
+---
+
+## How Technical Decisions Enabled the Design
+
+Every technical choice was made to serve a specific design goal.
+
+<div className="not-prose my-8">
+  <TRISPDesignDecisionsTable />
+</div>
+
+---
+
+## Tech Stack
+
+<div className="not-prose my-8">
+  <TRISPTechStackTable />
+</div>
+
+---
+
+## Impact
+
+<div className="not-prose my-8">
+  <TRISPMetricsTable />
+</div>
+
+---
+
+## Skills Demonstrated
+
+<div className="not-prose my-8">
+  <SkillsDemonstrated skills={[
+    { name: "Product Design", evidence: "End-to-end experience design from discovery to delivery" },
+    { name: "UX Strategy", evidence: "Two-touchpoint journey mapping with distinct goals per phase" },
+    { name: "Systems Thinking", evidence: "Two apps that create one cohesive client experience" },
+    { name: "Technical Product Design", evidence: "Designed and built the product completely to eliminate handoff and translation loss" },
+    { name: "Brand Systems", evidence: "100% branded touchpoints, zero third-party URL exposure" },
+  ]} />
+</div>
+
+---
+
+**Live:** [trispstudio.com](https://trispstudio.com) · [clients.trispstudio.com](https://clients.trispstudio.com)
