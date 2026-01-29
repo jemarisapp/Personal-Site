@@ -25,9 +25,9 @@ export const PROJECTS: Project[] = [
   {
     name: 'Inquifly',
     description:
-      'Multi-tenant SaaS evolved from an internal tool, using a two-stage AI pipeline to cut response times by 97%.',
+      'Multi-tenant SaaS evolved from an internal tool, using a two-stage AI pipeline to cut response times for photographers.',
     link: '/project/inquifly',
-    image: '/inquifly.png',
+    image: '/inquifly/home-preview-2.png',
     id: 'project1',
   },
   {
