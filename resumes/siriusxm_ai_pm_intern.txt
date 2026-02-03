@@ -1,0 +1,49 @@
+Jemari Sapp
+Atlanta, GA | 229-200-4072 | jsapp9@student.gsu.edu | jemarisapp.com | GitHub | LinkedIn
+
+EDUCATION
+Georgia State University | Atlanta, GA
+MS in Information Systems, AI for Business Innovation - J. Mack Robinson College of Business | Expected Aug 2026
+BFA in Graphic Design | May 2023
+
+SKILLS
+Product: AI Product Management, Product Discovery, PRD Development, User Research, Roadmap Planning, A/B Testing
+AI/ML: Multimodal Analysis, LLMs, Prompt Engineering, RAG, Model Evaluation, Active Learning, RL
+Technical: Python (Pandas, NumPy, SQL), TypeScript (React/Next.js), PostgreSQL, REST APIs, Webhooks, System Architecture, Git.
+Design: Figma, Adobe Creative Suite, UI/UX Design, Interaction Design.
+
+AI & PRODUCT PROJECTS
+
+Inquifly | inquifly.com	
+- Defined the product vision and roadmap for an AI-native SaaS that automates inquiry management, reducing user response times from 20 mins to 40 seconds.
+- Identified scheduling pain points, resulting in a Google Calendar API integration that eliminated manual booking conflicts.
+- Managed end-to-end development of a 4-tier subscription model (Stripe), aligning product tiers and pricing sensitivity.
+
+Deepfake Detection with RL-Based Active Learning	
+- Engineered a Q-Learning RL agent for active learning, optimizing sample selection, and improving model accuracy for content integrity.
+- Built a multimodal transfer learning system (EfficientNetB0) to process 150K+ image pools, focusing on identifying artifacts in synthetic content.
+- Implemented interpretability models (Grad-CAM) to verify AI decision-making logic, ensuring focus on relevant content features rather than background noise.
+
+SoundIntel BI | Interactive Music Chart Analytics	
+- Built an interactive web-based analytics platform with Next.js and Python (FastAPI) to transform complex Billboard Hot 100 chart data into actionable insights.
+- Developed an AI-powered "Ask the Data" investigator enabling conversational data exploration, with contextual memory and automated chart generation.
+- Designed modular dashboard components that visually break down how streams, airplay, and sales contribute to chart outcomes, reducing analysis time from minutes to seconds.
+ 
+PROFESSIONAL EXPERIENCE
+
+Graduate Assistant | Aug 2025 - Present
+Georgia State University, J. Mack Robinson College of Business | Atlanta, GA
+- Worked on content strategy and production for social platforms, driving 2x year-over-year engagement growth.
+- Advised prospective students via Unibuddy to optimize the graduate recruitment pipeline.
+
+Founder & Product Engineer | Nov 2024 - Present
+Trilo | trilo.gg | Remote
+- Built an OpenAI Vision-driven pipeline that automates content parsing, reducing setup time from 2 hours to 10 mins.
+- Conducted 100+ user evaluations to define the MVP roadmap and feature prioritization based on quantified user pain points.
+- Architected a multi-tenant async backend supporting 200+ users, balancing technical constraints with product requirements.
+
+Founder & Designer | Dec 2016 - Present
+TRISP Studio | trispstudio.com | Atlanta, GA
+- Worked with the SVP of APG to develop brand systems for the Fast X Soundtrack that aligned with the franchise's legacy.
+- Managed a diverse client portfolio delivering 1000+ cover art projects, becoming a go-to designer among record labels.
+- Led end-to-end creative cycles from concept to execution, ensuring strict brand alignment across all deliverables.

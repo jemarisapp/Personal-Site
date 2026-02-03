@@ -10,8 +10,8 @@ AI-assisted Medicaid waiver education system converting policy into multilingual
 ### [Autonomous Booking System](/app/project/autonomous-booking-system)
 Re-architecting a manual triage workflow into a fully automated serverless system, eliminating operational bottlenecks and enabling 24/7 inquiry handling.
 
-### [Music Industry Analytics](/app/project/music-industry-analytics)
-Comprehensive data analytics system for tracking and visualizing billboard Hot 100 chart performance.
+### [SoundIntel BI](/app/project/soundintel-bi)
+Interactive music chart analytics platform with AI-powered data exploration.
 
 ### [Trilo: The AI Sports Commissioner](/app/project/trilo)
 Autonomous league management system using Computer Vision to track stats and run operations within Discord.

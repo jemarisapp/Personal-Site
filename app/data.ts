@@ -23,9 +23,25 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'SoundIntel BI',
+    description:
+      'Interactive music chart analytics platform with AI-powered data exploration',
+    link: '/project/soundintel-bi',
+    image: '/soundintel-bi/dash-2.png',
+    id: 'project4',
+  },
+  // {
+  //   name: 'Deepfake Detection',
+  //   description:
+  //     'Multimodal AI system using RL-based active learning and EfficientNetB0 to optimize high-uncertainty sample selection for content integrity.',
+  //   link: '/project/deepfake-detection',
+  //   image: '/deepfake-detection.png',
+  //   id: 'project5',
+  // },
+  {
     name: 'Inquifly',
     description:
-      'Multi-tenant SaaS evolved from an internal tool, using a two-stage AI pipeline to cut response times for photographers.',
+      'Using Gemini and structured prompting to automate inquiry management',
     link: '/project/inquifly',
     image: '/inquifly/home-preview-2.png',
     id: 'project1',
@@ -33,7 +49,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Trilo',
     description:
-      'Full-stack SaaS automating fantasy football with AI schedule extraction, Stripe billing, and Discord integration.',
+      'Multi-tenant SaaS with an OpenAI Vision pipeline for AI schedule extraction',
     link: '/project/trilo',
     image: '/trilo.avif',
     id: 'project2',
@@ -41,7 +57,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Navigate IDD',
     description:
-      'AI-assisted Medicaid waiver system converting complex policy documents into accessible multilingual videos.',
+      'Multilingual AI pipeline transforming complex Medicaid policies into videos.',
     link: '/project/navigate-idd',
     image: '/navigate-idd.jpg',
     id: 'project3',
@@ -49,18 +65,10 @@ export const PROJECTS: Project[] = [
   {
     name: 'TRISP Studio',
     description:
-      'Designed a two-touchpoint client experience: portfolio for discovery, premium gallery portal for delivery.',
+      'A client experience for portfolio discovery and gallery portal delivery.',
     link: '/project/trisp-studio',
     image: '/trisp/cover_v2.png',
     id: 'project0',
-  },
-  {
-    name: 'Music Industry Analytics',
-    description:
-      'Data analytics system for tracking and visualizing real-time Billboard Hot 100 chart performance.',
-    link: '/project/music-industry-analytics',
-    image: '/music-analytics.avif',
-    id: 'project4',
   },
 ]
 
@@ -68,7 +76,7 @@ export const DESIGN_PROJECTS: Project[] = [
   {
     name: 'Fast X Soundtrack',
     description:
-      'Visuals for Spotify Canvas, Apple Music, YouTube, and social media, balancing cinematic energy with platform-specific adaptability.',
+      "Developed brand systems for the Fast X Soundtrack in collaboration with the SVP of APG, ensuring alignment with the franchise's cinematic legacy.",
     link: '/project/fast-x-soundtrack',
     image: '/fast-x/gif.webp',
     id: 'design1',
@@ -100,7 +108,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Trilo',
-    title: 'Founder & Developer',
+    title: 'Founder & Product Engineer',
     start: 'Nov 2024',
     end: 'Present',
     id: 'work1',

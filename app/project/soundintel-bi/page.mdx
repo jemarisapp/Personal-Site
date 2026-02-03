@@ -1,0 +1,178 @@
+
+import { ZoomableImage } from '@/components/ui/zoomable-image'
+import { SkillsDemonstrated } from '@/components/skills-demonstrated'
+import { ProjectHeader } from '@/components/project-header'
+
+export const metadata = {
+  title: 'SoundIntel BI',
+  description: 'Interactive Music Chart Analytics Platform built with Next.js, React, Python, and AI-powered data exploration.',
+}
+
+<div className="not-prose mb-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <ZoomableImage
+    src="/soundintel-bi/dash-2.png"
+    alt="SoundIntel BI Dashboard"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl"
+    priority
+  />
+</div>
+
+# SoundIntel BI
+
+<ProjectHeader
+  role="Product Engineer"
+  timeline="July 2025 - Present"
+  stack={["Next.js", "React", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "Power BI"]}
+/>
+
+---
+
+**Interactive Music Chart Analytics Platform**
+
+SoundIntel BI transforms Billboard Hot 100–style chart data into an interactive experience that's faster to understand, easier to explore, and more actionable. What started as a Power BI dashboard evolved into a full web application with AI-driven data exploration.
+
+<div className="not-prose my-8 flex flex-wrap justify-center gap-4 md:gap-8 text-center">
+    <div className="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800 px-6 py-4">
+        <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">3</div>
+        <div className="text-sm text-violet-700 dark:text-violet-300">Metric Categories</div>
+    </div>
+    <div className="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800 px-6 py-4">
+        <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">AI</div>
+        <div className="text-sm text-violet-700 dark:text-violet-300">Powered Insights</div>
+    </div>
+    <div className="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800 px-6 py-4">
+        <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">Seconds</div>
+        <div className="text-sm text-violet-700 dark:text-violet-300">Not Minutes</div>
+    </div>
+</div>
+
+---
+
+## The Problem
+
+Music chart data is dense, fragmented, and often difficult to interpret quickly.
+
+*   **Weighted complexity.** Chart performance is driven by streams, airplay, and sales—but most tools present these in static tables or PDFs.
+*   **Manual comparisons.** Answering simple analytical questions requires cross-referencing multiple reports.
+*   **BI limitations.** Tools like Power BI are powerful, but restrictive in layout, interaction design, and AI integration.
+*   **Reporting over exploration.** Existing dashboards focus on what happened, not *why*.
+
+Insights that should take seconds often take minutes—or are missed entirely.
+
+---
+
+## The Solution
+
+A web-based analytics platform that prioritizes **clarity, exploration, and explainability**.
+
+*   Modular dashboard separating chart position, performance drivers, and comparative rankings
+*   Visual breakdowns of how streams, airplay, and sales contribute to chart outcomes
+*   Full control over layout, interaction, and design (beyond Power BI constraints)
+*   AI-powered "Ask the Data" investigator for conversational data discovery
+
+Rather than telling users what to do, the AI explains **what is happening**, **why it's happening**, and **how metrics compare over time**.
+
+### The Dashboard
+
+<div className="not-prose my-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <ZoomableImage
+    src="/soundintel-bi/dash-2.png"
+    alt="SoundIntel BI Dashboard - Chart rankings and performance metrics"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl"
+  />
+</div>
+
+### Ask the Data
+
+<div className="not-prose my-8 overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+  <ZoomableImage
+    src="/soundintel-bi/askdata-2.png"
+    alt="Ask the Data - AI-powered conversational analytics interface"
+    width={1200}
+    height={675}
+    className="w-full rounded-xl"
+  />
+</div>
+
+---
+
+## Tech Stack
+
+<div className="not-prose my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Frontend</div>
+    <div className="text-sm text-zinc-900 dark:text-zinc-100">Next.js, React, Tailwind CSS</div>
+  </div>
+  <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Backend</div>
+    <div className="text-sm text-zinc-900 dark:text-zinc-100">Python, FastAPI</div>
+  </div>
+  <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Database</div>
+    <div className="text-sm text-zinc-900 dark:text-zinc-100">PostgreSQL (Supabase)</div>
+  </div>
+  <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Visualization</div>
+    <div className="text-sm text-zinc-900 dark:text-zinc-100">Custom React components</div>
+  </div>
+  <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">AI Layer</div>
+    <div className="text-sm text-zinc-900 dark:text-zinc-100">Gemini, contextual memory</div>
+  </div>
+  <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50">
+    <div className="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Origin</div>
+    <div className="text-sm text-zinc-900 dark:text-zinc-100">Power BI prototype</div>
+  </div>
+</div>
+
+---
+
+## Impact
+
+*   **Faster insights.** Reduced chart interpretation from minutes of reading to seconds of scanning.
+*   **Ad-hoc analysis.** Enabled questions that previously required custom views or manual calculations.
+*   **AI as explainer.** Demonstrated how AI can enhance BI through explainability rather than automation.
+*   **Full-stack showcase.** Blends data engineering, UI/UX design, and applied AI in one product.
+
+---
+
+## Challenges & Learnings
+
+*   **Trustworthy AI.** Designing AI features that feel reliable required reframing AI as an analyst, not a strategist.
+*   **BI → Web.** Translating BI logic into a web app forced deeper thinking about data modeling and state management.
+*   **Density vs. clarity.** Balancing information density with visual clarity was an ongoing design challenge.
+*   **Control vs. speed.** Migrating from Power BI highlighted the tradeoff between rapid prototyping and creative freedom.
+
+---
+
+## What I'd Do Differently
+
+*   Introduce automated data validation earlier for edge cases in estimated chart data
+*   Expand time-series analysis for longer historical comparisons
+*   Add role-based views tailored to executives versus analysts
+*   Formalize AI guardrails sooner to reinforce trust and consistency
+
+---
+
+## Skills Demonstrated
+
+<div className="not-prose my-8">
+  <SkillsDemonstrated skills={[
+    { name: "Data Modeling", evidence: "Structured chart and performance tables with PostgreSQL, normalized schema design" },
+    { name: "BI & Visualization", evidence: "Custom React components inspired by enterprise BI patterns" },
+    { name: "Frontend Development", evidence: "Next.js, React, Tailwind CSS with responsive dashboard layouts" },
+    { name: "Backend API Design", evidence: "Python FastAPI endpoints for chart data and AI integration" },
+    { name: "Applied AI", evidence: "Natural language querying with contextual memory and automated chart generation" },
+    { name: "Product Thinking", evidence: "Evolved from Power BI prototype to custom web platform based on user needs" },
+  ]} />
+</div>
+
+---
+
+## Live Preview
+
+**Live:** [soundintel-bi.vercel.app](https://soundintel-bi.vercel.app/)
