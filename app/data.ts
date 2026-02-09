@@ -140,4 +140,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 
-export const EMAIL = 'jsapp9@student.gsu.edu'
+export const EMAIL = 'jemari@jemarisapp.com'

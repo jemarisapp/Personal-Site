@@ -48,6 +48,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📫 Connect
 
-- **Email:** [jsapp9@student.gsu.edu](mailto:jsapp9@student.gsu.edu)
+- **Email:** [jemari@jemarisapp.com](mailto:jemari@jemarisapp.com)
 - **LinkedIn:** [Jemari Sapp](https://www.linkedin.com/in/jemari-sapp-b3984821b/)
 - **GitHub:** [@jemarisapp](https://github.com/jemarisapp)

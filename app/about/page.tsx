@@ -291,9 +291,9 @@ export default function AboutPage() {
                     Feel free to contact me at{' '}
                     <a
                         className="underline dark:text-zinc-300"
-                        href="mailto:jsapp9@student.gsu.edu"
+                        href="mailto:jemari@jemarisapp.com"
                     >
-                        jsapp9@student.gsu.edu
+                        jemari@jemarisapp.com
                     </a>
                 </p>
                 <div className="flex items-center justify-start space-x-3">
