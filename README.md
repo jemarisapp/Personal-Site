@@ -4,16 +4,13 @@ Welcome to my personal portfolio repository. I design and ship autonomous system
 
 ## 🚀 Projects
 
-### [Navigate IDD](/app/project/navigate-idd)
+### Navigate IDD
 AI-assisted Medicaid waiver education system converting policy into multilingual videos.
 
-### [Autonomous Booking System](/app/project/autonomous-booking-system)
-Re-architecting a manual triage workflow into a fully automated serverless system, eliminating operational bottlenecks and enabling 24/7 inquiry handling.
-
-### [SoundIntel BI](/app/project/soundintel-bi)
+### SoundIntel BI
 Interactive music chart analytics platform with AI-powered data exploration.
 
-### [Trilo: The AI Sports Commissioner](/app/project/trilo)
+### Trilo
 Autonomous league management system using Computer Vision to track stats and run operations within Discord.
 
 ## 🛠️ Tech Stack

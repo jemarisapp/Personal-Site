@@ -38,14 +38,14 @@ export const PROJECTS: Project[] = [
   //   image: '/deepfake-detection.png',
   //   id: 'project5',
   // },
-  {
-    name: 'Inquifly',
-    description:
-      'Using Gemini and structured prompting to automate inquiry management',
-    link: '/project/inquifly',
-    image: '/inquifly/home-preview-2.png',
-    id: 'project1',
-  },
+  // {
+  //   name: 'Inquifly',
+  //   description:
+  //     'Using Gemini and structured prompting to automate inquiry management',
+  //   link: '/project/inquifly',
+  //   image: '/inquifly/home-preview-2.png',
+  //   id: 'project1',
+  // },
   {
     name: 'Trilo',
     description:
@@ -62,14 +62,14 @@ export const PROJECTS: Project[] = [
     image: '/navigate-idd.jpg',
     id: 'project3',
   },
-  {
-    name: 'TRISP Studio',
-    description:
-      'A client experience for portfolio discovery and gallery portal delivery.',
-    link: '/project/trisp-studio',
-    image: '/trisp/cover_v2.png',
-    id: 'project0',
-  },
+  // {
+  //   name: 'TRISP Studio',
+  //   description:
+  //     'A client experience for portfolio discovery and gallery portal delivery.',
+  //   link: '/project/trisp-studio',
+  //   image: '/trisp/cover_v2.png',
+  //   id: 'project0',
+  // },
 ]
 
 export const DESIGN_PROJECTS: Project[] = [
