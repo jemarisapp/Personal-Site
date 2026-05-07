@@ -1,5 +1,4 @@
 'use client'
-import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
@@ -34,24 +33,6 @@ export function Header() {
         <Link href="/" className="font-medium text-black dark:text-white">
           Jemari Sapp
         </Link>
-        <TextEffect
-          as="p"
-          preset="fade"
-          per="char"
-          className="text-zinc-600 dark:text-zinc-500"
-          delay={0.5}
-        >
-          MS Information Systems Candidate
-        </TextEffect>
-        <TextEffect
-          as="p"
-          preset="fade"
-          per="char"
-          className="text-zinc-600 dark:text-zinc-500"
-          delay={0.5}
-        >
-          AI For Business Innovation
-        </TextEffect>
       </div>
       {mounted && (
         <div className="flex items-center gap-1">

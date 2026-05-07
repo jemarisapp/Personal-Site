@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Jemari Sapp - MSIS Candidate | AI For Business Innovation',
+    default: 'Jemari Sapp - Resume',
     template: '%s | Jemari Sapp'
   },
-  description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
-  keywords: ['AI', 'Product Management', 'MSIS', 'Autonomous Systems', 'Business Innovation', 'Jemari Sapp'],
+  description: 'Resume of Jemari Sapp, an MSIS candidate focused on AI engineering, multi-agent systems, automation, and product design.',
+  keywords: ['Resume', 'AI Engineering', 'MSIS', 'Multi-Agent Systems', 'Automation', 'Business Innovation', 'Jemari Sapp'],
   authors: [{ name: 'Jemari Sapp', url: 'https://www.jemarisapp.com' }],
   creator: 'Jemari Sapp',
   openGraph: {
@@ -30,21 +30,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.jemarisapp.com',
     siteName: 'Jemari Sapp',
-    title: 'Jemari Sapp - AI For Business Innovation',
-    description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
+    title: 'Jemari Sapp - Resume',
+    description: 'Resume of Jemari Sapp, an MSIS candidate focused on AI engineering, multi-agent systems, automation, and product design.',
     images: [
       {
         url: '/cover.jpg',
         width: 1200,
         height: 630,
-        alt: 'Jemari Sapp Portfolio',
+        alt: 'Jemari Sapp Resume',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jemari Sapp - AI For Business Innovation',
-    description: 'Portfolio of Jemari Sapp, an MSIS Candidate & AI For Business Innovation specialist building autonomous systems.',
+    title: 'Jemari Sapp - Resume',
+    description: 'Resume of Jemari Sapp, an MSIS candidate focused on AI engineering, multi-agent systems, automation, and product design.',
     images: ['/cover.jpg'],
     creator: '@jemarisapp',
   },
@@ -89,8 +89,8 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Jemari Sapp",
               "url": "https://www.jemarisapp.com",
-              "jobTitle": "MSIS Candidate & AI For Business Innovation Specialist",
-              "description": "Building autonomous systems and AI-powered solutions for business innovation.",
+              "jobTitle": "MSIS Candidate",
+              "description": "AI engineering candidate focused on multi-agent systems, automation, and product design.",
               "sameAs": [
                 "https://www.linkedin.com/in/jemarisapp"
               ]
