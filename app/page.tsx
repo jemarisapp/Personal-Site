@@ -56,18 +56,6 @@ const EDUCATION = [
 
 const EXPERIENCE = [
   {
-    title: 'Graduate Assistant & Robinson Influencer Program Volunteer',
-    company: 'Georgia State University, J. Mack Robinson College of Business',
-    location: 'Atlanta, GA',
-    date: 'Aug 2025 - Present',
-    bullets: [
-      'Managed the project lifecycle for a 6-program webinar series by driving recruitment, scheduling, and technical briefing for alumni and student stakeholders.',
-      'Coordinated outreach and event logistics for prospective 200+ students to ensure seamless program delivery.',
-      'Analyzed content performance data, identifying trends that contributed to 2x engagement growth.',
-      'Represented RCB as a brand ambassador, engaging diverse audiences to drive program awareness and enrollment.',
-    ],
-  },
-  {
     title: 'AI Engineering Intern',
     company: 'Kampgrounds of America, Inc.',
     location: 'Atlanta, GA',
@@ -78,6 +66,18 @@ const EXPERIENCE = [
       'Designed a 5-table database system for real-time lead tracking, human review, and pipeline state management.',
       'Developed a React dashboard connected to live pipeline execution for monitoring and operator interaction.',
       'Diagnosed and resolved production issues across APIs, data schemas, and authentication to ensure reliability.',
+    ],
+  },
+  {
+    title: 'Graduate Assistant & Robinson Influencer Program Volunteer',
+    company: 'Georgia State University, J. Mack Robinson College of Business',
+    location: 'Atlanta, GA',
+    date: 'Aug 2025 - Present',
+    bullets: [
+      'Managed the project lifecycle for a 6-program webinar series by driving recruitment, scheduling, and technical briefing for alumni and student stakeholders.',
+      'Coordinated outreach and event logistics for prospective 200+ students to ensure seamless program delivery.',
+      'Analyzed content performance data, identifying trends that contributed to 2x engagement growth.',
+      'Represented RCB as a brand ambassador, engaging diverse audiences to drive program awareness and enrollment.',
     ],
   },
   {
