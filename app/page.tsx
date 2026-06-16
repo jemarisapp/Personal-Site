@@ -63,28 +63,52 @@ const EDUCATION = [
 
 const EXPERIENCE = [
   {
-    title: 'AI Engineering Intern',
-    company: 'Kampgrounds of America, Inc.',
+    title: 'Agentic AI Developer Intern',
+    company: 'LK Taylor and Associates',
     location: 'Atlanta, GA',
-    date: 'Mar 2026 - May 2026',
+    date: 'May 2026 - Present',
     bullets: [
-      'Built and deployed a multi-agent AI pipeline using Airia to automate group sales workflows across discovery, qualification, availability checks, scoring, and outreach.',
-      'Reduced a fully manual process from hours to under 10 minutes, enabling scalable lead handling.',
-      'Designed a 5-table database system for real-time lead tracking, human review, and pipeline state management.',
-      'Developed a React dashboard connected to live pipeline execution for monitoring and operator interaction.',
-      'Diagnosed and resolved production issues across APIs, data schemas, and authentication to ensure reliability.',
+      'Automated case law retrieval across Georgia state, federal, and Supreme Court jurisdictions by building a RAG-based legal research platform with vector search.',
+      'Reduced legal research effort by developing agentic AI workflows for document retrieval, analysis, and summarization.',
+      'Accelerated legal drafting by creating an AI contract generation system that transforms client intake data into jurisdiction-specific contracts.',
+      'Streamlined legal research workflows by integrating LLM-powered document analysis and public court record APIs.',
     ],
   },
   {
-    title: 'Graduate Assistant & Robinson Influencer Program Volunteer',
+    title: 'AI Engineering Intern',
+    company: 'Kampgrounds of America, Inc.',
+    location: 'Atlanta, GA',
+    date: 'Mar 2026 - Apr 2026',
+    bullets: [
+      'Automated group sales workflows by building and deploying a multi-agent AI pipeline for qualification, availability checks, scoring, and outreach.',
+      'Reduced a manual process from hours to under 10 minutes, enabling scalable lead handling.',
+      'Improved lead tracking and human review processes by designing a 5-table database architecture.',
+      'Enabled real-time pipeline monitoring by developing a React dashboard for operator interaction and workflow oversight.',
+    ],
+  },
+  {
+    title: 'Graduate Assistant',
     company: 'Georgia State University, J. Mack Robinson College of Business',
     location: 'Atlanta, GA',
     date: 'Aug 2025 - Present',
     bullets: [
-      'Managed the project lifecycle for a 6-program webinar series by driving recruitment, scheduling, and technical briefing for alumni and student stakeholders.',
-      'Coordinated outreach and event logistics for prospective 200+ students to ensure seamless program delivery.',
-      'Analyzed content performance data, identifying trends that contributed to 2x engagement growth.',
-      'Represented RCB as a brand ambassador, engaging diverse audiences to drive program awareness and enrollment.',
+      'Supported graduate recruitment efforts by managing webinar and outreach initiatives for prospective students.',
+      'Improved prospective student engagement by coordinating outreach and event logistics for 200+ students.',
+      'Increased program engagement by identifying content performance trends that contributed to 2× growth.',
+      'Enhanced student support operations by serving as a primary point of contact for graduate program inquiries.',
+    ],
+  },
+  {
+    title: 'Founder & Product Lead',
+    company: 'Trilo',
+    location: 'Atlanta, GA',
+    date: 'Nov 2024 - Present',
+    bullets: [
+      'Built and launched a multi-tenant sports league management platform serving 100+ active users, automating league operations across multiple online gaming communities.',
+      'Reduced commissioner workload by approximately 60% through the automation of 30+ league admin workflows.',
+      'Enabled scalable league operations by designing and maintaining a PostgreSQL database supporting user management, subscriptions, analytics, and audit logging.',
+      'Reduced manual admin tasks by building AI-powered OCR workflows for automated ingestion and league operations.',
+      'Eliminated data anomalies by redesigning core data models into a normalized relational architecture.',
     ],
   },
   {
@@ -93,10 +117,9 @@ const EXPERIENCE = [
     location: 'Atlanta, GA',
     date: 'Dec 2016 - Present',
     bullets: [
-      'Designed and deployed AI-powered systems including lead intake agents, automated email pipelines, and workflow automation tools used in active business operations.',
-      'Built an AI lead intake system combining retrieval-based responses, Google Calendar API integration for real-time availability, and automated email drafting, improving response speed and increasing booking conversion.',
-      'Implemented operational systems that reduced manual overhead and supported record revenue periods.',
-      'Led creative direction for campaigns distributed through national record labels including Atlantic Records and Motown, operating across technical systems and high-visibility creative work.',
+      'Improved business operations by designing and deploying AI-powered lead intake agents, workflow automation tools, and automated communication systems.',
+      'Increased booking efficiency and response speed by building an AI lead intake system with retrieval-based responses, Google Calendar integration, and automated email workflows.',
+      'Delivered creative campaigns distributed through national record labels including Atlantic and Motown.',
     ],
   },
 ]
@@ -137,22 +160,22 @@ const SKILLS = [
   {
     label: 'AI Systems',
     skills:
-      'RAG, multi-agent systems, prompt engineering, structured output design, human-in-the-loop systems',
+      'RAG, Agentic AI, Multi-Agent Systems, Prompt Engineering, Structured Outputs, Tool Calling, Human-in-the-Loop Systems, Workflow Automation',
   },
   {
     label: 'Engineering',
     skills:
-      'Python, TypeScript, React, Next.js, PostgreSQL, SQL, REST APIs, webhooks',
+      'Python, TypeScript, SQL, PostgreSQL, Supabase, Database Design, Data Modeling, Relational Databases, Vector Databases, REST APIs, Webhooks, API Orchestration',
   },
   {
     label: 'Data & Infrastructure',
     skills:
-      'Supabase, Vercel, Pandas, NumPy, API orchestration, workflow automation',
+      'React, Next.js, Vercel, Pandas, NumPy',
   },
   {
     label: 'Product & Design',
     skills:
-      'AI product design, Figma, Adobe Creative Suite, UX for AI systems',
+      'Product Management, Product Strategy, Workflow Design, Process Automation, User Research, Figma, AI Product Design, UX Design, Adobe Creative Suite',
   },
 ]
 
@@ -183,7 +206,7 @@ function Section({
 export default function ResumePage() {
   return (
     <motion.main
-      className="space-y-12 pb-12"
+      className="space-y-12 pb-12s"
       variants={VARIANTS_CONTAINER}
       initial="hidden"
       animate="visible"
@@ -195,7 +218,7 @@ export default function ResumePage() {
       >
         <div className="space-y-3">
           <h1 className="text-3xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50">
-            AI engineering for automated product systems.
+          AI engineering for automated product systems.
           </h1>
           <p className="text-base leading-7 text-zinc-600 dark:text-zinc-400">
             I am an MS Information Systems candidate focused on AI for Business
