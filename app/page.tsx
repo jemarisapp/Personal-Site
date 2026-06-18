@@ -175,7 +175,7 @@ const SKILLS = [
   {
     label: 'Product & Design',
     skills:
-      'Product Management, Product Strategy, Workflow Design, Process Automation, User Research, Figma, AI Product Design, UX Design, Adobe Creative Suite',
+      'AI Product Management, Product Strategy, Workflow Design, Process Automation, User Research, Figma, AI Product Design, UX Design, Adobe Creative Suite',
   },
 ]
 
