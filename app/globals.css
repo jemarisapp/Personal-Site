@@ -11,6 +11,22 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+  html {
+    min-height: 100%;
+    overscroll-behavior-y: none;
+    background: var(--color-white);
+  }
+
+  html.dark {
+    background: var(--color-zinc-950);
+  }
+
+  body {
+    min-height: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+  }
+
   *,
   ::after,
   ::before,
