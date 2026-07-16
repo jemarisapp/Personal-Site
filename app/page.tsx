@@ -178,6 +178,7 @@ export default function ResumePage() {
           {RESUME_LINKS.map((link) => {
             const Icon = link.icon
             const isPrimary = link.variant === 'primary'
+            const isSocial = link.label === 'Github' || link.label === 'LinkedIn'
 
             return (
               <a
@@ -192,7 +193,9 @@ export default function ResumePage() {
                 className={
                   isPrimary
                     ? 'inline-flex h-9 items-center gap-2 rounded-md border border-zinc-950 bg-zinc-950 px-3 text-sm font-medium text-zinc-50 transition-colors hover:border-zinc-800 hover:bg-zinc-800 dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:border-zinc-200 dark:hover:bg-zinc-200'
-                    : 'inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 px-3 text-sm font-medium text-zinc-900 transition-colors hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-100 dark:hover:border-zinc-700 dark:hover:bg-zinc-900'
+                    : `inline-flex h-9 items-center justify-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 px-3 text-sm font-medium text-zinc-900 transition-colors hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-100 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 ${
+                        isSocial ? 'basis-[calc(50%-0.25rem)] sm:basis-auto' : ''
+                      }`
                 }
               >
                 <Icon className="h-4 w-4" />
