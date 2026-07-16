@@ -103,10 +103,10 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="dark"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
+          <div className="flex min-h-dvh w-full flex-col font-[family-name:var(--font-inter-tight)]">
+            <div className="relative mx-auto flex min-h-dvh w-full max-w-screen-sm flex-col px-4 pt-20">
               <Header />
-              {children}
+              <div className="flex-1">{children}</div>
               <Footer />
             </div>
           </div>

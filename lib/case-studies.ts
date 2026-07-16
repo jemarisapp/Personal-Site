@@ -846,9 +846,9 @@ export const CASE_STUDIES: CaseStudy[] = [
 ]
 
 const CASE_STUDY_ORDER = [
+  'contract-generation',
   'group-sales-automation',
   'navigate-idd',
-  'contract-generation',
   'trisp-session-portal',
   'soundintel',
   'trilo',
