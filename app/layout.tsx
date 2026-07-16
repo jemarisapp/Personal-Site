@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Jemari Sapp - Resume',
+    default: 'Jemari Sapp - AI Systems Portfolio',
     template: '%s | Jemari Sapp'
   },
-  description: 'Resume of Jemari Sapp, an MSIS candidate focused on AI engineering, multi-agent systems, automation, and product design.',
-  keywords: ['Resume', 'AI Engineering', 'MSIS', 'Multi-Agent Systems', 'Automation', 'Business Innovation', 'Jemari Sapp'],
+  description: 'Portfolio of Jemari Sapp, an MS Information Systems candidate building AI-powered systems, workflow automation, legal AI tools, analytics platforms, and business operations software.',
+  keywords: ['AI Systems', 'Workflow Automation', 'Legal AI', 'Multi-Agent Systems', 'RAG', 'Business Innovation', 'Product Engineering', 'Jemari Sapp'],
   authors: [{ name: 'Jemari Sapp', url: 'https://www.jemarisapp.com' }],
   creator: 'Jemari Sapp',
   openGraph: {
@@ -30,21 +30,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.jemarisapp.com',
     siteName: 'Jemari Sapp',
-    title: 'Jemari Sapp - Resume',
-    description: 'Resume of Jemari Sapp, an MSIS candidate focused on AI engineering, multi-agent systems, automation, and product design.',
+    title: 'Jemari Sapp - AI Systems Portfolio',
+    description: 'Portfolio of Jemari Sapp, an MS Information Systems candidate building AI-powered systems, workflow automation, legal AI tools, analytics platforms, and business operations software.',
     images: [
       {
         url: '/cover.jpg',
         width: 1200,
         height: 630,
-        alt: 'Jemari Sapp Resume',
+        alt: 'Jemari Sapp AI Systems Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jemari Sapp - Resume',
-    description: 'Resume of Jemari Sapp, an MSIS candidate focused on AI engineering, multi-agent systems, automation, and product design.',
+    title: 'Jemari Sapp - AI Systems Portfolio',
+    description: 'Portfolio of Jemari Sapp, an MS Information Systems candidate building AI-powered systems, workflow automation, legal AI tools, analytics platforms, and business operations software.',
     images: ['/cover.jpg'],
     creator: '@jemarisapp',
   },
