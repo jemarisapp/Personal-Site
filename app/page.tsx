@@ -49,9 +49,9 @@ const RESUME_LINKS = [
 const EDUCATION = [
   {
     degree: 'Master of Science in Information Systems',
-    school: 'Georgia State University, J. Mack Robinson College of Business',
+    school: 'Georgia State University',
     focus: 'AI for Business Innovation',
-    date: 'Expected Aug 2026',
+    date: 'Aug 2026',
   },
   {
     degree: 'Bachelor of Fine Arts in Graphic Design',
@@ -66,12 +66,13 @@ const EXPERIENCE = [
     title: 'AI Product Engineer Intern',
     company: 'LK Taylor and Associates',
     location: 'Atlanta, GA',
-    date: 'May 2026 - Present',
+    date: 'May 2026 - July 2026',
     bullets: [
-      'Built an AI-powered contract drafting platform that guides attorneys through producer agreement creation, review, approval, and signature workflows.',
-      'Designed guided single and batch drafting experiences with template selection, validation, preflight checks, and CSV import for high-volume agreement generation.',
-      'Developed an attorney approval workflow that enabled AI-generated drafts to be reviewed, edited, versioned, and approved before distribution.',
-      'Implemented a structured PDF generation system that separated AI-generated legal content from document formatting to produce agreements matching firm standards.',
+      'Built a human-in-the-loop legaltech platform, enabling faster producer agreement drafting.',
+      'Designed a contract generator for intake, template selection, review, approval, and PDF generation.',
+      'Implemented template-controlled AI drafting with required clauses, jurisdiction rules, and structured agreement fields.',
+      'Developed single and batch generation flows to reduce repetitive drafting work for entertainment law agreements.',
+      'Added attorney review safeguards by routing AI-generated drafts through an approval queue before sending.',
     ],
   },
   {
@@ -80,10 +81,9 @@ const EXPERIENCE = [
     location: 'Atlanta, GA',
     date: 'Mar 2026 - Apr 2026',
     bullets: [
-      'Built and deployed a multi-agent AI workflow that automated group sales qualification, availability checks, lead scoring, and CRM preparation.',
-      'Reduced a manual sales workflow from hours to under 10 minutes, enabling significantly faster lead processing.',
-      'Designed a relational database supporting lead tracking, workflow state management, and human review.',
-      'Developed a React operations dashboard for monitoring AI workflow execution and reviewing generated outputs.',
+      "Built and deployed a multi-agent AI workflow for KOA's internal sales team, automating lead qualification, availability checks, scoring, and CRM handoff.",
+      'Cut lead processing time from hours to under 10 minutes, accelerating internal routing and increasing team throughput.',
+      'Designed the Supabase data model and built a React operations dashboard so employees could review AI outputs and manage handoff before outreach.',
     ],
   },
   {
@@ -92,23 +92,10 @@ const EXPERIENCE = [
     location: 'Atlanta, GA',
     date: 'Aug 2025 - July 2026',
     bullets: [
-      'Supported graduate recruitment through webinars, outreach campaigns, and prospective student engagement initiatives.',
-      'Coordinated communications and event logistics supporting more than 200 prospective graduate students.',
-      'Analyzed content performance and engagement trends that contributed to a 2× increase in program engagement.',
-      'Served as a primary point of contact for graduate program inquiries and admissions support.',
-    ],
-  },
-  {
-    title: 'Founder & Product Engineer',
-    company: 'Trilo',
-    location: 'Atlanta, GA',
-    date: 'Nov 2024 - Present',
-    bullets: [
-      'Built and launched a multi-tenant sports league management platform serving more than 100 active users across online gaming communities.',
-      'Reduced league administration by approximately 60% through automation of more than 30 commissioner workflows.',
-      'Designed and maintained a PostgreSQL database supporting user accounts, subscriptions, analytics, and audit logging.',
-      'Built AI-powered OCR workflows that automated game result ingestion and league operations.',
-      'Redesigned core data models into a normalized relational architecture to improve data integrity and scalability.',
+      'Served as the primary phone and email contact for the Office of Graduate Student Programs, responding to inquiries from prospective and current students.',
+      'Created video and content as part of the Robinson Influencer Program, supporting event promotion and outreach to current and prospective students.',
+      'Supported graduate recruitment through webinars, outreach campaigns, and engagement initiatives reaching 200+ prospective students.',
+      'Analyzed content performance and engagement data, driving a 2x increase in program engagement.',
     ],
   },
   {
@@ -117,9 +104,9 @@ const EXPERIENCE = [
     location: 'Atlanta, GA',
     date: 'Dec 2016 - Present',
     bullets: [
-      'Built AI-powered lead intake agents, workflow automations, and communication systems that automated client onboarding and booking operations.',
-      'Developed an AI-assisted booking workflow integrating knowledge retrieval, Google Calendar scheduling, and automated email communication.',
-      'Delivered creative campaigns distributed through national record labels including Atlantic Records and Motown.',
+      'Founded and operated TRISP Studio, delivering photography, brand websites, campaign visual systems, and AI automation for entertainment clients.',
+      'Built custom client operations software using React, Supabase, serverless APIs, Resend, and Google Calendar logic to manage session workflows, portals, and delivery timelines.',
+      'Delivered creative campaign systems and release artwork distributed through Atlantic Records, Motown, Universal Music Group, and Artist Partner Group.',
     ],
   },
 ]
