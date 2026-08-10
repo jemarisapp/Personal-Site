@@ -66,7 +66,7 @@ const EXPERIENCE = [
     title: 'AI Product Engineer Intern',
     company: 'LK Taylor and Associates',
     location: 'Atlanta, GA',
-    date: 'May 2026 - July 2026',
+    date: 'May 2026 - Aug 2026',
     bullets: [
       'Built a human-in-the-loop legaltech platform, enabling faster producer agreement drafting.',
       'Designed a contract generator for intake, template selection, review, approval, and PDF generation.',
@@ -90,11 +90,9 @@ const EXPERIENCE = [
     title: 'Graduate Assistant',
     company: 'Georgia State University, J. Mack Robinson College of Business',
     location: 'Atlanta, GA',
-    date: 'Aug 2025 - July 2026',
+    date: 'Aug 2025 - Aug 2026',
     bullets: [
-      'Served as the primary phone and email contact for the Office of Graduate Student Programs, responding to inquiries from prospective and current students.',
-      'Created video and content as part of the Robinson Influencer Program, supporting event promotion and outreach to current and prospective students.',
-      'Supported graduate recruitment through webinars, outreach campaigns, and engagement initiatives reaching 200+ prospective students.',
+      'Supported graduate recruitment and student engagement across email, webinars, outreach campaigns, and prospective student communications.',
       'Analyzed content performance and engagement data, driving a 2x increase in program engagement.',
     ],
   },
