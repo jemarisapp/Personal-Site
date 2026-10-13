@@ -68,7 +68,7 @@ export function Footer() {
       <div className="flex items-center justify-between">
         <TextLoop className="text-xs text-zinc-500">
           <span>© Jemari Sapp</span>
-          <span>Georgia State University Student</span>
+          <span>Georgia State University Graduate</span>
         </TextLoop>
         <div className="text-xs text-zinc-400">
           <ThemeSwitch />

@@ -151,7 +151,7 @@ export default function ResumePage() {
             Designing intelligent systems that improve business operations.
           </h1>
           <p className="text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            I am an MS Information Systems candidate focused on AI for Business
+            I am an MS Information Systems graduate focused on AI for Business
             Innovation. I design and build AI-powered systems, from multi-agent
             workflows and retrieval pipelines to enterprise automation and
             analytics platforms, with a focus on solving real operational
