@@ -1,0 +1,557 @@
+.root {
+  --pattern: url('/work/yellowstone/pattern.webp');
+  --stage-h: min(70vh, 640px);
+  display: grid;
+  gap: 12px;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-height: calc(var(--stage-h) + 120px);
+  padding: 24px 0;
+}
+
+.help {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-faint);
+}
+
+/* Folder ------------------------------------------------------------------ */
+
+.folder {
+  position: relative;
+  width: min(100%, calc(var(--stage-h) * 4 / 3));
+  aspect-ratio: 4 / 3;
+  perspective: 2200px;
+  /* Closed, only the front cover shows, so center it. */
+  transform: translateX(-25%);
+}
+
+.folder[data-open='true'] {
+  transform: none;
+}
+
+.root[data-motion='true'] .folder {
+  transition: transform 0.8s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--pattern) center / cover;
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.7);
+  z-index: 2;
+}
+
+.panel[data-side='left'] {
+  left: 0;
+  border-radius: 10px 0 0 10px;
+  box-shadow:
+    inset -18px 0 24px -18px rgb(0 0 0 / 0.35),
+    0 30px 60px -24px rgb(0 0 0 / 0.7);
+}
+
+.panel[data-side='right'] {
+  left: 50%;
+  border-radius: 0 10px 10px 0;
+  box-shadow:
+    inset 18px 0 24px -18px rgb(0 0 0 / 0.3),
+    0 30px 60px -24px rgb(0 0 0 / 0.7);
+}
+
+.panel[data-visible='false'] {
+  opacity: 0;
+}
+
+.root[data-motion='true'] .panel {
+  transition: opacity 0.4s 0.45s;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 3;
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+}
+
+.cover[data-open='true'] {
+  z-index: 1;
+  transform: rotateY(-180deg);
+  pointer-events: none;
+}
+
+.root[data-motion='true'] .cover {
+  transition:
+    transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1),
+    z-index 0s;
+}
+
+/* Opening: drop behind the inside panels only after the swing finishes. */
+.root[data-motion='true'] .cover[data-open='true'] {
+  transition:
+    transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1),
+    z-index 0s 0.9s;
+}
+
+.cover:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 6px;
+  border-radius: 10px;
+}
+
+.coverFront,
+.coverBack {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 10px 10px 0;
+  backface-visibility: hidden;
+  background: var(--pattern) center / cover;
+}
+
+.coverFront {
+  display: grid;
+  place-items: center;
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.7);
+}
+
+.coverBack {
+  transform: rotateY(180deg);
+  border-radius: 10px 0 0 10px;
+  filter: brightness(0.94);
+}
+
+.label {
+  width: 46%;
+  box-shadow: 0 16px 30px -12px rgb(0 0 0 / 0.5);
+}
+
+.openTag {
+  position: absolute;
+  bottom: 7%;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgb(5 10 26 / 0.85);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  transition: transform 0.2s;
+}
+
+.cover:hover .openTag {
+  transform: translateY(-3px);
+}
+
+/* Pockets ----------------------------------------------------------------- */
+
+.pocketArea {
+  position: absolute;
+  inset: 0;
+}
+
+.pocketArea[data-visible='false'] {
+  pointer-events: none;
+}
+
+.pocket {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44%;
+  background:
+    linear-gradient(rgb(214 160 40 / 0.32), rgb(214 160 40 / 0.32)),
+    var(--pattern) center bottom / 200% auto;
+  clip-path: polygon(0 18%, 50% 0, 100% 18%, 100% 100%, 0 100%);
+  filter: drop-shadow(0 -8px 10px rgb(0 0 0 / 0.3));
+  pointer-events: none;
+}
+
+.tuck {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -10px rgb(0 0 0 / 0.55);
+  transition: translate 0.3s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.tuck img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tuck[data-piece='sheet'] {
+  left: 8%;
+  top: 15%;
+  width: 52%;
+  rotate: -5deg;
+}
+
+.tuck[data-piece='checklist'] {
+  left: 60%;
+  top: 19%;
+  width: 29%;
+  rotate: 4deg;
+}
+
+.tuck[data-piece='places'] {
+  left: 8%;
+  top: 22%;
+  width: 84%;
+  rotate: -3deg;
+}
+
+.tuck[data-piece='historic'] {
+  left: 10%;
+  top: 36%;
+  width: 80%;
+  rotate: 2.5deg;
+}
+
+.tuck:hover,
+.tuck:focus-visible {
+  translate: 0 -9%;
+}
+
+.tuck:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+}
+
+.tuckName {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgb(5 10 26 / 0.85);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Viewer ------------------------------------------------------------------ */
+
+.viewer {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.back {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  border: 0;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  cursor: pointer;
+}
+
+.back:hover {
+  color: var(--text);
+}
+
+.frame {
+  position: relative;
+  width: min(100%, calc(var(--stage-h) * var(--ratio)));
+  aspect-ratio: var(--ratio);
+  perspective: 2200px;
+}
+
+.hit {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.back:focus-visible,
+.hit:focus-visible,
+.actions button:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.actions button {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--base-deep);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.actions button[data-quiet] {
+  background: rgb(244 246 251 / 0.12);
+  color: var(--text);
+}
+
+.count {
+  font-weight: 700;
+}
+
+/* Accordion fold */
+
+.fold {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.foldPanel {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.root[data-motion='true'] .fold,
+.root[data-motion='true'] .foldPanel {
+  transition: transform 0.85s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+.foldPanel[data-first='true'] {
+  left: 0;
+  top: 0;
+}
+
+.foldPanel[data-first='false'][data-axis='x'] {
+  left: 100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+}
+
+.foldPanel[data-first='false'][data-axis='y'] {
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center top;
+}
+
+.foldFace,
+.foldBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.foldFace {
+  background-repeat: no-repeat;
+  box-shadow: 0 12px 30px -14px rgb(0 0 0 / 0.6);
+}
+
+.foldBack {
+  background: #efe3bd;
+}
+
+.foldPanel[data-axis='x'] > .foldBack {
+  transform: rotateY(180deg);
+}
+
+.foldPanel[data-axis='y'] > .foldBack {
+  transform: rotateX(180deg);
+}
+
+/* Park sheet flip */
+
+.flipCard {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.root[data-motion='true'] .flipCard {
+  transition: transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+.flipCard[data-flipped='true'] {
+  transform: rotateY(180deg);
+}
+
+.flipFace {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  perspective: 1800px;
+}
+
+.flipFace[data-side='back'] {
+  transform: rotateY(180deg);
+}
+
+.flipFace img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 12px 30px -14px rgb(0 0 0 / 0.6);
+}
+
+/* Historic destinations flaps */
+
+.historic {
+  position: absolute;
+  inset: 0;
+  perspective: 1800px;
+}
+
+.under {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 12px 30px -14px rgb(0 0 0 / 0.6);
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-repeat: no-repeat;
+}
+
+.flap {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.root[data-motion='true'] .flap {
+  transition: transform 0.75s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+.flap[data-hinge='left'] {
+  transform-origin: left center;
+}
+
+.flap[data-hinge='right'] {
+  transform-origin: right center;
+}
+
+.flap[data-hinge='left']:hover {
+  transform: rotateY(-10deg);
+}
+
+.flap[data-hinge='right']:hover {
+  transform: rotateY(10deg);
+}
+
+.flap[data-hinge='left'][data-lifted='true'] {
+  transform: rotateY(-150deg);
+}
+
+.flap[data-hinge='right'][data-lifted='true'] {
+  transform: rotateY(150deg);
+}
+
+.flap:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: -3px;
+}
+
+.flapFace,
+.flapBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background-repeat: no-repeat;
+}
+
+.flapBack {
+  transform: rotateY(180deg);
+  background-color: #050505;
+}
+
+/* Checklist */
+
+.checklist {
+  position: absolute;
+  inset: 0;
+  perspective: 1800px;
+}
+
+.check {
+  position: absolute;
+  height: 2.9%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.check:focus-visible {
+  outline: 2px solid var(--base-deep);
+  outline-offset: 1px;
+}
+
+.tick {
+  position: absolute;
+  left: var(--box-left);
+  top: -20%;
+  width: var(--box);
+  height: 120%;
+  overflow: visible;
+  fill: none;
+  stroke: #0f7a3a;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset 0.25s ease-out;
+}
+
+.tick[data-on='true'] {
+  stroke-dashoffset: 0;
+}
+
+@media (max-width: 767px) {
+  .root {
+    --stage-h: min(56vh, 520px);
+  }
+
+  .tuckName {
+    font-size: 0.625rem;
+    padding: 3px 7px;
+  }
+}

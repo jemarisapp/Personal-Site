@@ -4,6 +4,39 @@ import createMDX from '@next/mdx';
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  // Case studies rebuilt under /work keep their old links working.
+  async redirects() {
+    return [
+      ...['trisp-studio', 'soundintel-bi', 'navigate-idd', 'camp-moda'].map(
+        (slug) => ({
+          source: `/project/${slug}`,
+          destination: `/work/${slug}`,
+          permanent: true,
+        }),
+      ),
+      ...[
+        ['fast-x-soundtrack', 'fast-x'],
+        ['zaire-valentine', 'zaire-valentine'],
+        ['trilo', 'trilo'],
+      ].map(([from, to]) => ({
+        source: `/project/${from}`,
+        destination: `/work/${to}`,
+        permanent: true,
+      })),
+      // Inquifly was retired; old links land on the product shelf.
+      ...['/project/inquifly', '/work/inquifly'].map((source) => ({
+        source,
+        destination: '/?shelf=product',
+        permanent: false,
+      })),
+      // Split into two projects.
+      {
+        source: '/work/information-design',
+        destination: '/work/how-to-atl',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({

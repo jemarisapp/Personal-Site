@@ -1,0 +1,268 @@
+/* On screen the résumé sits on the page like a sheet of paper; it prints
+   (and exports to PDF) as a single clean page. */
+
+.page {
+  --gutter: clamp(16px, 4vw, 56px);
+  --ink: #111622;
+  --muted: #5b6475;
+  --rule: #e2e5ec;
+  --accent: #2f5bff;
+  min-height: 100dvh;
+  padding-bottom: 96px;
+  background: var(--base);
+  color: var(--text);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 900px;
+  margin: 8px auto 24px;
+  padding: 0 var(--gutter);
+  color: var(--text-dim);
+}
+
+.download {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--base-deep);
+  font-weight: 700;
+}
+
+.download:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 3px;
+}
+
+.paper {
+  width: min(100% - 2 * var(--gutter), 900px);
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 64px);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.7);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.paper a {
+  color: inherit;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px 32px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.head h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.contact {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.summary {
+  max-width: 66ch;
+  margin: 20px 0 8px;
+  font-size: 1rem;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 40px;
+}
+
+.paper h2 {
+  margin: 24px 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.job {
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.jobHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.jobHead h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.jobHead h3 span {
+  display: block;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.jobHead p {
+  margin: 0;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.job ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.job li {
+  margin: 4px 0;
+}
+
+.job li::marker {
+  color: var(--accent);
+}
+
+.projects {
+  margin: 0;
+}
+
+.projects div {
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.projects dt {
+  font-weight: 700;
+}
+
+.projects dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.edu {
+  margin-bottom: 12px;
+}
+
+.edu h3 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.edu p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #eef1f7;
+  font-size: 0.8125rem;
+}
+
+.plain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 767px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .contact {
+    text-align: left;
+  }
+}
+
+@media print {
+  @page {
+    size: letter;
+    margin: 0.45in;
+  }
+
+  /* Everything inside is sized in rem, so one base size scales the sheet. */
+  :global(html),
+  :global(body) {
+    font-size: 10.5px;
+    background: #fff !important;
+  }
+
+  .page {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .chrome {
+    display: none;
+  }
+
+  .paper {
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .paper h2 {
+    margin-top: 14px;
+  }
+
+  .job {
+    padding: 7px 0;
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1fr) 190px;
+    gap: 28px;
+  }
+
+  .tags li {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

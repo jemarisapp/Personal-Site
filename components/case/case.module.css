@@ -1,0 +1,519 @@
+/* Case study and archive pages. Quieter than the home screen: the work
+   carries the color, the page stays out of the way. */
+
+.page {
+  --gutter: clamp(16px, 4vw, 56px);
+  --measure: 1100px;
+  min-height: 100dvh;
+  padding-bottom: 96px;
+  background:
+    radial-gradient(80% 50% at 50% 0%, color-mix(in srgb, var(--tint) 14%, transparent), transparent 70%),
+    var(--base);
+  color: var(--text);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 24px var(--gutter);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  color: var(--text-dim);
+}
+
+.backArrow {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.barName {
+  font-weight: 700;
+}
+
+.barActions {
+  display: flex;
+  gap: 24px;
+  justify-self: end;
+  color: var(--text-dim);
+}
+
+.back:hover,
+.barActions a:hover {
+  color: var(--text);
+}
+
+.bar a:focus-visible,
+.next:focus-visible,
+.card:focus-visible,
+.moreList a:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Hero */
+
+.hero {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 24px var(--gutter) 0;
+}
+
+.heroArt {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--base-deep);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.heroArt[data-shape='square'] {
+  aspect-ratio: 1;
+  max-width: 640px;
+}
+
+.heroArt[data-shape='tall'] {
+  aspect-ratio: 2 / 3;
+  max-width: 440px;
+}
+
+.heroArt[data-shape='screen'] {
+  aspect-ratio: 16 / 10;
+}
+
+.heroArt[data-shape='screen'] .heroMedia {
+  object-position: left top;
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroText {
+  padding-top: 24px;
+}
+
+.heroStage {
+  margin-top: 40px;
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 40ch;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 48px;
+  margin: 28px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.meta dt {
+  font-size: 0.8125rem;
+  color: var(--text-faint);
+}
+
+.meta dd {
+  margin: 4px 0 0;
+}
+
+/* Body */
+
+.prose,
+.results {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 64px var(--gutter) 0;
+}
+
+.results {
+  padding-top: 96px;
+}
+
+.prose p {
+  max-width: 62ch;
+  margin: 0 0 1.25em;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.results h2 {
+  margin: 0 0 16px;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.results ul {
+  max-width: 62ch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.results li {
+  position: relative;
+  padding: 14px 0 14px 36px;
+  border-top: 1px solid var(--line);
+  line-height: 1.5;
+}
+
+.results li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1.35em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tint);
+}
+
+/* Chapters: a headed block of text, then its images at full measure. */
+
+.chapter {
+  margin-top: 96px;
+}
+
+.chapterText {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.chapterText h2 {
+  max-width: 24ch;
+  margin: 0 0 20px;
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.chapterText p {
+  max-width: 62ch;
+  margin: 0 0 1.25em;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.points,
+.steps {
+  max-width: 62ch;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points li,
+.steps li {
+  position: relative;
+  padding: 14px 0 14px 36px;
+  border-top: 1px solid var(--line);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1.45em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tint);
+}
+
+.steps {
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 13px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tint) 22%, transparent);
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.widget {
+  max-width: var(--measure);
+  margin: 36px auto 0;
+  padding: 0 var(--gutter);
+}
+
+.chapter .gallery {
+  margin-top: 36px;
+}
+
+/* Gallery: squares in threes, wide images full width, tall images in pairs. */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  max-width: var(--measure);
+  margin: 72px auto 0;
+  padding: 0 var(--gutter);
+}
+
+.figure {
+  grid-column: span 6;
+  margin: 0;
+}
+
+.figure[data-layout='square'] {
+  grid-column: span 2;
+}
+
+.figure[data-layout='tall'] {
+  grid-column: span 3;
+}
+
+.figureMedia {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--base-deep);
+}
+
+.figure[data-layout='square'] .figureMedia {
+  aspect-ratio: 1;
+}
+
+.figure[data-layout='tall'] .figureMedia {
+  aspect-ratio: 2 / 3;
+}
+
+.figure[data-layout='screen'] .figureMedia {
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.figureMedia img {
+  object-fit: cover;
+}
+
+.figure[data-layout='screen'] .figureMedia img {
+  object-position: left top;
+}
+
+.figure .figureMedia:has(video) {
+  aspect-ratio: 16 / 9;
+}
+
+.figureMedia video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.figure figcaption {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 899px) {
+  .figure[data-layout='square'] {
+    grid-column: span 3;
+  }
+
+  .figure[data-layout='tall'] {
+    grid-column: span 6;
+  }
+}
+
+/* Live links */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: var(--measure);
+  margin: 56px auto 0;
+  padding: 0 var(--gutter);
+}
+
+.links a {
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--base-deep);
+  font-weight: 700;
+  transition: box-shadow 0.2s;
+}
+
+.links a:hover {
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--tint) 45%, transparent);
+}
+
+.links a:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+}
+
+/* Next project */
+
+.next {
+  display: block;
+  max-width: var(--measure);
+  margin: 96px auto 0;
+  padding: 40px var(--gutter) 0;
+  border-top: 1px solid var(--line);
+}
+
+.nextLabel {
+  display: block;
+  color: var(--text-dim);
+}
+
+.nextTitle {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.next:hover .nextTitle {
+  color: var(--tint);
+}
+
+/* Archive */
+
+.archive {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 40px var(--gutter) 0;
+}
+
+.archiveHeading {
+  margin: 56px 0 20px;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.archiveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: block;
+}
+
+.cardMedia {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--base-deep);
+  box-shadow: 0 0 0 1px var(--line);
+  transition: box-shadow 0.2s;
+}
+
+.cardMedia img {
+  object-fit: cover;
+}
+
+.card:hover .cardMedia {
+  box-shadow: 0 0 0 3px var(--text);
+}
+
+.cardTitle {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.cardNote {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.moreList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moreList a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.moreList a:hover {
+  color: var(--tint);
+}
+
+@media (max-width: 767px) {
+  .bar {
+    grid-template-columns: auto 1fr;
+  }
+
+  .barName {
+    display: none;
+  }
+}
