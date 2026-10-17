@@ -59,3 +59,13 @@
   --sh-property: #73daca;
   --sh-entity: #e0af68;
 }
+
+/* The résumé page prints as one sheet. Everything on it is sized in rem, so
+   one base size scales it; scoped with :has() so other pages print as-is. */
+@media print {
+  html:has([data-print='resume']),
+  html:has([data-print='resume']) body {
+    font-size: 10.5px;
+    background: #fff !important;
+  }
+}
