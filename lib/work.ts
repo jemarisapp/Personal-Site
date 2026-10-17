@@ -32,6 +32,7 @@ export type Work = {
   title: string
   summary: string
   role: string
+  // Kept for reference; project years aren't shown on the site.
   years: string
   client?: string
   disciplines: string[]
@@ -88,7 +89,7 @@ export const SHELVES: { id: Shelf; label: string; order: string[] }[] = [
   {
     id: 'motion',
     label: 'Motion',
-    order: ['motion-reel', 'fast-x', 'cold-december', 'boondocks', 'zaire-valentine', 'atlanta-science-festival'],
+    order: ['fast-x', 'cold-december', 'boondocks', 'zaire-valentine', 'atlanta-science-festival'],
   },
 ]
 
@@ -107,7 +108,7 @@ export const WORK: Work[] = [
     shelf: 'brand',
     title: 'YoungBoy Never Broke Again',
     summary:
-      'Art director and designer on more than 20 releases for one of the most-streamed artists in hip-hop since 2018: album and single covers, tracklists, logos, and motion teasers, each directed and designed end to end.',
+      'Art director and designer on more than 20 releases for one of the most-streamed artists in hip-hop over eight years: album and single covers, tracklists, logos, and motion teasers, each directed and designed end to end.',
     role: 'Art director & designer',
     years: '2018–2026',
     client: 'Never Broke Again LLC',
@@ -480,26 +481,6 @@ export const WORK: Work[] = [
     ],
   },
   {
-    slug: 'motion-reel',
-    shelf: 'motion',
-    title: 'Motion Reel',
-    summary:
-      'A minute of motion work: album rollouts for YoungBoy Never Broke Again, a PlayStation campaign, Camp MODA, The Boondocks titles, Cold December, and the Atlanta Science Festival.',
-    role: 'Art director & motion designer',
-    years: '2021–2026',
-    disciplines: ['Motion', 'Title design', 'Social'],
-    tint: '#8fb4ff',
-    hero: '/work/reel/hero.webp',
-    heroMode: 'full',
-    focus: '50% 50%',
-    film: true,
-    video: '/work/reel/motion-reel.mp4',
-    body: [
-      'Most of this work was made to move: canvases and teasers that run on Spotify, Apple Music, YouTube, and social, plus title sequences and kinetic type. Each project has its own page with the full piece.',
-      'The opening is a kinetic type sequence set in a variable typeface, with the name, disciplines, and dates timed to the beat of an original score.',
-    ],
-  },
-  {
     slug: 'fast-x',
     shelf: 'motion',
     title: 'Fast X Soundtrack',
@@ -570,7 +551,7 @@ export const WORK: Work[] = [
     body: [
       'The brief was to take an existing pop culture icon and show them in their ideal, favored image, then subvert them into a freak, unexpected version.',
       'Ideal Sonic is the hero on the front page, golden rings and all. Freak Sonic is the villain on a wanted poster, trading rings for bat wings and blue for acid green. Every piece exists in both versions: the poster, a 3D sneaker, and a training app. Flip the switch above to compare them.',
-      'The sneakers were redesigned in 2026 on a new shared model. The Ideal pair is glossy red with a white strap, a gold ring buckle, and a ring at the heel. The Freak pair keeps the same shape but goes matte black, with bat wings off the heel, a bat buckle, a spiked sole, and a glowing green stripe.',
+      'The sneakers were later redesigned on a new shared model. The Ideal pair is glossy red with a white strap, a gold ring buckle, and a ring at the heel. The Freak pair keeps the same shape but goes matte black, with bat wings off the heel, a bat buckle, a spiked sole, and a glowing green stripe.',
     ],
   },
   {

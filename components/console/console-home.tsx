@@ -129,9 +129,8 @@ export function ConsoleHome() {
       <Backdrop tile={selected} neighbors={neighbors} reduceMotion={!!reduceMotion} />
 
       <header className={s.topbar}>
-        <Link href="/about" className={s.identity}>
+        <Link href="/" className={s.identity} aria-label="Jemari Sapp, back to the welcome screen">
           <span className={s.name}>{PROFILE.name}</span>
-          <span className={s.line}>{PROFILE.line}</span>
         </Link>
 
         <div role="tablist" aria-label="Work" className={s.tabs} onKeyDown={onTabKeyDown}>
@@ -152,15 +151,15 @@ export function ConsoleHome() {
           ))}
         </div>
 
-        <nav className={s.actions} aria-label="Contact">
+        <nav className={s.actions} aria-label="About and contact">
+          <Link href="/about" className={s.action}>
+            About
+          </Link>
           <Link href={PROFILE.resume} className={s.action}>
             Résumé
           </Link>
           <Link href={PROFILE.contact} className={s.action}>
             Contact
-          </Link>
-          <Link href="/about" className={s.avatar} aria-label="About Jemari">
-            <Image src="/jemari.webp" alt="" width={80} height={80} />
           </Link>
         </nav>
       </header>
@@ -211,9 +210,9 @@ export function ConsoleHome() {
                     // Let modified clicks open a new tab as usual.
                     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
                     e.preventDefault()
-                    // On touch the first tap selects, like moving focus with
-                    // a controller; tapping the selected tile opens it.
-                    if (lastPointer.current !== 'mouse' && !isSelected) {
+                    // On touch a tap only selects, like moving focus with a
+                    // controller; the project opens from "View case study".
+                    if (lastPointer.current === 'touch' || lastPointer.current === 'pen') {
                       select(i)
                       return
                     }
@@ -391,10 +390,6 @@ function Detail({ tile, reduceMotion }: { tile: Tile; reduceMotion: boolean }) {
                 <div>
                   <dt>Role</dt>
                   <dd>{tile.work.role}</dd>
-                </div>
-                <div>
-                  <dt>Years</dt>
-                  <dd>{tile.work.years}</dd>
                 </div>
                 {tile.work.client && (
                   <div>

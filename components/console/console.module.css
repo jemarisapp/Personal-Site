@@ -466,11 +466,11 @@
 
   .panel {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       'row'
-      'frame'
-      'detail';
+      'detail'
+      'frame';
     padding-bottom: 32px;
   }
 
@@ -503,7 +503,16 @@
   }
 
   .frame {
-    margin-bottom: 24px;
+    margin-top: 28px;
+  }
+
+  /* Info sits right under the tiles so a tap shows it without scrolling. */
+  .detailSlot {
+    align-self: start;
+  }
+
+  .row {
+    touch-action: pan-x pan-y;
   }
 
   .frame[data-aspect='square'] {

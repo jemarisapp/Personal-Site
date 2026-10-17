@@ -51,9 +51,7 @@ function Shelf({ id, heading, items }: { id: string; heading: string; items: Wor
                 />
               </span>
               <span className={s.cardTitle}>{w.title}</span>
-              <span className={s.cardNote}>
-                {w.role}, {w.years}
-              </span>
+              <span className={s.cardNote}>{w.role}</span>
             </Link>
           </li>
         ))}

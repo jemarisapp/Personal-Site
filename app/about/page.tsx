@@ -78,7 +78,7 @@ export default function About() {
           <ul className={s.practice}>
             {PRACTICE.map((p) => (
               <li key={p.title}>
-                <Link href={`/?shelf=${p.shelf}`}>
+                <Link href={`/home?shelf=${p.shelf}`}>
                   <span className={s.practiceTitle}>{p.title}</span>
                   <span className={s.practiceText}>{p.text}</span>
                 </Link>

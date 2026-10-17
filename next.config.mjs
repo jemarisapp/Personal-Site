@@ -29,6 +29,13 @@ const nextConfig = {
         destination: '/?shelf=product',
         permanent: false,
       })),
+      // The shelves moved from / to /home; keep old ?shelf= links working.
+      {
+        source: '/',
+        has: [{ type: 'query', key: 'shelf' }],
+        destination: '/home',
+        permanent: true,
+      },
       // Split into two projects.
       {
         source: '/work/information-design',
