@@ -22,6 +22,7 @@ import {
   type Work,
 } from '@/lib/work'
 import s from './console.module.css'
+import { Welcome } from './welcome'
 
 // The last tile on every shelf points to the archive instead of a project.
 type Tile = { kind: 'work'; work: Work } | { kind: 'more' }
@@ -56,6 +57,13 @@ export function ConsoleHome() {
   const index = Math.min(selectedByShelf[shelf], tiles.length - 1)
   const selected = tiles[index]
   const tint = selected.kind === 'work' ? selected.work.tint : MORE_TINT
+
+  // The welcome screen shows once per visit; the page script marks the
+  // document before paint when it should be skipped.
+  const [welcome, setWelcome] = useState(true)
+  useEffect(() => {
+    if (document.documentElement.dataset.welcomeSeen) setWelcome(false)
+  }, [])
 
   const tileRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const lastPointer = useRef<string>('mouse')
@@ -126,6 +134,14 @@ export function ConsoleHome() {
 
   return (
     <main className={s.console} style={{ '--tint': tint } as CSSProperties}>
+      {welcome && (
+        <Welcome
+          onEnter={() => {
+            setWelcome(false)
+            tileRefs.current[index]?.focus({ preventScroll: true })
+          }}
+        />
+      )}
       <Backdrop tile={selected} neighbors={neighbors} reduceMotion={!!reduceMotion} />
 
       <header className={s.topbar}>
@@ -211,9 +227,9 @@ export function ConsoleHome() {
                     // Let modified clicks open a new tab as usual.
                     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
                     e.preventDefault()
-                    // On touch the first tap selects, like moving focus with
-                    // a controller; tapping the selected tile opens it.
-                    if (lastPointer.current !== 'mouse' && !isSelected) {
+                    // On touch a tap only selects, like moving focus with a
+                    // controller; the project opens from "View case study".
+                    if (lastPointer.current === 'touch' || lastPointer.current === 'pen') {
                       select(i)
                       return
                     }
