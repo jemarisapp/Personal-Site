@@ -1,20 +1,14 @@
 import type { MetadataRoute } from 'next'
-import { WEBSITE_URL } from '@/lib/constants'
-import { CASE_STUDIES } from '@/lib/case-studies'
+import { WORK } from '@/lib/work'
+
+const BASE = 'https://www.jemarisapp.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = WEBSITE_URL
-
-    const allPages = [
-        '',
-        '/projects',
-        ...CASE_STUDIES.map((study) => `/projects/${study.slug}`),
-    ]
-
-    return allPages.map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 1,
-    }))
+  const pages = ['', '/home', '/work', '/about', '/resume', '/contact', ...WORK.map((w) => `/work/${w.slug}`)]
+  return pages.map((route) => ({
+    url: `${BASE}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: route === '' || route === '/home' ? 1 : 0.7,
+  }))
 }

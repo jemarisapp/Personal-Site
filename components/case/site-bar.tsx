@@ -5,7 +5,7 @@ import s from './case.module.css'
 export function SiteBar({ shelf }: { shelf?: Shelf }) {
   return (
     <header className={s.bar}>
-      <Link href={shelf ? `/?shelf=${shelf}` : '/'} className={s.back}>
+      <Link href={shelf ? `/home?shelf=${shelf}` : '/home'} className={s.back}>
         <span aria-hidden className={s.backArrow}>
           ‹
         </span>

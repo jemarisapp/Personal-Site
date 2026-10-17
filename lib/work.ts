@@ -88,7 +88,7 @@ export const SHELVES: { id: Shelf; label: string; order: string[] }[] = [
   {
     id: 'motion',
     label: 'Motion',
-    order: ['motion-reel', 'fast-x', 'cold-december', 'boondocks', 'zaire-valentine', 'atlanta-science-festival'],
+    order: ['fast-x', 'cold-december', 'boondocks', 'zaire-valentine', 'atlanta-science-festival'],
   },
 ]
 
@@ -477,26 +477,6 @@ export const WORK: Work[] = [
           { src: '/work/sweet-beijing/app-icon.webp', alt: 'Sweet Beijing app icon', layout: 'wide' },
         ],
       },
-    ],
-  },
-  {
-    slug: 'motion-reel',
-    shelf: 'motion',
-    title: 'Motion Reel',
-    summary:
-      'A minute of motion work: album rollouts for YoungBoy Never Broke Again, a PlayStation campaign, Camp MODA, The Boondocks titles, Cold December, and the Atlanta Science Festival.',
-    role: 'Art director & motion designer',
-    years: '2021–2026',
-    disciplines: ['Motion', 'Title design', 'Social'],
-    tint: '#8fb4ff',
-    hero: '/work/reel/hero.webp',
-    heroMode: 'full',
-    focus: '50% 50%',
-    film: true,
-    video: '/work/reel/motion-reel.mp4',
-    body: [
-      'Most of this work was made to move: canvases and teasers that run on Spotify, Apple Music, YouTube, and social, plus title sequences and kinetic type. Each project has its own page with the full piece.',
-      'The opening is a kinetic type sequence set in a variable typeface, with the name, disciplines, and dates timed to the beat of an original score.',
     ],
   },
   {

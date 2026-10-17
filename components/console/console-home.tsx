@@ -22,7 +22,6 @@ import {
   type Work,
 } from '@/lib/work'
 import s from './console.module.css'
-import { Welcome } from './welcome'
 
 // The last tile on every shelf points to the archive instead of a project.
 type Tile = { kind: 'work'; work: Work } | { kind: 'more' }
@@ -57,13 +56,6 @@ export function ConsoleHome() {
   const index = Math.min(selectedByShelf[shelf], tiles.length - 1)
   const selected = tiles[index]
   const tint = selected.kind === 'work' ? selected.work.tint : MORE_TINT
-
-  // The welcome screen shows once per visit; the page script marks the
-  // document before paint when it should be skipped.
-  const [welcome, setWelcome] = useState(true)
-  useEffect(() => {
-    if (document.documentElement.dataset.welcomeSeen) setWelcome(false)
-  }, [])
 
   const tileRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const lastPointer = useRef<string>('mouse')
@@ -134,20 +126,11 @@ export function ConsoleHome() {
 
   return (
     <main className={s.console} style={{ '--tint': tint } as CSSProperties}>
-      {welcome && (
-        <Welcome
-          onEnter={() => {
-            setWelcome(false)
-            tileRefs.current[index]?.focus({ preventScroll: true })
-          }}
-        />
-      )}
       <Backdrop tile={selected} neighbors={neighbors} reduceMotion={!!reduceMotion} />
 
       <header className={s.topbar}>
-        <Link href="/about" className={s.identity}>
+        <Link href="/" className={s.identity} aria-label="Jemari Sapp, back to the welcome screen">
           <span className={s.name}>{PROFILE.name}</span>
-          <span className={s.line}>{PROFILE.line}</span>
         </Link>
 
         <div role="tablist" aria-label="Work" className={s.tabs} onKeyDown={onTabKeyDown}>
@@ -168,15 +151,15 @@ export function ConsoleHome() {
           ))}
         </div>
 
-        <nav className={s.actions} aria-label="Contact">
+        <nav className={s.actions} aria-label="About and contact">
+          <Link href="/about" className={s.action}>
+            About
+          </Link>
           <Link href={PROFILE.resume} className={s.action}>
             Résumé
           </Link>
           <Link href={PROFILE.contact} className={s.action}>
             Contact
-          </Link>
-          <Link href="/about" className={s.avatar} aria-label="About Jemari">
-            <Image src="/jemari.webp" alt="" width={80} height={80} />
           </Link>
         </nav>
       </header>

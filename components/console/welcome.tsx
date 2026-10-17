@@ -1,12 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
-import { PROFILE } from '@/lib/work'
+import { PROFILE, type Shelf } from '@/lib/work'
 import s from './welcome.module.css'
-
-export const WELCOME_KEY = 'welcome-seen'
 
 // Deterministic "random" so server and client render the same particles.
 function seeded(n: number) {
@@ -35,8 +33,7 @@ const PARTICLES = Array.from({ length: 46 }, (_, i) => {
 function Clock() {
   const [now, setNow] = useState<string | null>(null)
   useEffect(() => {
-    const tick = () =>
-      setNow(new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }))
+    const tick = () => setNow(new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }))
     tick()
     const id = window.setInterval(tick, 15000)
     return () => window.clearInterval(id)
@@ -44,51 +41,88 @@ function Clock() {
   return <p className={s.clock}>{now}</p>
 }
 
-type Choice = 'hello' | 'me' | 'projects' | 'about'
+// Each area of work is a "profile" to pick, shown with a piece from it.
+type Option =
+  | { id: Shelf; label: string; image: string }
+  | { id: 'hello'; label: string; image?: undefined }
 
-export function Welcome({ onEnter }: { onEnter: () => void }) {
-  const [focus, setFocus] = useState<Choice>('me')
+const LEFT: Option[] = [
+  { id: 'product', label: 'Product & AI', image: '/work/navigate-idd/hero.webp' },
+  { id: 'brand', label: 'Brand & Visual', image: '/work/youngboy/green-flag-activity.webp' },
+]
+const RIGHT: Option[] = [
+  { id: 'motion', label: 'Motion', image: '/work/cold-december/hero.webp' },
+  { id: 'hello', label: 'Say hi' },
+]
+const ORDER = [...LEFT.map((o) => o.id), 'me', ...RIGHT.map((o) => o.id)] as const
+type Focus = (typeof ORDER)[number] | 'about'
+
+export function WelcomeScreen() {
+  const router = useRouter()
+  const [focus, setFocus] = useState<Focus>('me')
   const [leaving, setLeaving] = useState(false)
-  const meRef = useRef<HTMLButtonElement>(null)
-  const helloRef = useRef<HTMLAnchorElement>(null)
-  const aboutRef = useRef<HTMLAnchorElement>(null)
-  const projectsRef = useRef<HTMLButtonElement>(null)
+  const refs = useRef<Record<string, HTMLElement | null>>({})
 
   useEffect(() => {
-    meRef.current?.focus({ preventScroll: true })
-  }, [])
+    router.prefetch('/home')
+    refs.current.me?.focus({ preventScroll: true })
+  }, [router])
 
-  const enter = () => {
+  // Zoom away, then go. The shelves live at /home, so Back returns here.
+  const go = (href: string) => {
     if (leaving) return
-    try {
-      sessionStorage.setItem(WELCOME_KEY, '1')
-    } catch {}
     setLeaving(true)
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    window.setTimeout(onEnter, reduce ? 0 : 650)
+    window.setTimeout(() => router.push(href), reduce ? 0 : 600)
   }
 
-  // Left and right move across the row, like the console's profile picker.
-  const order: Choice[] = ['hello', 'me', 'projects']
-  const refFor = (c: Choice) =>
-    c === 'hello' ? helloRef : c === 'me' ? meRef : c === 'projects' ? projectsRef : aboutRef
+  const pick = (o: Option) => (o.id === 'hello' ? router.push(PROFILE.contact) : go(`/home?shelf=${o.id}`))
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       e.preventDefault()
-      enter()
+      go('/home')
       return
     }
-    const i = Math.max(0, order.indexOf(focus))
-    const next = e.key === 'ArrowRight' ? order[Math.min(i + 1, 2)] : e.key === 'ArrowLeft' ? order[Math.max(i - 1, 0)] : null
-    if (!next) return
+    const i = ORDER.indexOf(focus as (typeof ORDER)[number])
+    const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0
+    if (!step) return
     e.preventDefault()
+    const next = ORDER[Math.max(0, Math.min(ORDER.length - 1, (i < 0 ? 2 : i) + step))]
     setFocus(next)
-    refFor(next).current?.focus()
+    refs.current[next]?.focus()
   }
 
+  const option = (o: Option) => (
+    <button
+      key={o.id}
+      type="button"
+      ref={(el) => {
+        refs.current[o.id] = el
+      }}
+      className={s.side}
+      data-area={o.id}
+      onClick={() => pick(o)}
+      onFocus={() => setFocus(o.id)}
+      onMouseEnter={() => setFocus(o.id)}
+      data-focus={focus === o.id}
+    >
+      <span className={s.sideIcon} aria-hidden>
+        {o.image ? <Image src={o.image} alt="" width={160} height={160} /> : '+'}
+      </span>
+      <span className={s.sideLabel}>{o.label}</span>
+    </button>
+  )
+
   return (
-    <div className={s.welcome} data-leaving={leaving} role="dialog" aria-modal="true" aria-labelledby="welcome-title" onKeyDown={onKeyDown}>
+    <div
+      className={s.welcome}
+      data-leaving={leaving}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="welcome-title"
+      onKeyDown={onKeyDown}
+    >
       <div className={s.scene} aria-hidden>
         <div className={s.beam} />
         {PARTICLES.map((p, i) => (
@@ -102,22 +136,10 @@ export function Welcome({ onEnter }: { onEnter: () => void }) {
         <h1 id="welcome-title" className={s.title}>
           Welcome
         </h1>
-        <p className={s.subtitle}>{PROFILE.line}</p>
+        <p className={s.subtitle}>Where do you want to start?</p>
 
         <div className={s.profiles}>
-          <Link
-            href={PROFILE.contact}
-            ref={helloRef}
-            className={s.side}
-            onFocus={() => setFocus('hello')}
-            onMouseEnter={() => setFocus('hello')}
-            data-focus={focus === 'hello'}
-          >
-            <span className={s.sideIcon} aria-hidden>
-              +
-            </span>
-            <span className={s.sideLabel}>Say hi</span>
-          </Link>
+          <div className={s.group}>{LEFT.map(option)}</div>
 
           <div className={s.meWrap}>
             <span className={s.controller} aria-hidden>
@@ -131,9 +153,11 @@ export function Welcome({ onEnter }: { onEnter: () => void }) {
             </span>
             <button
               type="button"
-              ref={meRef}
+              ref={(el) => {
+                refs.current.me = el
+              }}
               className={s.me}
-              onClick={enter}
+              onClick={() => go('/home')}
               onFocus={() => setFocus('me')}
               onMouseEnter={() => setFocus('me')}
               data-focus={focus === 'me'}
@@ -142,10 +166,12 @@ export function Welcome({ onEnter }: { onEnter: () => void }) {
               <Image src="/jemari.webp" alt="" width={360} height={360} priority />
             </button>
             <p className={s.name}>{PROFILE.name}</p>
-            <p className={s.about}>Art director &amp; designer in Atlanta. Album art, motion, and AI products.</p>
-            <Link
+            <p className={s.about}>{PROFILE.line}, based in Atlanta.</p>
+            <a
               href="/about"
-              ref={aboutRef}
+              ref={(el) => {
+                refs.current.about = el
+              }}
               className={s.options}
               onFocus={() => setFocus('about')}
               onMouseEnter={() => setFocus('about')}
@@ -157,32 +183,14 @@ export function Welcome({ onEnter }: { onEnter: () => void }) {
                 <i />
               </span>
               About me
-            </Link>
+            </a>
           </div>
 
-          <button
-            type="button"
-            ref={projectsRef}
-            className={s.side}
-            onClick={enter}
-            onFocus={() => setFocus('projects')}
-            onMouseEnter={() => setFocus('projects')}
-            data-focus={focus === 'projects'}
-          >
-            <span className={s.sideIcon} aria-hidden>
-              <span className={s.grid}>
-                <i />
-                <i />
-                <i />
-                <i />
-              </span>
-            </span>
-            <span className={s.sideLabel}>View projects</span>
-          </button>
+          <div className={s.group}>{RIGHT.map(option)}</div>
         </div>
       </div>
 
-      <button type="button" className={s.select} onClick={enter}>
+      <button type="button" className={s.select} onClick={() => go('/home')}>
         <span className={s.cross} aria-hidden>
           ✕
         </span>
