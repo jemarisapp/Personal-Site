@@ -70,10 +70,6 @@ export default async function CaseStudy({
                 <dt>Role</dt>
                 <dd>{work.role}</dd>
               </div>
-              <div>
-                <dt>Years</dt>
-                <dd>{work.years}</dd>
-              </div>
               {work.client && (
                 <div>
                   <dt>Client</dt>

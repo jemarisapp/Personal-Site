@@ -391,10 +391,6 @@ function Detail({ tile, reduceMotion }: { tile: Tile; reduceMotion: boolean }) {
                   <dt>Role</dt>
                   <dd>{tile.work.role}</dd>
                 </div>
-                <div>
-                  <dt>Years</dt>
-                  <dd>{tile.work.years}</dd>
-                </div>
                 {tile.work.client && (
                   <div>
                     <dt>Client</dt>

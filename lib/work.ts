@@ -32,6 +32,7 @@ export type Work = {
   title: string
   summary: string
   role: string
+  // Kept for reference; project years aren't shown on the site.
   years: string
   client?: string
   disciplines: string[]
@@ -107,7 +108,7 @@ export const WORK: Work[] = [
     shelf: 'brand',
     title: 'YoungBoy Never Broke Again',
     summary:
-      'Art director and designer on more than 20 releases for one of the most-streamed artists in hip-hop since 2018: album and single covers, tracklists, logos, and motion teasers, each directed and designed end to end.',
+      'Art director and designer on more than 20 releases for one of the most-streamed artists in hip-hop over eight years: album and single covers, tracklists, logos, and motion teasers, each directed and designed end to end.',
     role: 'Art director & designer',
     years: '2018–2026',
     client: 'Never Broke Again LLC',
@@ -550,7 +551,7 @@ export const WORK: Work[] = [
     body: [
       'The brief was to take an existing pop culture icon and show them in their ideal, favored image, then subvert them into a freak, unexpected version.',
       'Ideal Sonic is the hero on the front page, golden rings and all. Freak Sonic is the villain on a wanted poster, trading rings for bat wings and blue for acid green. Every piece exists in both versions: the poster, a 3D sneaker, and a training app. Flip the switch above to compare them.',
-      'The sneakers were redesigned in 2026 on a new shared model. The Ideal pair is glossy red with a white strap, a gold ring buckle, and a ring at the heel. The Freak pair keeps the same shape but goes matte black, with bat wings off the heel, a bat buckle, a spiked sole, and a glowing green stripe.',
+      'The sneakers were later redesigned on a new shared model. The Ideal pair is glossy red with a white strap, a gold ring buckle, and a ring at the heel. The Freak pair keeps the same shape but goes matte black, with bat wings off the heel, a bat buckle, a spiked sole, and a glowing green stripe.',
     ],
   },
   {
