@@ -1,0 +1,592 @@
+/* Fast X singles ----------------------------------------------------------- */
+
+.singles {
+  display: grid;
+  gap: 20px;
+}
+
+.singlePair {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 16fr);
+  gap: 12px;
+}
+
+.singleCover {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.singleMotion {
+  position: relative;
+  align-self: center;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000;
+}
+
+.singleMotion iframe,
+.phoneVideo iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pick {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pick img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0.6;
+  transition:
+    opacity 0.2s,
+    box-shadow 0.2s;
+}
+
+.pick:hover img {
+  opacity: 0.9;
+}
+
+.pick[aria-checked='true'] {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.pick[aria-checked='true'] img {
+  opacity: 1;
+  box-shadow:
+    0 0 0 3px var(--text),
+    0 0 0 7px color-mix(in srgb, var(--tint) 45%, transparent);
+}
+
+.pick:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+@media (max-width: 767px) {
+  .singlePair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Sonic: Ideal / Freak ----------------------------------------------------- */
+
+.sonic {
+  --sonic-a: #2f5bff;
+  --sonic-b: #f6c343;
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  padding: 28px 16px;
+  border-radius: 24px;
+  background:
+    radial-gradient(60% 70% at 50% 30%, color-mix(in srgb, var(--sonic-a) 35%, transparent), transparent 70%),
+    #070b1d;
+  box-shadow: 0 0 0 1px var(--line);
+  transition: background 0.5s;
+}
+
+.sonic[data-side='freak'] {
+  --sonic-a: #8cff2e;
+  --sonic-b: #6c3df0;
+  background:
+    radial-gradient(60% 70% at 50% 30%, color-mix(in srgb, var(--sonic-b) 40%, transparent), transparent 70%),
+    #07040f;
+}
+
+.sonicSwitch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.sonicSwitch button {
+  padding: 10px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+.sonicSwitch button[aria-checked='true'] {
+  background: var(--sonic-a);
+  color: #07040f;
+}
+
+.sonic[data-side='ideal'] .sonicSwitch button[aria-checked='true'] {
+  color: #fff;
+}
+
+.sonicSwitch button:focus-visible,
+.sonicTabs button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+
+.sonicStage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.sonicPoster,
+.sonicShoe,
+.sonicPhone {
+  display: grid;
+}
+
+.sonicPoster > *,
+.sonicShoe > *,
+.sonicPhone > img {
+  grid-area: 1 / 1;
+  width: 100%;
+}
+
+.sonicPoster img {
+  aspect-ratio: 1200 / 1698;
+  border-radius: 6px;
+  box-shadow: 0 24px 40px -18px rgb(0 0 0 / 0.8);
+}
+
+.sonicShoe video {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.sonicPhone img {
+  aspect-ratio: 600 / 655;
+  object-fit: contain;
+}
+
+.sonicTabs {
+  grid-area: 2 / 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.sonicTabs button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sonicTabs button[aria-selected='true'] {
+  background: var(--sonic-a);
+  color: #07040f;
+}
+
+.sonic[data-side='ideal'] .sonicTabs button[aria-selected='true'] {
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .sonicStage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .sonicShoe {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+/* Sweet Beijing prototype --------------------------------------------------- */
+
+.sb {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 24px;
+  background:
+    radial-gradient(70% 70% at 30% 40%, rgb(255 198 69 / 0.25), transparent 70%),
+    #8f0c10;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.sbPhone {
+  display: grid;
+  justify-self: center;
+  width: min(100%, 300px);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.sbPhone img {
+  grid-area: 1 / 1;
+  width: 100%;
+  filter: drop-shadow(0 30px 30px rgb(0 0 0 / 0.4));
+}
+
+.sbPhone:focus-visible {
+  outline: 3px solid #ffc645;
+  outline-offset: 6px;
+  border-radius: 40px;
+}
+
+.sbSide {
+  display: grid;
+  gap: 20px;
+}
+
+.sbNote {
+  min-height: 3.2em;
+  color: #fff;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.sbList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sbList button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.sbList button[aria-checked='true'] {
+  background: #ffc645;
+  color: #5c0508;
+  font-weight: 700;
+}
+
+.sbList button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .sb {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 16px;
+  }
+}
+
+/* Vertical video in a phone-shaped frame */
+
+.phoneVideo {
+  position: relative;
+  width: min(100%, 360px);
+  margin: 0 auto;
+  aspect-ratio: var(--ratio);
+  overflow: hidden;
+  border-radius: 28px;
+  background: #000;
+  box-shadow:
+    0 0 0 8px #111,
+    0 40px 60px -20px rgb(0 0 0 / 0.7);
+}
+
+/* Trilo extraction --------------------------------------------------------- */
+
+.trilo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.trilo figure {
+  position: relative;
+  margin: 0;
+}
+
+.trilo figcaption {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.trilo img {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.triloShot {
+  overflow: hidden;
+}
+
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, #5865f2 55%, transparent), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.triloShot[data-state='scanning'] .scan {
+  opacity: 1;
+  animation: scan 0.8s ease-in-out 2;
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-20%);
+  }
+  to {
+    transform: translateY(460%);
+  }
+}
+
+.triloEmpty {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1024 / 819;
+  border-radius: 12px;
+  border: 2px dashed var(--line);
+  color: var(--text-faint);
+  font-size: 0.9375rem;
+}
+
+.triloResult[data-state='done'] img {
+  animation: rise 0.4s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.triloArrow {
+  font-size: 1.75rem;
+  color: var(--text-dim);
+}
+
+.triloActions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+
+.triloActions button {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--base-deep);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.triloActions button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.triloActions button:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .trilo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .triloArrow {
+    justify-self: center;
+    rotate: 90deg;
+  }
+}
+
+/* TRISP site tour ----------------------------------------------------------- */
+
+.trisp {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
+
+.trispTabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.trispTabs button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.08);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.trispTabs button[aria-checked='true'] {
+  background: var(--text);
+  color: var(--base-deep);
+  font-weight: 700;
+}
+
+.trispTabs button:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 2px;
+}
+
+.browser {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #1c1d21;
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 40px 80px -30px rgb(0 0 0 / 0.75);
+}
+
+.browserBar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 14px;
+}
+
+.browserBar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.18);
+}
+
+.browserBar em {
+  margin: 0 auto;
+  padding: 3px 40px;
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.07);
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-style: normal;
+}
+
+.browserView {
+  display: grid;
+}
+
+.browserView img {
+  grid-area: 1 / 1;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.browserView img[data-on='true'] {
+  opacity: 1;
+}
+
+.trispPhone {
+  width: min(100%, 300px);
+  padding: 10px;
+  border-radius: 40px;
+  background: #111;
+  box-shadow: 0 40px 70px -30px rgb(0 0 0 / 0.8);
+}
+
+.trispPhone img {
+  display: block;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.logoWall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 28px 32px;
+  align-items: center;
+  margin: 0;
+  padding: 32px;
+  border-radius: 20px;
+  background: rgb(244 246 251 / 0.04);
+  box-shadow: inset 0 0 0 1px var(--line);
+  list-style: none;
+}
+
+.logoWall li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+}
+
+.logoWall img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 56px;
+  object-fit: contain;
+  /* One flat color so the wall reads as a set, not thirteen brand palettes. */
+  filter: brightness(0) invert(0.92);
+  opacity: 0.85;
+}

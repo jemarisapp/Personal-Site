@@ -14,17 +14,15 @@
   html {
     min-height: 100dvh;
     overscroll-behavior-y: none;
-    background: var(--color-white);
-  }
-
-  html.dark {
-    background: var(--color-zinc-950);
+    background: var(--base);
+    color: var(--text);
   }
 
   body {
     min-height: 100dvh;
     overflow-x: hidden;
     overscroll-behavior-y: none;
+    font-family: var(--font-familjen), system-ui, sans-serif;
   }
 
   *,
@@ -34,6 +32,21 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+/*
+  Console palette. The chrome stays neutral so each project's art supplies the
+  color; --tint is set per selected project and drives focus rings and glows.
+*/
+:root {
+  --base: #0a1430;
+  --base-deep: #050a1a;
+  --text: #f4f6fb;
+  --text-dim: rgb(244 246 251 / 0.7);
+  --text-faint: rgb(244 246 251 / 0.45);
+  --glass: rgb(10 20 48 / 0.55);
+  --line: rgb(244 246 251 / 0.16);
+  --tint: #8fb4ff;
 }
 
 :root {

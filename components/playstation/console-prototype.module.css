@@ -1,0 +1,101 @@
+.root {
+  display: grid;
+  justify-items: center;
+}
+
+/* A slim TV: black bezel, faint edge light, and a pedestal stand. */
+.tv {
+  width: 100%;
+  padding: clamp(6px, 1.2vw, 12px);
+  border-radius: clamp(10px, 1.6vw, 18px);
+  background: linear-gradient(#1b1d22, #0b0c0f);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.08),
+    0 40px 80px -30px rgb(0 0 0 / 0.8);
+}
+
+.screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #000;
+}
+
+.shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.screen[data-motion='true'] .shot {
+  transition: opacity 0.45s ease;
+}
+
+.shot[data-on='true'] {
+  opacity: 1;
+}
+
+.spot {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  border-radius: 6%;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.spot[data-round] {
+  border-radius: 50%;
+}
+
+/* PS5-style focus: a white ring that hugs the selection. */
+.spot:focus-visible {
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 24px 4px rgb(255 255 255 / 0.45);
+}
+
+.spot:hover {
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 0.7);
+}
+
+.stand {
+  width: 22%;
+  height: clamp(10px, 1.4vw, 18px);
+  background: linear-gradient(#24262c, #121318);
+  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 20px;
+  margin-top: 20px;
+}
+
+.step {
+  font-weight: 600;
+  text-align: center;
+}
+
+.restart {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.12);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.restart:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 3px;
+}

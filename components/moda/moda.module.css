@@ -1,0 +1,335 @@
+/* Logo versions ------------------------------------------------------------ */
+
+.logos {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.logoStage {
+  display: grid;
+  place-items: center;
+}
+
+.logoTile {
+  grid-area: 1 / 1;
+  width: 100%;
+  /* The exports carry the guide's rounded tiles on a square canvas. */
+  clip-path: inset(3% round 16% / 19%);
+}
+
+.logoControls {
+  display: grid;
+  gap: 24px;
+}
+
+.logoControls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.logoControls legend {
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.swatches,
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatch,
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.08);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.swatch:hover,
+.chip:hover {
+  background: rgb(244 246 251 / 0.14);
+}
+
+.swatch[aria-pressed='true'],
+.swatch[aria-checked='true'],
+.chip[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--base-deep);
+  box-shadow: none;
+}
+
+.swatch:focus-visible,
+.chip:focus-visible,
+.slot:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 3px;
+}
+
+.swatchChip {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: 0 0 0 1px rgb(127 127 127 / 0.6);
+}
+
+.note {
+  font-size: 0.9375rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 767px) {
+  .logos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Monster select ----------------------------------------------------------- */
+
+.arena {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  overflow: hidden;
+  padding: 32px 16px 28px;
+  border-radius: 24px;
+  background: #000;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(45% 55% at 50% 42%, color-mix(in srgb, var(--monster) 28%, transparent), transparent 70%);
+  transition: background 0.5s;
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 420px);
+}
+
+.heroMonster {
+  grid-area: 1 / 1;
+  width: 100%;
+  aspect-ratio: 1;
+  /* The walk cycle was rendered on a dark gray square; fade its edges out. */
+  mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+}
+
+/* The renders sit on black; screen blending lets the glow fall on the arena. */
+.heroMonster img,
+.heroMonster video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+}
+
+.heroMonster img[data-bob='true'] {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+.monsterName {
+  grid-area: 2 / 1;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--monster);
+  transition: color 0.3s;
+}
+
+.roster {
+  position: relative;
+  display: flex;
+  gap: 14px;
+}
+
+.slot {
+  width: 84px;
+  height: 84px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: #0b0b10;
+  box-shadow: 0 0 0 1px var(--line);
+  cursor: pointer;
+  transition:
+    box-shadow 0.25s,
+    transform 0.25s;
+}
+
+.slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.35);
+}
+
+.slot:hover {
+  transform: translateY(-4px);
+}
+
+.slot[aria-checked='true'] {
+  box-shadow:
+    0 0 0 3px var(--text),
+    0 0 0 7px color-mix(in srgb, var(--monster) 45%, transparent),
+    0 12px 30px -8px color-mix(in srgb, var(--monster) 70%, transparent);
+}
+
+@media (max-width: 767px) {
+  .slot {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot,
+  .spotlight {
+    transition: none;
+  }
+}
+
+/* Tee viewer --------------------------------------------------------------- */
+
+.merch {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+}
+
+.teeStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: clamp(24px, 5vw, 56px);
+  border: 0;
+  border-radius: 24px;
+  background: radial-gradient(70% 70% at 50% 40%, #2a3350, #0d1326 75%);
+  box-shadow: 0 0 0 1px var(--line);
+  perspective: 2000px;
+  cursor: pointer;
+  transition: background 0.4s;
+}
+
+.merch[data-light='true'] .teeStage {
+  background: radial-gradient(70% 70% at 50% 40%, #e9e6df, #b9b5ac 80%);
+}
+
+.teeStage:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+}
+
+.teeCard {
+  position: relative;
+  display: grid;
+  width: min(100%, 620px);
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+.teeCard[data-back='true'] {
+  transform: rotateY(180deg);
+}
+
+.teeFace {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  filter: drop-shadow(0 30px 30px rgb(0 0 0 / 0.35));
+}
+
+.teeFace[data-side='back'] {
+  transform: rotateY(180deg);
+}
+
+.tee {
+  position: relative;
+  width: 100%;
+}
+
+.teeBase {
+  position: absolute;
+  inset: 0;
+  background: var(--garment);
+  mask: var(--shape) center / 100% 100% no-repeat;
+  transition: background 0.4s;
+}
+
+.teePrint {
+  position: absolute;
+  height: auto;
+}
+
+/* Ink sinks into light fabric a little rather than sitting on top. */
+.teePrint[data-ink='light'] {
+  mix-blend-mode: multiply;
+}
+
+.teeShadows,
+.teeHighlights {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.teeShadows {
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+}
+
+.teeHighlights {
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
+
+.teeControls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teeCard,
+  .teeBase,
+  .teeStage {
+    transition: none;
+  }
+}

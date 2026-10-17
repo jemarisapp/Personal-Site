@@ -1,28 +1,35 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Familjen_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { Header } from './header'
-import { Footer } from './footer'
-import { ThemeProvider } from 'next-themes'
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  themeColor: '#0a1430',
 }
+
+const description =
+  'Jemari Sapp is an Atlanta designer for music, brands, and AI products: art director and designer for YoungBoy Never Broke Again releases since 2018, founder of TRISP Studio, and a builder of AI tools.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.jemarisapp.com/'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
   },
   title: {
-    default: 'Jemari Sapp - AI Systems Portfolio',
-    template: '%s | Jemari Sapp'
+    default: 'Jemari Sapp, designer for music, brands & AI products',
+    template: '%s | Jemari Sapp',
   },
-  description: 'Portfolio of Jemari Sapp, an MS Information Systems graduate building AI-powered systems, workflow automation, legal AI tools, analytics platforms, and business operations software.',
-  keywords: ['AI Systems', 'Workflow Automation', 'Legal AI', 'Multi-Agent Systems', 'RAG', 'Business Innovation', 'Product Engineering', 'Jemari Sapp'],
+  description,
+  keywords: [
+    'Product designer',
+    'Brand designer',
+    'Album cover design',
+    'AI product design',
+    'Atlanta designer',
+    'Jemari Sapp',
+  ],
   authors: [{ name: 'Jemari Sapp', url: 'https://www.jemarisapp.com' }],
   creator: 'Jemari Sapp',
   openGraph: {
@@ -30,21 +37,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.jemarisapp.com',
     siteName: 'Jemari Sapp',
-    title: 'Jemari Sapp - AI Systems Portfolio',
-    description: 'Portfolio of Jemari Sapp, an MS Information Systems graduate building AI-powered systems, workflow automation, legal AI tools, analytics platforms, and business operations software.',
+    title: 'Jemari Sapp, designer for music, brands & AI products',
+    description,
     images: [
       {
         url: '/cover.jpg',
         width: 1200,
         height: 630,
-        alt: 'Jemari Sapp AI Systems Portfolio',
+        alt: 'Jemari Sapp design portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jemari Sapp - AI Systems Portfolio',
-    description: 'Portfolio of Jemari Sapp, an MS Information Systems graduate building AI-powered systems, workflow automation, legal AI tools, analytics platforms, and business operations software.',
+    title: 'Jemari Sapp, designer for music, brands & AI products',
+    description,
     images: ['/cover.jpg'],
     creator: '@jemarisapp',
   },
@@ -59,15 +66,10 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-};
+}
 
-const geist = Geist({
-  variable: '--font-geist',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const familjen = Familjen_Grotesk({
+  variable: '--font-familjen',
   subsets: ['latin'],
 })
 
@@ -78,39 +80,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
-      >
+      <body className={`${familjen.variable} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Jemari Sapp",
-              "url": "https://www.jemarisapp.com",
-              "jobTitle": "AI Systems Builder",
-              "description": "MS Information Systems graduate focused on multi-agent systems, automation, and product design.",
-              "sameAs": [
-                "https://www.linkedin.com/in/jemarisapp"
-              ]
-            })
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Jemari Sapp',
+              url: 'https://www.jemarisapp.com',
+              jobTitle: 'Designer',
+              description,
+              sameAs: ['https://www.linkedin.com/in/jemari-sapp-b3984821b/'],
+            }),
           }}
         />
-        <ThemeProvider
-          enableSystem={true}
-          attribute="class"
-          storageKey="theme"
-          defaultTheme="dark"
-        >
-          <div className="w-full font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm px-4 pt-20">
-              <Header />
-              {children}
-              <Footer />
-            </div>
-          </div>
-        </ThemeProvider>
+        {children}
         <Analytics />
       </body>
     </html>
