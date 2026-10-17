@@ -224,13 +224,6 @@
     margin: 0.45in;
   }
 
-  /* Everything inside is sized in rem, so one base size scales the sheet. */
-  :global(html),
-  :global(body) {
-    font-size: 10.5px;
-    background: #fff !important;
-  }
-
   .page {
     min-height: 0;
     padding: 0;

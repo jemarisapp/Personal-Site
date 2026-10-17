@@ -61,7 +61,7 @@ const CLIENTS = ['Never Broke Again', 'Atlantic Records', 'Motown', 'APG']
 
 export default function Resume() {
   return (
-    <div className={s.page}>
+    <div className={s.page} data-print="resume">
       <div className={s.chrome}>
         <SiteBar />
         <div className={s.toolbar}>
