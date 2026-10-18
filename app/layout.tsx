@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Familjen_Grotesk } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -68,8 +68,8 @@ export const metadata: Metadata = {
   },
 }
 
-const familjen = Familjen_Grotesk({
-  variable: '--font-familjen',
+const outfit = Outfit({
+  variable: '--font-site',
   subsets: ['latin'],
 })
 
@@ -80,7 +80,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${familjen.variable} antialiased`}>
+      <head>
+        {/* Only the ampersand comes from Figtree; Google serves a font with
+            that one character, limited to U+26, so everything else stays Outfit. */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&text=%26&display=swap" />
+      </head>
+      <body className={`${outfit.variable} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

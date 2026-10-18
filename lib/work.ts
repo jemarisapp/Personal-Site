@@ -26,7 +26,7 @@ export type Section = {
   ordered?: boolean
   images?: GalleryItem[]
   // A hand-built interactive module shown after the text.
-  widget?: 'moda-logos' | 'moda-monsters' | 'moda-tee' | 'ps-console' | 'fastx-singles' | 'zaire-video' | 'trilo-extract' | 'trisp-clients' | 'ai-carousels' | 'ai-render-notes' | 'ai-skills' | 'trisp-guide' | 'trisp-sitemap' | 'trisp-cover' | 'trilo-system' | 'trilo-numbers' | 'trilo-licensing' | 'trilo-data-model' | 'nidd-pipeline'
+  widget?: 'moda-logos' | 'moda-monsters' | 'moda-tee' | 'ps-console' | 'fastx-singles' | 'zaire-video' | 'trilo-extract' | 'trisp-clients' | 'ai-carousels' | 'ai-render-notes' | 'ai-skills' | 'trisp-guide' | 'trisp-sitemap' | 'trisp-cover' | 'trilo-system' | 'trilo-numbers' | 'trilo-licensing' | 'trilo-data-model' | 'nidd-pipeline' | 'yb-motion'
 }
 
 export type Work = {
@@ -47,7 +47,7 @@ export type Work = {
   heroMode: 'full' | 'framed'
   frameAspect?: 'square' | 'wide' | 'tall'
   // A hand-built interactive piece that replaces the hero on the case study.
-  interactive?: 'how-to-atl' | 'yellowstone' | 'atlantic' | 'sonic' | 'sweet-beijing' | 'welch' | 'trisp' | 'ai-review' | 'trisp-kit' | 'trilo-app'
+  interactive?: 'how-to-atl' | 'yellowstone' | 'atlantic' | 'sonic' | 'sweet-beijing' | 'welch' | 'trisp' | 'ai-review' | 'trisp-kit' | 'trilo-app' | 'yb-releases'
   // Where the subject sits in full-bleed art, as CSS object-position.
   focus?: string
   video?: string
@@ -120,33 +120,26 @@ export const WORK: Work[] = [
     heroMode: 'framed',
     frameAspect: 'square',
     video: '/work/youngboy/green-flag-motion.mp4',
+    interactive: 'yb-releases',
     mosaic: ['colors', 'nightmare', 'green-dot', 'richest-opp', 'sfss', '3800-degrees', 'ten-talk', 'how-i-been', 'what-da-what'].map(yb),
     body: [
       'YoungBoy Never Broke Again releases music faster than almost anyone in the industry, often several projects a year with little notice. Each one needs a cover, a back cover and tracklist, streaming canvases, and rollout graphics, usually on a turnaround of days.',
       'On every release I took on, I handled the work myself, from art direction through final files. The job is to give each release its own identity while keeping the catalog recognizable as his: raw portraiture, hand-built type, and a darker palette that shifts with the mood of each project.',
+      'Above are 20 of those releases with everything made for each one. Filter by type, pick a cover, and step through its back cover, tracklist, logos, key art and motion.',
+    ],
+    sections: [
+      {
+        heading: 'Motion',
+        paragraphs: [
+          'Most releases also needed motion: teasers for the announcement, looping canvases for streaming, and animated covers for social. Each one carries the cover’s type, texture and color into movement, so the rollout feels like one piece.',
+        ],
+        widget: 'yb-motion',
+      },
     ],
     results: [
       'Richest Opp debuted in the Billboard top 10 within days of its surprise announcement.',
       'The Last Slimeto rollout extended to a building-scale billboard.',
       'The catalog these covers sit on has passed billions of streams.',
-    ],
-    gallery: [
-      { src: yb('colors'), alt: 'Colors album cover', caption: 'Colors', layout: 'square' },
-      { src: yb('nightmare'), alt: 'Nightmare on 38th St compilation cover', caption: 'Nightmare on 38th St', layout: 'square' },
-      { src: yb('green-flag-activity'), alt: 'Green Flag Activity compilation cover', caption: 'Green Flag Activity', layout: 'square' },
-      { src: yb('last-slimeto-billboard'), alt: 'The Last Slimeto billboard on a downtown building', caption: 'The Last Slimeto, billboard', layout: 'square' },
-      { src: yb('richest-opp'), alt: 'Richest Opp mixtape cover', caption: 'Richest Opp', layout: 'square' },
-      { src: yb('sfss'), alt: 'Still Flexin, Still Steppin mixtape cover', caption: 'Still Flexin, Still Steppin', layout: 'square' },
-      { src: yb('green-dot'), alt: 'Green Dot single cover', caption: 'Green Dot', layout: 'square' },
-      { src: yb('3800-degrees'), alt: '3800 Degrees cover', caption: '3800 Degrees', layout: 'square' },
-      { src: yb('last-slimeto-title'), alt: 'The Last Slimeto title typography', caption: 'The Last Slimeto, title type', layout: 'square' },
-      { src: yb('last-slimeto-tracklist'), alt: 'The Last Slimeto tracklist', caption: 'The Last Slimeto, tracklist', layout: 'square' },
-      { src: yb('ten-talk'), alt: 'Ten Talk single cover', caption: 'Ten Talk', layout: 'square' },
-      { src: yb('how-i-been'), alt: 'How I Been single cover', caption: 'How I Been', layout: 'square' },
-      { src: yb('what-da-what'), alt: 'What Da What single cover', caption: 'What Da What', layout: 'square' },
-      { src: yb('shoulders'), alt: 'I Just Got a Lot on My Shoulders album cover', caption: 'I Just Got a Lot on My Shoulders', layout: 'square' },
-      { src: yb('realer'), alt: 'Realer cover', caption: 'Realer', layout: 'square' },
-      { src: yb('dont-try-this-at-home'), alt: "Don't Try This at Home album cover", caption: "Don't Try This at Home", layout: 'square' },
     ],
   },
   {

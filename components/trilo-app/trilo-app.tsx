@@ -8,7 +8,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from "react";
-import { barlow, outfit } from "./fonts";
+import { barlow } from "./fonts";
 import s from "./trilo-app.module.css";
 
 /* ---- Sample league (made-up league and handles; statuses match the bot) -- */
@@ -373,7 +373,7 @@ export function TriloApp() {
 
   return (
     <div className={s.wrap}>
-      <div className={`${s.device} ${outfit.variable} ${barlow.variable}`}>
+      <div className={`${s.device} ${barlow.variable}`}>
         <div className={s.phone}>
           <div className={s.status} aria-hidden>
             <span>9:41</span>
@@ -1419,7 +1419,7 @@ const STATUS_TOKENS = [
 
 export function TriloSystem() {
   return (
-    <div className={`${s.system} ${outfit.variable} ${barlow.variable}`}>
+    <div className={`${s.system} ${barlow.variable}`}>
       <div className={s.sysBlock}>
         <p className={s.sysLabel}>Color</p>
         <div className={s.sysSwatches}>
@@ -1498,7 +1498,7 @@ const NUMBERS = [
 
 export function TriloNumbers() {
   return (
-    <div className={`${s.numbers} ${outfit.variable} ${barlow.variable}`}>
+    <div className={`${s.numbers} ${barlow.variable}`}>
       {NUMBERS.map((n) => (
         <div key={n.label}>
           <b>{n.value}</b>
@@ -1534,7 +1534,7 @@ const LICENSE_STEPS = [
 
 export function TriloLicensing() {
   return (
-    <ol className={`${s.flow} ${outfit.variable} ${barlow.variable}`}>
+    <ol className={`${s.flow} ${barlow.variable}`}>
       {LICENSE_STEPS.map((x, i) => (
         <li key={x.title}>
           <span className={s.flowNum}>{i + 1}</span>
@@ -1644,7 +1644,7 @@ export function TriloDataModel() {
   const [v, setV] = useState<"before" | "after">("before");
   const m = MODEL[v];
   return (
-    <div className={`${s.model} ${outfit.variable} ${barlow.variable}`}>
+    <div className={`${s.model} ${barlow.variable}`}>
       <Radios
         label="Data model version"
         options={[

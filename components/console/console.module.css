@@ -245,6 +245,17 @@
   transition: box-shadow 0.25s;
 }
 
+.tile {
+  cursor: pointer;
+}
+
+/* Hover only hints; selecting takes a click. */
+.tile:not([data-selected='true']):hover {
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 0 0 3px rgb(244 246 251 / 0.35);
+}
+
 .tile[data-selected='true'] {
   width: 148px;
   height: 148px;
@@ -260,7 +271,9 @@
 }
 
 .tileLabel {
-  max-width: 13rem;
+  max-width: 9.5rem;
+  /* Room between the selected tile's name and the next tile. */
+  margin-right: 28px;
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.2;
@@ -408,6 +421,117 @@
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--tint) 45%, transparent);
 }
 
+/* Welcome ----------------------------------------------------------------- */
+
+.welcomeBackdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(55% 60% at 80% 18%, color-mix(in srgb, var(--tint) 34%, transparent), transparent 70%),
+    radial-gradient(45% 55% at 12% 90%, color-mix(in srgb, var(--tint) 18%, transparent), transparent 70%),
+    linear-gradient(160deg, #0b1230 0%, var(--base) 60%);
+  transition: background 0.6s ease;
+}
+
+/* With the Welcome tile selected, the board replaces detail and frame. */
+.panel[data-welcome='true'] {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'row'
+    'board';
+}
+
+.boardSlot {
+  grid-area: board;
+  min-width: 0;
+  padding-top: 8px;
+}
+
+/* The Welcome tile's mark. */
+.glyph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(90% 90% at 30% 20%, color-mix(in srgb, var(--tint) 22%, transparent), transparent 70%),
+    linear-gradient(160deg, #161c33, #0a0e1c);
+}
+
+.mono {
+  /* The site font (Outfit, a variable font) at its heaviest. */
+  font-family: var(--font-site), sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+  transition:
+    font-size 0.25s,
+    text-shadow 0.25s;
+}
+
+.tile[data-selected='true'] .mono {
+  font-size: 4.25rem;
+  color: var(--tint);
+  text-shadow: 0 0 28px color-mix(in srgb, var(--tint) 55%, transparent);
+}
+
+.glyph[data-small='true'] .mono {
+  font-size: 1.25rem;
+  color: var(--tint);
+}
+
+/* The slim bar that stands in for the tile row once it scrolls away. */
+.compact {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 14px var(--gutter);
+  background: linear-gradient(to bottom, rgb(5 10 26 / 0.92), rgb(5 10 26 / 0.7) 70%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.compactBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.375rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.compactTile {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.compactTile img {
+  object-fit: cover;
+}
+
+.compactShelf {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.compactBack:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
 /* Phone ------------------------------------------------------------------- */
 
 @media (max-width: 767px) {
@@ -504,6 +628,35 @@
 
   .frame {
     margin-top: 28px;
+  }
+
+  .panel[data-welcome='true'] {
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'row'
+      'board';
+  }
+
+  .compact {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .compactBack {
+    font-size: 1.125rem;
+  }
+
+  .compactTile {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mono {
+    font-size: 2rem;
+  }
+
+  .tile[data-selected='true'] .mono {
+    font-size: 2.75rem;
   }
 
   /* Info sits right under the tiles so a tap shows it without scrolling. */

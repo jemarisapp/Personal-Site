@@ -22,7 +22,8 @@
     min-height: 100dvh;
     overflow-x: hidden;
     overscroll-behavior-y: none;
-    font-family: var(--font-familjen), system-ui, sans-serif;
+    /* Figtree first only supplies the ampersand (see app/layout.tsx). */
+    font-family: 'Figtree', var(--font-site), system-ui, sans-serif;
   }
 
   *,

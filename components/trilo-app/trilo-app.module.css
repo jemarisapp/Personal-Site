@@ -16,7 +16,7 @@
   --st-sim: #a78bfa;
   --st-fw: #5ba8ff;
   --st-live: #ff4d4d;
-  font-family: var(--trilo-sans), Outfit, sans-serif;
+  font-family: var(--font-site), Outfit, sans-serif;
 }
 
 .wrap {
@@ -481,7 +481,7 @@
 }
 
 .weeks small {
-  font-family: var(--trilo-sans), Outfit, sans-serif;
+  font-family: var(--font-site), Outfit, sans-serif;
   font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -1416,7 +1416,7 @@
 .model {
   --flame: #ff6b35;
   --gold: #f3aa07;
-  font-family: var(--trilo-sans), Outfit, sans-serif;
+  font-family: var(--font-site), Outfit, sans-serif;
 }
 
 .numbers {
