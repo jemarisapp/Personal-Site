@@ -1,4 +1,4 @@
-/* On screen the résumé sits on the page like a sheet of paper; it prints
+/* On screen the resume sits on the page like a sheet of paper; it prints
    (and exports to PDF) as a single clean page. */
 
 .page {
@@ -258,4 +258,10 @@
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+}
+
+.toolbar p a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

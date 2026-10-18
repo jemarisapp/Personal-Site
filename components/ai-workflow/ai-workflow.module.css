@@ -1,0 +1,667 @@
+/* Directing AI: review mode, carousels, render notes and the skills. */
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f7211f;
+}
+
+.notesHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Review mode ------------------------------------------------------------- */
+
+.review {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+
+.phoneCol {
+  display: grid;
+  gap: 14px;
+}
+
+.phone {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #000;
+  box-shadow:
+    0 0 0 6px #151515,
+    0 0 0 7px var(--line),
+    0 40px 80px -30px rgb(0 0 0 / 0.8),
+    0 0 120px -30px rgb(247 33 31 / 0.45);
+}
+
+.phone video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* TikTok's interface, roughly where it covers a 9:16 video. */
+.zones {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.zones span {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background: rgb(247 33 31 / 0.32);
+  outline: 1.5px dashed rgb(255 255 255 / 0.85);
+  outline-offset: -1.5px;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.6);
+}
+
+.zoneTop {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8%;
+}
+
+.zoneRight {
+  top: 38%;
+  right: 0;
+  width: 15%;
+  height: 42%;
+  writing-mode: vertical-rl;
+}
+
+.zoneBottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+}
+
+.guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: #3cf2ff;
+  box-shadow: 0 0 8px #3cf2ff;
+  pointer-events: none;
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--base-deep);
+  cursor: pointer;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 24px;
+}
+
+.track input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.track input::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #f7211f var(--p), rgb(244 246 251 / 0.18) var(--p));
+}
+
+.track input::-moz-range-track {
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #f7211f var(--p), rgb(244 246 251 / 0.18) var(--p));
+}
+
+.track input::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.track input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  pointer-events: none;
+}
+
+.tick[data-on='true'] {
+  background: var(--text);
+}
+
+.time {
+  flex: none;
+  min-width: 2.5em;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toggles button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.08);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  width: 26px;
+  height: 16px;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.2);
+  transition: background 0.2s;
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+  transition: translate 0.2s;
+}
+
+.toggles button[aria-pressed='true'] {
+  color: var(--text);
+}
+
+.toggles button[aria-pressed='true'] .switch {
+  background: #f7211f;
+}
+
+.toggles button[aria-pressed='true'] .switch::after {
+  translate: 10px 0;
+}
+
+.notes {
+  min-width: 0;
+}
+
+.noteList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: rgb(244 246 251 / 0.04);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.note:hover {
+  background: rgb(244 246 251 / 0.07);
+}
+
+.note[data-on='true'] {
+  background: rgb(247 33 31 / 0.1);
+  box-shadow: inset 0 0 0 1.5px rgb(247 33 31 / 0.7);
+}
+
+.noteMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.noteTime {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.1);
+  font-variant-numeric: tabular-nums;
+}
+
+.note[data-on='true'] .noteTime {
+  background: #f7211f;
+  color: #fff;
+}
+
+.noteText {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.noteFix {
+  display: none;
+  font-size: 0.9063rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.noteFix::before {
+  content: 'Fix · ';
+  font-weight: 700;
+  color: var(--text);
+}
+
+.note[data-on='true'] .noteFix {
+  display: block;
+}
+
+.play:focus-visible,
+.toggles button:focus-visible,
+.note:focus-visible,
+.deckTabs button:focus-visible,
+.deckNav button:focus-visible,
+.deckTrack:focus-visible,
+.skillList button:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 3px;
+}
+
+/* Carousels --------------------------------------------------------------- */
+
+.deck {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.deckTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deckTabs button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.06);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.deckTabs button[aria-checked='true'] {
+  background: var(--text);
+  color: var(--base-deep);
+  box-shadow: none;
+}
+
+.deckTrack {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 16px;
+}
+
+.deckTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.deckTrack img {
+  flex: none;
+  width: min(340px, 78%);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 14px;
+  scroll-snap-align: start;
+}
+
+.deckNav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+.deckNav button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(244 246 251 / 0.1);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.deckNav button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Render notes ------------------------------------------------------------ */
+
+.render {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+
+.renderVideo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.renderVideo video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.renderNotes ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.renderNotes li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #faf7f1;
+  color: #141414;
+  font-size: 0.9688rem;
+  line-height: 1.45;
+  box-shadow: 0 10px 24px -14px rgb(0 0 0 / 0.6);
+}
+
+.renderNotes li:nth-child(odd) {
+  rotate: -0.6deg;
+}
+
+.renderNotes li:nth-child(even) {
+  rotate: 0.5deg;
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f7211f;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.renderFoot {
+  margin: 16px 0 0;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+/* Skills ------------------------------------------------------------------ */
+
+.skills {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.skillList {
+  display: grid;
+  gap: 6px;
+}
+
+.skillList button {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: rgb(244 246 251 / 0.04);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text-dim);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.skillList button code {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.skillList button[aria-checked='true'] {
+  background: rgb(247 33 31 / 0.1);
+  box-shadow: inset 0 0 0 1.5px rgb(247 33 31 / 0.7);
+  color: var(--text);
+}
+
+.skillGroup {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.skillCard {
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 18px;
+  background: rgb(244 246 251 / 0.05);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.skillCard dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 22px;
+}
+
+.skillCard dt {
+  font-size: 0.8125rem;
+  color: var(--text-faint);
+}
+
+.skillCard dd {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.skillSteps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skillSteps li {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgb(244 246 251 / 0.05);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+
+.skillSteps strong {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.skillSteps li[data-gate='true'] {
+  background: rgb(247 33 31 / 0.12);
+  box-shadow: inset 0 0 0 1.5px rgb(247 33 31 / 0.7);
+}
+
+.stepNum {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgb(244 246 251 / 0.12);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.skillSteps li[data-gate='true'] .stepNum {
+  background: #f7211f;
+}
+
+.skillFoot {
+  margin: 18px 0 0;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+/* Phone ------------------------------------------------------------------- */
+
+@media (max-width: 899px) {
+  .review,
+  .render,
+  .skills {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .phoneCol {
+    width: min(100%, 320px);
+    justify-self: center;
+  }
+
+  .renderVideo {
+    width: min(100%, 420px);
+    justify-self: center;
+  }
+
+  .skillList {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .skillList button {
+    flex: none;
+  }
+
+  .skillSteps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skillCard dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

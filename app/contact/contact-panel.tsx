@@ -88,7 +88,7 @@ export function ContactPanel() {
         </li>
         <li>
           <Link href={PROFILE.resume}>
-            <span>Résumé</span>
+            <span>Resume</span>
             <span className={s.dim}>View or download</span>
           </Link>
         </li>

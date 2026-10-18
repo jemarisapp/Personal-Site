@@ -17,7 +17,7 @@ import {
   PROFILE,
   SHELVES,
   shelfWork,
-  workHref,
+  caseHref,
   type Shelf,
   type Work,
 } from '@/lib/work'
@@ -156,7 +156,7 @@ export function ConsoleHome() {
             About
           </Link>
           <Link href={PROFILE.resume} className={s.action}>
-            Résumé
+            Resume
           </Link>
           <Link href={PROFILE.contact} className={s.action}>
             Contact
@@ -179,7 +179,7 @@ export function ConsoleHome() {
         >
           {tiles.map((t, i) => {
             const isSelected = i === index
-            const href = t.kind === 'work' ? workHref(t.work) : '/work'
+            const href = t.kind === 'work' ? caseHref(t.work, shelf) : '/work'
             const label = t.kind === 'work' ? t.work.title : 'All work'
             return (
               <div role="listitem" key={`${shelf}-${tileKey(t)}`} className={s.slot}>
@@ -255,7 +255,7 @@ export function ConsoleHome() {
 
         <FramedMedia tile={selected} reduceMotion={!!reduceMotion} />
 
-        <Detail tile={selected} reduceMotion={!!reduceMotion} />
+        <Detail tile={selected} shelf={shelf} reduceMotion={!!reduceMotion} />
       </section>
     </main>
   )
@@ -367,7 +367,7 @@ function FramedMedia({ tile, reduceMotion }: { tile: Tile; reduceMotion: boolean
   )
 }
 
-function Detail({ tile, reduceMotion }: { tile: Tile; reduceMotion: boolean }) {
+function Detail({ tile, shelf, reduceMotion }: { tile: Tile; shelf: Shelf; reduceMotion: boolean }) {
   const enter = reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
   return (
     <div className={s.detailSlot}>
@@ -398,7 +398,7 @@ function Detail({ tile, reduceMotion }: { tile: Tile; reduceMotion: boolean }) {
                   </div>
                 )}
               </dl>
-              <Link href={workHref(tile.work)} className={s.open}>
+              <Link href={caseHref(tile.work, shelf)} className={s.open}>
                 View case study
               </Link>
             </>
