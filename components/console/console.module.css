@@ -211,12 +211,21 @@
   padding: 80px var(--gutter) 100px;
   overflow-x: auto;
   scrollbar-width: none;
-  /* The oversized padding overlaps the content below; only tiles take input. */
-  pointer-events: none;
+  /* The row takes touches itself (Safari won't scroll a container that
+     ignores them). The content its padding overlaps sits above it instead;
+     see the stacking rules below. */
+  position: relative;
+  z-index: 0;
 }
 
-.slot {
-  pointer-events: auto;
+/* Keep the top bar and the content under the row above the row's oversized
+   padding, so they stay clickable. */
+.topbar,
+.frameSlot,
+.detailSlot,
+.boardSlot {
+  position: relative;
+  z-index: 1;
 }
 
 .row::-webkit-scrollbar {
