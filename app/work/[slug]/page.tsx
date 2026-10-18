@@ -4,6 +4,7 @@ import { notFound, redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { CSSProperties } from 'react'
 import { SiteBar } from '@/components/case/site-bar'
+import { NextProject } from '@/components/case/shelf-links'
 import { HowToAtlBook } from '@/components/flipbook/how-to-atl'
 import { YellowstonePacket } from '@/components/yellowstone/yellowstone-packet'
 import { ModaLogos, ModaMonsters, ModaTee, WelchTee } from '@/components/moda/moda-widgets'
@@ -18,7 +19,11 @@ import {
 } from '@/components/work-widgets/work-widgets'
 import { ConsolePrototype } from '@/components/playstation/console-prototype'
 import { BrandBook } from '@/components/atlantic/brand-book'
-import { WORK, getWork, shelfWork, workHref, type GalleryItem, type Section, type Work } from '@/lib/work'
+import { TriloApp, TriloDataModel, TriloLicensing, TriloNumbers, TriloSystem } from '@/components/trilo-app/trilo-app'
+import { NiddPipeline } from '@/components/nidd/pipeline'
+import { CoverBuilder, TrispKit, TrispSitemap, TrispStyleGuide } from '@/components/trisp-ui/trisp-ui'
+import { CarouselDeck, RenderNotes, ReviewPlayer, SkillPicker } from '@/components/ai-workflow/ai-workflow'
+import { WORK, caseHref, getWork, shelfWork, shelvesFor, type GalleryItem, type Section, type Shelf, type Work } from '@/lib/work'
 import s from '@/components/case/case.module.css'
 
 export function generateStaticParams() {
@@ -49,20 +54,26 @@ export default async function CaseStudy({
   // Projects with a written MDX case study live at their own route.
   if (work.href) redirect(work.href)
 
-  // Next project stays within the same group: a shelf, or the archive.
-  const shelf = work.more ? WORK.filter((w) => w.more) : shelfWork(work.shelf)
-  const next = shelf[(shelf.indexOf(work) + 1) % shelf.length]
+  // Next project stays within the same group: each shelf the project is on
+  // (the visitor's shelf is picked in the browser), or the archive.
+  const shelves = shelvesFor(work)
+  const nextBy: Partial<Record<Shelf, { href: string; title: string }>> = {}
+  for (const id of shelves) {
+    const list = work.more ? WORK.filter((w) => w.more) : shelfWork(id)
+    const next = list[(list.indexOf(work) + 1) % list.length]
+    if (next && next.slug !== work.slug) nextBy[id] = { href: caseHref(next, id), title: next.title }
+  }
 
   return (
     <div className={s.page} style={{ '--tint': work.tint } as CSSProperties}>
-      <SiteBar shelf={work.shelf} />
+      <SiteBar shelves={shelves} />
 
       <main>
         <section className={s.hero}>
           {/* Title first, so a visitor arriving from a shared link knows what
               they're looking at before the interactive piece. */}
           <div className={s.heroText}>
-            {work.concept && <p className={s.badge}>Concept project</p>}
+            {(work.badge || work.concept) && <p className={s.badge}>{work.badge ?? 'Concept project'}</p>}
             <h1 className={s.title}>{work.title}</h1>
             <p className={s.lede}>{work.summary}</p>
             <dl className={s.meta}>
@@ -191,12 +202,7 @@ export default async function CaseStudy({
           </section>
         )}
 
-        {next && next.slug !== work.slug && (
-          <Link href={workHref(next)} className={s.next}>
-            <span className={s.nextLabel}>Next project</span>
-            <span className={s.nextTitle}>{next.title}</span>
-          </Link>
-        )}
+        <NextProject options={nextBy} fallback={work.shelf} />
       </main>
     </div>
   )
@@ -206,7 +212,7 @@ function Figure({ item }: { item: GalleryItem }) {
   const layout = item.layout ?? 'wide'
   return (
     <figure className={s.figure} data-layout={layout}>
-      <div className={s.figureMedia}>
+      <div className={s.figureMedia} data-fit={item.aspect ? 'contain' : undefined} style={item.aspect ? { aspectRatio: item.aspect } : undefined}>
         {item.video && item.loop ? (
           <video src={item.video} poster={item.src} autoPlay muted loop playsInline aria-label={item.alt} />
         ) : item.video ? (
@@ -217,7 +223,7 @@ function Figure({ item }: { item: GalleryItem }) {
             alt={item.alt}
             fill
             sizes={
-              layout === 'square'
+              layout === 'square' || layout === 'phone'
                 ? '(min-width: 900px) 30vw, 50vw'
                 : layout === 'tall'
                   ? '(min-width: 900px) 45vw, 100vw'
@@ -247,6 +253,12 @@ function Interactive({ kind }: { kind: NonNullable<Work['interactive']> }) {
       return <WelchTee />
     case 'trisp':
       return <TrispTour />
+    case 'ai-review':
+      return <ReviewPlayer />
+    case 'trisp-kit':
+      return <TrispKit />
+    case 'trilo-app':
+      return <TriloApp />
   }
 }
 
@@ -268,5 +280,27 @@ function Widget({ kind }: { kind: NonNullable<Section['widget']> }) {
       return <TriloExtract />
     case 'trisp-clients':
       return <TrispClients />
+    case 'ai-carousels':
+      return <CarouselDeck />
+    case 'ai-render-notes':
+      return <RenderNotes />
+    case 'ai-skills':
+      return <SkillPicker />
+    case 'trisp-guide':
+      return <TrispStyleGuide />
+    case 'trisp-sitemap':
+      return <TrispSitemap />
+    case 'trisp-cover':
+      return <CoverBuilder />
+    case 'trilo-system':
+      return <TriloSystem />
+    case 'trilo-numbers':
+      return <TriloNumbers />
+    case 'trilo-licensing':
+      return <TriloLicensing />
+    case 'trilo-data-model':
+      return <TriloDataModel />
+    case 'nidd-pipeline':
+      return <NiddPipeline />
   }
 }

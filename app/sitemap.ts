@@ -4,7 +4,7 @@ import { WORK } from '@/lib/work'
 const BASE = 'https://www.jemarisapp.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ['', '/home', '/work', '/about', '/resume', '/contact', ...WORK.map((w) => `/work/${w.slug}`)]
+  const pages = ['', '/home', '/work', '/ai', '/about', '/resume', '/resume/ai', '/contact', ...WORK.map((w) => `/work/${w.slug}`)]
   return pages.map((route) => ({
     url: `${BASE}${route}`,
     lastModified: new Date(),

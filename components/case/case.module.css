@@ -317,6 +317,16 @@
   grid-column: span 3;
 }
 
+/* Phone screenshots are narrow; a pair of them is centered with space on
+   both sides. */
+.figure[data-layout='phone'] {
+  grid-column: span 2;
+}
+
+.figure[data-layout='phone']:has(+ .figure[data-layout='phone']) {
+  grid-column: 2 / span 2;
+}
+
 .figureMedia {
   position: relative;
   aspect-ratio: 3 / 2;
@@ -372,6 +382,11 @@
 
   .figure[data-layout='tall'] {
     grid-column: span 6;
+  }
+
+  .figure[data-layout='phone'],
+  .figure[data-layout='phone']:has(+ .figure[data-layout='phone']) {
+    grid-column: span 3;
   }
 }
 
@@ -516,4 +531,9 @@
   .barName {
     display: none;
   }
+}
+
+/* Images shown whole at their own shape, such as contact sheets. */
+.figureMedia[data-fit='contain'] img {
+  object-fit: contain;
 }

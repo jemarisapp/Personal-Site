@@ -62,7 +62,7 @@ export default function About() {
                 Get in touch
               </Link>
               <Link href={PROFILE.resume} className={s.secondary}>
-                Résumé
+                Resume
               </Link>
               <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className={s.secondary}>
                 LinkedIn

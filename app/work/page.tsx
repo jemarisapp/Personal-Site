@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { SiteBar } from '@/components/case/site-bar'
-import { MORE_WORK, SHELVES, shelfWork, workHref, type Work } from '@/lib/work'
+import { MORE_WORK, SHELVES, caseHref, shelfWork, workHref, type Shelf as ShelfId, type Work } from '@/lib/work'
 import s from '@/components/case/case.module.css'
 
 export const metadata: Metadata = {
@@ -23,6 +23,7 @@ export default function AllWork() {
             id={`shelf-${shelf.id}`}
             heading={shelf.label}
             items={shelfWork(shelf.id)}
+            via={shelf.id}
           />
         ))}
         {MORE_WORK.length > 0 && <Shelf id="shelf-more" heading="More work" items={MORE_WORK} />}
@@ -31,7 +32,7 @@ export default function AllWork() {
   )
 }
 
-function Shelf({ id, heading, items }: { id: string; heading: string; items: Work[] }) {
+function Shelf({ id, heading, items, via }: { id: string; heading: string; items: Work[]; via?: ShelfId }) {
   return (
     <section aria-labelledby={id}>
       <h2 id={id} className={s.archiveHeading}>
@@ -40,7 +41,7 @@ function Shelf({ id, heading, items }: { id: string; heading: string; items: Wor
       <ul className={s.archiveGrid}>
         {items.map((w) => (
           <li key={w.slug}>
-            <Link href={workHref(w)} className={s.card}>
+            <Link href={via ? caseHref(w, via) : workHref(w)} className={s.card}>
               <span className={s.cardMedia}>
                 <Image
                   src={w.hero}

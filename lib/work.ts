@@ -5,12 +5,15 @@ export type GalleryItem = {
   alt: string
   caption?: string
   // Square covers sit in a grid; wide images span the full column; 'screen'
-  // keeps the 16:10 shape of product screenshots.
-  layout?: 'wide' | 'square' | 'tall' | 'screen'
+  // keeps the 16:10 shape of product screenshots. 'phone' is for phone
+  // screenshots: narrow, and a pair of them sits centered in the row.
+  layout?: 'wide' | 'square' | 'tall' | 'screen' | 'phone'
   // Plays with controls in place of the image; src is used as the poster.
   video?: string
   // Play the video as a silent loop with no controls, like a GIF.
   loop?: boolean
+  // Show the whole image at its own shape (width / height) instead of cropping.
+  aspect?: string
 }
 
 // A headed chapter of a case study, for work that needs more structure than
@@ -23,7 +26,7 @@ export type Section = {
   ordered?: boolean
   images?: GalleryItem[]
   // A hand-built interactive module shown after the text.
-  widget?: 'moda-logos' | 'moda-monsters' | 'moda-tee' | 'ps-console' | 'fastx-singles' | 'zaire-video' | 'trilo-extract' | 'trisp-clients'
+  widget?: 'moda-logos' | 'moda-monsters' | 'moda-tee' | 'ps-console' | 'fastx-singles' | 'zaire-video' | 'trilo-extract' | 'trisp-clients' | 'ai-carousels' | 'ai-render-notes' | 'ai-skills' | 'trisp-guide' | 'trisp-sitemap' | 'trisp-cover' | 'trilo-system' | 'trilo-numbers' | 'trilo-licensing' | 'trilo-data-model' | 'nidd-pipeline'
 }
 
 export type Work = {
@@ -44,7 +47,7 @@ export type Work = {
   heroMode: 'full' | 'framed'
   frameAspect?: 'square' | 'wide' | 'tall'
   // A hand-built interactive piece that replaces the hero on the case study.
-  interactive?: 'how-to-atl' | 'yellowstone' | 'atlantic' | 'sonic' | 'sweet-beijing' | 'welch' | 'trisp'
+  interactive?: 'how-to-atl' | 'yellowstone' | 'atlantic' | 'sonic' | 'sweet-beijing' | 'welch' | 'trisp' | 'ai-review' | 'trisp-kit' | 'trilo-app'
   // Where the subject sits in full-bleed art, as CSS object-position.
   focus?: string
   video?: string
@@ -55,6 +58,8 @@ export type Work = {
   // Existing MDX case study, if there is one. Otherwise /work/[slug] renders it.
   href?: string
   concept?: boolean
+  // Replaces the badge above the title, for work that's part real, part concept.
+  badge?: string
   // Smaller pieces live in the archive instead of on the home shelves.
   more?: boolean
   body?: string[]
@@ -66,11 +71,6 @@ export type Work = {
 
 export const SHELVES: { id: Shelf; label: string; order: string[] }[] = [
   {
-    id: 'product',
-    label: 'Product & AI',
-    order: ['navigate-idd', 'soundintel-bi', 'trilo'],
-  },
-  {
     id: 'brand',
     label: 'Brand & Visual',
     order: [
@@ -81,10 +81,12 @@ export const SHELVES: { id: Shelf; label: string; order: string[] }[] = [
       'sweet-beijing',
       'camp-moda',
       'how-to-atl',
-      'yellowstone',
-      'sonic',
-      'welch-tee',
     ],
+  },
+  {
+    id: 'product',
+    label: 'Product & AI',
+    order: ['trisp-studio', 'trilo', 'directing-ai', 'navigate-idd', 'soundintel-bi'],
   },
   {
     id: 'motion',
@@ -227,6 +229,7 @@ export const WORK: Work[] = [
   {
     slug: 'yellowstone',
     shelf: 'brand',
+    more: true,
     title: 'Yellowstone Visitor Packet',
     summary:
       'A fold-out packet handed to visitors at the park gate: history and weather on one side, a full park map on the other, and flaps and a checklist to use on the trip.',
@@ -311,25 +314,98 @@ export const WORK: Work[] = [
     shelf: 'brand',
     title: 'TRISP Studio',
     summary:
-      'My creative studio: photography, identity, campaign and motion work, and websites for artists and brands, including the album art for YoungBoy Never Broke Again.',
-    role: 'Founder & creative director',
+      'My creative studio, and the website that runs it. TRISP covers photography for people and creative services for artists and brands, including album art for YoungBoy Never Broke Again. Its site is one design system serving both audiences, two booking flows and a full dark mode.',
+    role: 'Founder, creative director & UX/UI designer',
     years: '2016–now',
-    disciplines: ['Studio', 'Identity', 'Web'],
-    tint: '#e8382f',
-    hero: '/work/trisp-studio/site-home.webp',
+    disciplines: ['Studio', 'Identity', 'UX/UI', 'Design system'],
+    tint: '#f7211f',
+    hero: '/work/trisp-website/home-light.webp',
     heroMode: 'framed',
-    interactive: 'trisp',
+    interactive: 'trisp-kit',
     body: [
-      'TRISP is where my client work lives. The studio runs two lines that share one point of view: photography for people, and creative services for artists and brands, from identity and campaign rollouts to motion and websites.',
-      'The site is built around that split. It opens with the promise, “creative work with strategic backbone,” then lets visitors choose the side they came for. Every section uses the same restrained cream-and-ink system with a single red accent, so photography and cover art sit comfortably side by side.',
+      'TRISP is where my client work lives. The studio runs two lines that share one point of view: photography for people, and creative services for artists and brands, from identity and campaign rollouts to cover art, motion and websites.',
+      'Those two lines bring visitors who rarely overlap. One group is booking a graduation or portrait session. The other is artists, labels and brands. The site has to send each of them through the right door quickly, then make booking and paying feel as considered as the work itself.',
+      'Above is the site’s component kit, rebuilt here with its real tokens. Switch between groups and themes to see how each piece holds up in light and dark.',
     ],
     sections: [
       {
         heading: 'Who the studio works with',
         paragraphs: [
-          'Labels and partners whose releases and campaigns have come through TRISP, including the rollout work on this site for YoungBoy Never Broke Again, Fast X, and Zaire.',
+          'Labels and partners whose releases and campaigns have come through TRISP, including rollout work for YoungBoy Never Broke Again, Fast X and Zaire.',
         ],
         widget: 'trisp-clients',
+      },
+      {
+        heading: 'Two audiences, one structure',
+        paragraphs: [
+          'The navigation mirrors the business: Photography, Creative Services and Studio. Each menu opens a panel where every page has a one-line description, so visitors know where a link goes before they click. Every path ends at one clear action.',
+        ],
+        widget: 'trisp-sitemap',
+        images: [
+          { src: '/work/trisp-website/nav-menu.webp', alt: 'The Creative Services menu open on trispstudio.com', caption: 'The Creative Services panel: featured work on the left, every service with a one-line description on the right', layout: 'wide', aspect: '1800 / 625' },
+        ],
+      },
+      {
+        heading: 'Style guide',
+        paragraphs: [
+          'Cream and ink with a single red accent, so photography and cover art can sit side by side without the interface competing with them. Fraunces carries the headlines and Inter carries everything else. Short red eyebrows label each section.',
+          'Colors are defined once as tokens and mapped into the component styles. Dark mode is one attribute swap rather than a second stylesheet.',
+        ],
+        widget: 'trisp-guide',
+      },
+      {
+        heading: 'Booking cover art without a call',
+        paragraphs: [
+          'An artist can go from browsing covers to a paid order without a call. Every tier shows its price, and every button on the pricing page opens the booking form with that package already selected. The form shows the order summary updating as options change. Try it below. It runs the same pricing rules as the live site.',
+        ],
+        points: [
+          'Open-ended work, like a Signature cover or advanced motion, switches the button to “Send brief for a quote,” and no payment is taken.',
+          'Turnaround, revisions, files, payment and usage rights are spelled out before the agreement checkbox, not hidden behind a link.',
+          'The brief is saved in the browser, so leaving for checkout and coming back doesn’t erase it.',
+          'Required fields are marked with a red star, and every option explains its price in plain language.',
+        ],
+        widget: 'trisp-cover',
+        images: [
+          { src: '/work/trisp-website/cover-tiers.webp', alt: 'Cover art pricing tiers on trispstudio.com', caption: 'Three tiers, each with a style reference, a price and what’s included', layout: 'tall', aspect: '1600 / 1645' },
+          { src: '/work/trisp-website/cover-tiers-dark.webp', alt: 'The same pricing tiers in dark mode', caption: 'The same section in dark mode', layout: 'tall', aspect: '1600 / 1645' },
+          { src: '/work/trisp-website/cover-packages.webp', alt: 'Release packages that bundle cover art and motion', caption: 'Release packages bundle the cover with motion for one price', layout: 'wide', aspect: '1600 / 714' },
+        ],
+      },
+      {
+        heading: 'Booking a photo session',
+        paragraphs: [
+          'Photography clients get two paths. People who know what they want can reserve right away, while people who are unsure can ask for a consultation first. The reserve path is outlined in red as the main route. Each path lists its three steps, so nobody wonders what happens after they click.',
+          'Packages are grouped by session type in an accordion, with tabs inside for studio, on-location or both. The studio’s policies sit in one collapsible panel right above the packages, so they’re easy to find without getting in the way.',
+        ],
+        images: [
+          { src: '/work/trisp-website/photo-paths.webp', alt: 'Two booking paths: reserve your session or consultation first', caption: 'Two ways in, each with its steps written out', layout: 'tall', aspect: '1600 / 1022' },
+          { src: '/work/trisp-website/photo-packages.webp', alt: 'Photography packages accordion with Graduation open', caption: 'Packages by session type, with Graduation open', layout: 'tall', aspect: '1600 / 1750' },
+        ],
+      },
+      {
+        heading: 'Dark mode',
+        paragraphs: [
+          'Every page works in both themes. The visitor’s choice is remembered and applied before the page first paints, so a returning visitor never sees a flash of the wrong theme. Photos and cover art sit on near-black instead of cream, and the logo wall inverts so client marks stay legible.',
+        ],
+        images: [
+          { src: '/work/trisp-website/home-light.webp', alt: 'trispstudio.com home page in light mode', caption: 'Home, light', layout: 'tall', aspect: '1800 / 1125' },
+          { src: '/work/trisp-website/home-dark.webp', alt: 'trispstudio.com home page in dark mode', caption: 'Home, dark', layout: 'tall', aspect: '1800 / 1125' },
+          { src: '/work/trisp-website/cover-light.webp', alt: 'Cover art page in light mode', caption: 'Cover art, light', layout: 'tall', aspect: '1800 / 1125' },
+          { src: '/work/trisp-website/cover-dark.webp', alt: 'Cover art page in dark mode', caption: 'Cover art, dark', layout: 'tall', aspect: '1800 / 1125' },
+        ],
+      },
+      {
+        heading: 'On a phone',
+        paragraphs: [
+          'The menus collapse into one full-screen list that keeps the same groups and labels as the desktop version. The hero art steps aside for the headline, and the booking form becomes a single column with the same order of steps.',
+        ],
+        images: [
+          { src: '/work/trisp-website/phone-home.webp', alt: 'Home page on a phone', caption: 'Home', layout: 'square', aspect: '780 / 1688' },
+          { src: '/work/trisp-website/phone-menu.webp', alt: 'Full-screen menu on a phone', caption: 'Menu', layout: 'square', aspect: '780 / 1688' },
+          { src: '/work/trisp-website/phone-cover.webp', alt: 'Cover art page on a phone', caption: 'Cover art', layout: 'square', aspect: '780 / 1688' },
+          { src: '/work/trisp-website/phone-book.webp', alt: 'Cover art booking form on a phone', caption: 'Booking form', layout: 'square', aspect: '780 / 1688' },
+          { src: '/work/trisp-website/phone-photo.webp', alt: 'Photography page on a phone', caption: 'Photography', layout: 'square', aspect: '780 / 1688' },
+        ],
       },
     ],
     links: [{ label: 'trispstudio.com', href: 'https://trispstudio.com' }],
@@ -387,6 +463,92 @@ export const WORK: Work[] = [
     links: [{ label: 'Live demo', href: 'https://soundintel-bi.vercel.app/' }],
   },
   {
+    slug: 'directing-ai',
+    shelf: 'product',
+    title: 'Directing AI',
+    summary:
+      'How I design with AI. I write the brief, AI tools build it, and I review the rendered work and art-direct the fixes until it meets my standard. Then I turn the process into a system so the next piece is faster.',
+    role: 'Creative director & systems designer',
+    years: '2026',
+    client: 'TRISP Studio',
+    disciplines: ['AI-assisted design', 'Motion', 'Social', 'Systems'],
+    tint: '#f7211f',
+    hero: '/work/directing-ai/hero.webp',
+    heroMode: 'framed',
+    interactive: 'ai-review',
+    body: [
+      'Above is a promo I made for my studio’s graduation sessions, shown the way I reviewed it. Each note on the right is one I gave while watching renders, and each one jumps to the moment it changed. The safe-zone and center-line toggles are the checks I ran on every frame.',
+      'Claude did the production: converting footage, setting type, compositing and encoding, all written as code. The brief, the shot choices, the copy and every call on what was good enough came from me. AI made the work faster. My eye decided what shipped.',
+    ],
+    sections: [
+      {
+        heading: 'The loop I run on every project',
+        ordered: true,
+        points: [
+          'Brief. I set the idea, the audience, the format and the look, along with the rules the work can’t break.',
+          'Build with AI. Claude, ChatGPT or Codex produce the layouts, motion, code and copy.',
+          'Review the render. I judge the finished frames, not the code behind them.',
+          'Art-direct the fixes. I give specific visual and factual notes, and the AI revises.',
+          'Ship it as a system. The result becomes a template, toolkit or skill that makes the next piece faster.',
+        ],
+      },
+      {
+        heading: 'Starting from a draft that missed the brief',
+        paragraphs: [
+          'An earlier cut of the promo already existed. Reviewing it against my brief, I found the problems: saturation pushed up when I’d asked for natural color, heavy dark bars behind the text, prices sitting where TikTok’s caption covers them, and montage photos flashing by in about half a second.',
+          'The new cut opens on a question, pairs each behind-the-scenes clip with its final photo, and builds to pricing on photos the viewer hasn’t seen yet.',
+        ],
+        images: [
+          { src: '/work/directing-ai/before-cut-grid.webp', alt: 'The earlier cut, one frame per second', caption: 'Before: the earlier cut, one frame per second', layout: 'wide', aspect: '1980 / 960' },
+          { src: '/work/directing-ai/after-cut.webp', alt: 'The final cut, one frame per second', caption: 'After: the final cut, one frame per second', layout: 'wide', aspect: '1980 / 960' },
+        ],
+      },
+      {
+        heading: 'Choosing, checking and correcting',
+        paragraphs: [
+          'Claude built labeled contact sheets of every session so I could pick shots in minutes instead of scrolling through folders. The iPhone clips were HDR, so they were converted to standard color with nothing added. Every render was checked as stills, with a center line for framing.',
+        ],
+        images: [
+          { src: '/work/directing-ai/contact-sheet.webp', alt: 'Labeled contact sheet of one session', caption: 'Contact sheets for picking shots', layout: 'wide', aspect: '1920 / 640' },
+          { src: '/work/directing-ai/footage-color.webp', alt: 'Behind-the-scenes clip frames after HDR conversion', caption: 'HDR footage, converted without grading', layout: 'tall', aspect: '1200 / 1400' },
+          { src: '/work/directing-ai/centering-check.webp', alt: 'Two frames checked against a center line', caption: 'Centering on the subject, checked against a guide', layout: 'tall', aspect: '1080 / 960' },
+        ],
+      },
+      {
+        heading: 'Carousels from the same system',
+        paragraphs: [
+          'The same pipeline made three Instagram and TikTok carousels, with every slide built as a web page in the studio’s type and color. My edits were about tone: softening the closing slide from an upsell to “Sessions start at $150,” fixing a widow, swapping a cover that was already used elsewhere, and dropping “Part 2” so the posts work in any order.',
+        ],
+        widget: 'ai-carousels',
+      },
+      {
+        heading: 'An explainer written as code',
+        paragraphs: [
+          'An 82-second video explaining the session management system I run my photography studio on. Every scene, animation and note of the music is written as code: scenes are web pages rendered frame by frame, and the music bed is synthesized with whooshes timed to each scene change. It has no voiceover, so the type carries it.',
+          'These are the notes I gave on the renders. They’re an art director’s notes, and they’re what moved it from a working draft to something I’d put my name on.',
+        ],
+        widget: 'ai-render-notes',
+      },
+      {
+        heading: 'Packaged as skills',
+        paragraphs: [
+          'Once the workflow was repeatable, I packaged it as five Claude skills, split by what someone starts with. Two are self-contained, so a creator can run them without me. Every skill stops at an approval gate before it builds anything, because the review step is the part that can’t be skipped.',
+        ],
+        widget: 'ai-skills',
+        images: [
+          { src: '/work/directing-ai/promo-16x9.webp', alt: 'Frames from the TRISP promo, 16:9', caption: 'site-to-video: a TRISP promo built from the studio’s website, 16:9', layout: 'wide', aspect: '2000 / 750' },
+          { src: '/work/directing-ai/promo-9x16.webp', alt: 'Frames from the TRISP promo, 9:16', caption: 'The same script, rendered at 9:16', layout: 'wide', aspect: '2000 / 593' },
+          { src: '/work/directing-ai/softlaunch.webp', alt: 'Frames from the TRISP soft-launch video', caption: 'new-style-video: a soft-launch video in a new editorial look, made by running the packaged skill end to end', layout: 'wide', aspect: '2400 / 675' },
+        ],
+      },
+    ],
+    results: [
+      'The graduation promo was posted to TikTok.',
+      'Each round of notes became a small edit and a re-render of about three minutes.',
+      'One script renders vertical and horizontal cuts of the same video.',
+    ],
+  },
+  {
     slug: 'navigate-idd',
     shelf: 'product',
     title: 'Navigate IDD',
@@ -405,26 +567,32 @@ export const WORK: Work[] = [
     ],
     sections: [
       {
+        heading: 'How the system works',
+        paragraphs: [
+          'Navigate IDD runs on seven automated workflows in n8n, about a hundred steps in all, connected through one Google Sheet that works as the control panel. Below is that system, redrawn so you can follow it. Pick a stage, press Run to watch it in order, or open the real workflow behind it.',
+        ],
+        widget: 'nidd-pipeline',
+      },
+      {
         heading: 'Every line traces back to policy',
         paragraphs: [
-          'Scripts are written only from retrieved sections of the official waiver documents, and a policy expert approves every script before any video is made. Nothing reaches families without a person signing off.',
+          'Scripts are written only from sections retrieved from the official waiver documents, and the script writer is told not to add anything from general knowledge. A policy expert approves every script before any video is made, and again before anything is published. Nothing reaches families without a person signing off.',
         ],
         images: [
-          { src: '/navigate-idd/human-review-and-approval.avif', alt: 'Review dashboard where experts approve scripts', caption: 'Experts review and approve each script before production.', layout: 'screen' },
+          { src: '/navigate-idd/human-review-and-approval.avif', alt: 'Review dashboard where experts approve scripts', caption: 'Experts approve scripts, choose translations and release videos from one sheet.', layout: 'wide', aspect: '1920 / 1080' },
+          { src: '/navigate-idd/real-time-dashboard-oversight.avif', alt: 'Script approval and publication dashboard', caption: 'Every script’s status, from draft to published.', layout: 'tall', aspect: '2048 / 1152' },
+          { src: '/navigate-idd/real-time-dashboard-oversight-2.avif', alt: 'Drive monitor dashboard', caption: 'The Drive monitor that keeps the policy library current.', layout: 'tall', aspect: '2048 / 1152' },
         ],
       },
       {
-        heading: 'How a video gets made',
-        ordered: true,
-        points: [
-          'Official waiver documents are added to a searchable policy library.',
-          'A script is drafted from the relevant policy sections.',
-          'A policy expert reviews and approves it.',
-          'The approved script is translated and produced as a video in five languages.',
-          'The video is published with titles and descriptions ready to go.',
+        heading: 'What families see',
+        paragraphs: [
+          'The result is a short explainer with an avatar presenter, in the family’s own language, published with a title and description that make it easy to find.',
         ],
         images: [
           { src: '/work/navigate-idd/hero.webp', alt: 'Navigate IDD explainer video', layout: 'screen', video: '/navigate-idd/idd-video.mp4' },
+          { src: '/navigate-idd/distribution-and-accessibility.avif', alt: 'A published Navigate IDD video on YouTube', caption: 'Published to YouTube with generated metadata.', layout: 'tall', aspect: '1920 / 1080' },
+          { src: '/navigate-idd/distribution-and-accessibility-2.avif', alt: 'Two people watching a Navigate IDD video together', caption: 'Made for families to watch together.', layout: 'tall', aspect: '1920 / 1080' },
         ],
       },
     ],
@@ -536,6 +704,7 @@ export const WORK: Work[] = [
   {
     slug: 'sonic',
     shelf: 'brand',
+    more: true,
     title: 'Sonic: Ideal & Freak',
     summary:
       'A pop culture campaign that shows Sonic as his ideal self, then subverts him into an unexpected one, across posters, a sneaker, and an app.',
@@ -614,6 +783,7 @@ export const WORK: Work[] = [
   {
     slug: 'welch-tee',
     shelf: 'brand',
+    more: true,
     title: 'Welch School Tee',
     summary: 'A shirt for Georgia State’s Ernest G. Welch School of Art & Design: a seal ringed with the school’s disciplines, and a portrait on the back.',
     role: 'Designer',
@@ -634,41 +804,91 @@ export const WORK: Work[] = [
     shelf: 'product',
     title: 'Trilo',
     summary:
-      'A Discord bot that runs fantasy football leagues for their commissioners, including turning a screenshot of the schedule into matchups automatically.',
+      'A Discord bot that runs College Football and Madden dynasty leagues for their commissioners, from turning a schedule screenshot into matchup channels to tracking results and player upgrades. Above is a concept for its mobile app, designed from the shipped product.',
     role: 'Founder & product designer',
     years: '2024–now',
-    disciplines: ['Product', 'AI', 'Bots'],
-    tint: '#5865f2',
-    hero: '/trilo/homepage.png',
+    disciplines: ['Product', 'AI', 'Mobile UI', 'Data model'],
+    tint: '#ff6b35',
+    hero: '/work/trilo-app/hero.webp',
     heroMode: 'framed',
+    badge: 'Shipped product · App concept',
+    interactive: 'trilo-app',
     body: [
-      'Dynasty fantasy leagues on Discord run on volunteer commissioners, who spend hours each week creating matchup channels, tracking records, and managing rosters. Many leagues fold because the person running them burns out.',
-      'Trilo does that work inside Discord, where the league already lives, so nobody has to learn another tool.',
+      'The prototype above is a concept for Trilo’s mobile app, which is on the product roadmap. Everything it does is based on how the bot already works, using a made-up league and players. Use the controls beside the phone to switch screens, preview loading, empty and error states, and sign in as a member or a commissioner.',
+      'Below is the product it’s built on. I designed Trilo, made the product decisions and built it with AI coding tools.',
     ],
     sections: [
       {
-        heading: 'From screenshot to schedule',
+        heading: 'The problem',
         paragraphs: [
-          'Entering a season’s schedule by hand was the most tedious job, so it became the headline feature. The commissioner uploads a screenshot of the schedule and Trilo reads the matchups out of it. Try it below.',
+          'Online dynasty leagues in College Football and Madden run on volunteer commissioners. Every week they create a channel for each game, chase players for results, track who’s been simmed or forced, and manage player upgrades, usually by hand in Discord and a spreadsheet. It takes hours, and leagues fold when the commissioner burns out.',
+          'Trilo does that work inside Discord, where the league already lives, so nobody has to learn another tool.',
         ],
-        widget: 'trilo-extract',
       },
       {
-        heading: 'Built for Discord',
+        heading: 'What shipped',
+        paragraphs: [
+          'Entering a season’s schedule by hand was the most tedious job, so it became the headline feature. The commissioner uploads a screenshot of the schedule, Trilo reads the matchups with AI vision and shows a preview, and nothing is created until they confirm. CPU vs CPU games are skipped automatically. Try it below.',
+        ],
+        widget: 'trilo-extract',
         points: [
-          'Everything runs through slash commands grouped by job: teams, matchups, attributes, and settings.',
-          'Marking a game finished is a single reaction on its channel, not a form.',
-          'The website handles sign-up, subscriptions, and sends the license key straight to Discord.',
+          'A status tracker in every game channel: players react to mark a game Completed, Fair Sim or Force Win, and the channel name updates so the whole week reads at a glance.',
+          'An optional setting forces the win automatically when a player faces a CPU team.',
+          'An attribute points system: commissioners award points, players request upgrades, and commissioners approve or deny them.',
+          'Per-server settings for the league type, commissioner roles, stream announcements and more, all through slash commands.',
         ],
         images: [
-          { src: '/trilo/commands.png', alt: 'Trilo slash commands in Discord', layout: 'tall' },
-          { src: '/trilo/game-status.png', alt: 'Reactions for marking a game played or simmed', layout: 'tall' },
-          { src: '/trilo/homepage.png', alt: 'Trilo homepage', layout: 'screen' },
-          { src: '/trilo/pricing.png', alt: 'Trilo pricing page', layout: 'screen' },
+          { src: '/trilo/game-channel.jpg', alt: 'A Trilo matchup channel in Discord with the game status tracker', caption: 'Results are reported by reacting in each game’s channel', layout: 'tall', aspect: '1024 / 819' },
+          { src: '/trilo/matchups-list.jpg', alt: 'Trilo listing matchups it created from a screenshot', caption: 'A week of matchups created from one screenshot', layout: 'tall', aspect: '1024 / 819' },
+          { src: '/trilo/commands.png', alt: 'Trilo slash commands in Discord', caption: 'Commands grouped by job', layout: 'phone', aspect: '1290 / 2796' },
+          { src: '/trilo/game-status.png', alt: 'Reactions for marking a game played or simmed', caption: 'The status tracker', layout: 'phone', aspect: '1290 / 2796' },
         ],
       },
+      {
+        heading: 'By the numbers',
+        widget: 'trilo-numbers',
+      },
+      {
+        heading: 'Product decisions',
+        paragraphs: [
+          'Trilo is a paid product, so pricing and access were design problems too.',
+        ],
+        points: [
+          'One plan with every feature, at $4.99 a month or $39 a year. A dynasty league is a long commitment, so the annual price covers a full league year, and the monthly price keeps trying it low-risk next to a $70 game.',
+          'No public lifetime plan. Hosting, AI usage and support are ongoing costs, and recurring revenue keeps the incentive on improving the product.',
+          'Billing through Stripe rather than Discord’s built-in app subscriptions, for control over pricing and the checkout experience.',
+          'A license per Discord server, which keeps access simple to understand and simple to enforce.',
+          'Positioned against the established league platform on what it doesn’t have: AI matchup creation, the attribute points system, and working entirely inside Discord.',
+        ],
+        widget: 'trilo-licensing',
+        images: [
+          { src: '/trilo/homepage.png', alt: 'Trilo homepage', caption: 'trilo.gg', layout: 'screen', aspect: '16 / 9' },
+          { src: '/trilo/pricing.png', alt: 'Trilo pricing page', caption: 'Pricing', layout: 'screen', aspect: '16 / 9' },
+        ],
+      },
+      {
+        heading: 'Redesigning the data model',
+        paragraphs: [
+          'Trilo’s database grew one feature at a time, and it showed: duplicated tables per league, team names stored as text in two places, and billing mixed with activation. I led a v2 redesign that normalized the model with keys and constraints, so the database enforces the league’s rules instead of relying on the bot to remember them. This is where my information systems background shows up most directly.',
+        ],
+        widget: 'trilo-data-model',
+      },
+      {
+        heading: 'Next: the mobile app',
+        paragraphs: [
+          'In Discord, the most important things, like whether your game is done and how long until the league advances, take digging through channels and commands to find. The app concept puts them first. I grouped the bot’s jobs by who does them and how often: League for what changed this week, Week for every matchup, Points for upgrades, and Commish for the tools only commissioners see.',
+          'Most of the design work went into states rather than screens. A game can be pending, completed, simmed or forced, someone might be streaming it, the schedule might not be posted yet, and Discord might be unreachable. Each has a designed state. Results can be undone for a few seconds, and the points form stops a request you can’t afford before it’s sent.',
+          'Screenshot import keeps a person in charge. After the AI reads the schedule, the commissioner sees every matchup it found, which games it skipped and any name it had to match, like “Ucla” to UCLA, before anything is created. The model does the tedious part, and a person approves what ships.',
+        ],
+      },
+      {
+        heading: 'Design system',
+        paragraphs: [
+          'The app uses Trilo’s brand from trilo.gg: Outfit and Barlow Condensed, a flame-to-gold gradient and charcoal surfaces. I added a status palette, so each game state keeps one color through every component, and a short set of rules for touch targets, contrast and motion.',
+        ],
+        widget: 'trilo-system',
+      },
     ],
-    results: ['Weekly league admin went from hours to minutes for commissioners using Trilo.'],
     links: [{ label: 'trilo.gg', href: 'https://trilo.gg' }],
   },
 ]
@@ -690,6 +910,18 @@ export const PROFILE = {
 
 export function workHref(w: Work) {
   return w.href ?? `/work/${w.slug}`
+}
+
+// A project opened from a shelf other than its own carries that shelf along,
+// so its Home and Next project links lead back the way the visitor came.
+export function caseHref(w: Work, via: Shelf) {
+  return w.shelf === via || w.href ? workHref(w) : `${workHref(w)}?from=${via}`
+}
+
+// Every shelf a project appears on, its own shelf first.
+export function shelvesFor(w: Work): Shelf[] {
+  const listed = SHELVES.filter((x) => x.order.includes(w.slug)).map((x) => x.id)
+  return [w.shelf, ...listed.filter((x) => x !== w.shelf)]
 }
 
 export function getWork(slug: string) {

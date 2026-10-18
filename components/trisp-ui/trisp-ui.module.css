@@ -1,0 +1,824 @@
+/* TRISP Studio UI, recreated with the live site's tokens. */
+
+.surface {
+  --red: #f7211f;
+  --cream: #faf7f1;
+  --card: #ffffff;
+  --border: #efede7;
+  --ink: #222222;
+  --muted: #5f5f5f;
+  --strong: #222222;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--trisp-sans), Inter, sans-serif;
+  box-shadow: 0 0 0 1px var(--line);
+  transition:
+    background-color 240ms ease,
+    color 240ms ease;
+}
+
+.surface[data-theme='dark'] {
+  --cream: #101013;
+  --card: #1a1a1e;
+  --border: #38383e;
+  --ink: #f3f3f0;
+  --muted: #b6b6bc;
+  --strong: #212126;
+}
+
+.surface *,
+.surface *::before,
+.surface *::after {
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease,
+    color 240ms ease;
+}
+
+/* Controls around the surface (in the portfolio's own style) */
+
+.kit,
+.guide,
+.builder {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.kitBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgb(244 246 251 / 0.06);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.segmented button {
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.segmented button[aria-checked='true'] {
+  background: var(--text);
+  color: var(--base-deep);
+}
+
+.segmented button:focus-visible {
+  outline: 3px solid var(--tint);
+  outline-offset: 2px;
+}
+
+.kitNote,
+.guideHint {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.kitStage {
+  min-height: 420px;
+  padding: clamp(18px, 3vw, 32px);
+}
+
+.specLabel {
+  display: block;
+  margin: 0 0 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* TRISP type ------------------------------------------------------------- */
+
+.tH1,
+.tH2,
+.tH4 {
+  margin: 0;
+  font-family: var(--trisp-serif), Fraunces, serif;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.tH1 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.tH2 {
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+}
+
+.tH4 {
+  font-size: 1.375rem;
+}
+
+.tLede {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.tBody {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.tSmall {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.tStrong {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.tEyebrow,
+.tEyebrowMuted {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.tEyebrowMuted {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* TRISP buttons ---------------------------------------------------------- */
+
+.tBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--trisp-sans), Inter, sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 300ms !important;
+}
+
+.tBtn[data-size='sm'] {
+  padding: 8px 16px;
+  font-size: 0.75rem;
+}
+
+.tBtn[data-size='md'] {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+.tBtn[data-size='lg'] {
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+.tBtn[data-variant='primary'] {
+  background: var(--red);
+  color: #fff;
+}
+
+.tBtn[data-variant='primary']:hover {
+  background: #b91c1c;
+}
+
+.tBtn[data-variant='secondary'] {
+  background: var(--strong);
+  color: #fff;
+}
+
+.tBtn[data-variant='secondary']:hover {
+  background: #000;
+}
+
+.tBtn[data-variant='outline'] {
+  border-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
+}
+
+.tBtn[data-variant='outline']:hover {
+  border-color: var(--red);
+  background: rgb(247 33 31 / 0.1);
+  color: var(--red);
+}
+
+.tBtn[data-variant='ghost'] {
+  background: transparent;
+  color: var(--ink);
+}
+
+.tBtn[data-variant='ghost']:hover {
+  color: var(--red);
+}
+
+.tBtn[data-variant='white'] {
+  background: var(--card);
+  color: var(--ink);
+}
+
+.tBtn:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.buttonsDemo {
+  display: grid;
+  gap: 22px;
+}
+
+.btnGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.btnRow,
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.btnRow .specLabel,
+.pillRow .specLabel {
+  width: 84px;
+  margin: 0;
+}
+
+.tPill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tChip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* TRISP cards ------------------------------------------------------------ */
+
+.cardsDemo {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.cardStack {
+  display: grid;
+  gap: 14px;
+}
+
+.tCard {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow:
+    inset 0 0 0 1px var(--border),
+    0 12px 32px -20px rgb(0 0 0 / 0.35);
+}
+
+.tCard[data-pick='true'] {
+  box-shadow:
+    inset 0 0 0 1.5px rgb(247 33 31 / 0.7),
+    0 12px 32px -20px rgb(0 0 0 / 0.35);
+}
+
+.tCardImg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.tCardBody {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.tCardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.tPrice {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tChecks,
+.tSteps {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.tChecks li::before {
+  content: '✓';
+  margin-right: 8px;
+  color: var(--red);
+}
+
+.tSteps {
+  counter-reset: step;
+  font-size: 0.8125rem;
+}
+
+.tSteps li {
+  counter-increment: step;
+}
+
+.tSteps li::before {
+  content: '0' counter(step);
+  margin-right: 10px;
+  font-size: 0.6875rem;
+  color: var(--red);
+}
+
+.tSteps b {
+  color: var(--ink);
+}
+
+.tCardBody .tBtn {
+  justify-self: start;
+}
+
+.tRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+/* TRISP navigation ------------------------------------------------------- */
+
+.navDemo {
+  display: grid;
+  gap: 0;
+  margin: calc(-1 * clamp(18px, 3vw, 32px));
+}
+
+.tNav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tLogo {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tLogo span {
+  color: var(--red);
+}
+
+.tNavLinks {
+  display: flex;
+  gap: 18px;
+  margin: 0 auto;
+}
+
+.tNavLinks button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  border: 0;
+  border-bottom: 1.5px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.tNavLinks button[data-open='true'] {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.tNavEnd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tIconBtn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.tMenu {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+
+.tMenuItem {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-size: 0.8125rem;
+}
+
+.tMenuItem span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.tHeroText {
+  display: grid;
+  gap: 10px;
+  padding: 36px 22px 40px;
+}
+
+/* TRISP forms ------------------------------------------------------------ */
+
+.formDemo,
+.builderForm {
+  display: grid;
+  gap: 16px;
+  max-width: 520px;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.tField {
+  display: grid;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+.tField i,
+.tFormats i {
+  font-style: normal;
+  color: var(--red);
+}
+
+.tField select,
+.tField textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.875rem;
+  resize: vertical;
+}
+
+.tField select:focus,
+.tField textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgb(247 33 31 / 0.15);
+}
+
+.tCheck {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.tCheck input,
+.tFormats input {
+  margin-top: 3px;
+  accent-color: var(--red);
+}
+
+.tCheck small {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.tFormats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 0.8125rem;
+}
+
+.tFormats legend {
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+
+.tFormats label {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px var(--border);
+  cursor: pointer;
+}
+
+/* Style guide ------------------------------------------------------------ */
+
+.guideStage {
+  display: grid;
+  gap: 28px;
+  padding: clamp(18px, 3vw, 32px);
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.swatch {
+  display: grid;
+  gap: 2px;
+  font-size: 0.75rem;
+}
+
+.swatch b {
+  margin-top: 8px;
+  font-size: 0.8125rem;
+}
+
+.swatch span {
+  color: var(--muted);
+}
+
+.swatch code {
+  font-size: 0.75rem;
+}
+
+.chip {
+  height: 64px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgb(128 128 128 / 0.25);
+}
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 28px;
+}
+
+.specimen {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.shapes {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 28px;
+}
+
+.shapeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.shape {
+  padding: 12px 16px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-size: 0.75rem;
+}
+
+/* Site map --------------------------------------------------------------- */
+
+.sitemap {
+  display: grid;
+  gap: 18px;
+}
+
+.mapRoot {
+  display: grid;
+  gap: 4px;
+  justify-self: center;
+  max-width: 34rem;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: #faf7f1;
+  color: #222;
+  text-align: center;
+}
+
+.mapRoot span {
+  font-size: 0.875rem;
+  color: #5f5f5f;
+}
+
+.mapCols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.mapCol {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgb(244 246 251 / 0.04);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.mapName {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.mapFor {
+  margin: -8px 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-faint);
+}
+
+.mapGroup p {
+  margin: 0 0 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f7211f;
+}
+
+.mapGroup ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0 0 0 12px;
+  border-left: 1px solid var(--line);
+  list-style: none;
+  font-size: 0.9063rem;
+  color: var(--text-dim);
+}
+
+.mapGoal {
+  margin: 4px 0 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgb(247 33 31 / 0.14);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Cover builder ---------------------------------------------------------- */
+
+.builderStage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.builderForm {
+  max-width: none;
+  background: var(--card);
+}
+
+.summary {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.summary ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+.summary li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.total {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.summary .tBtn {
+  justify-self: start;
+}
+
+/* Phone ------------------------------------------------------------------ */
+
+@media (max-width: 899px) {
+  .cardsDemo,
+  .typeGrid,
+  .shapes,
+  .mapCols,
+  .builderStage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tNavLinks {
+    display: none;
+  }
+
+  .tNavEnd {
+    margin-left: auto;
+  }
+
+  .tMenu {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .btnRow .specLabel,
+  .pillRow .specLabel {
+    width: 100%;
+  }
+}

@@ -47,8 +47,8 @@ type Option =
   | { id: 'hello'; label: string; image?: undefined }
 
 const LEFT: Option[] = [
-  { id: 'product', label: 'Product & AI', image: '/work/navigate-idd/hero.webp' },
   { id: 'brand', label: 'Brand & Visual', image: '/work/youngboy/green-flag-activity.webp' },
+  { id: 'product', label: 'Product & AI', image: '/work/navigate-idd/hero.webp' },
 ]
 const RIGHT: Option[] = [
   { id: 'motion', label: 'Motion', image: '/work/cold-december/hero.webp' },
