@@ -21,6 +21,7 @@ import { ConsolePrototype } from '@/components/playstation/console-prototype'
 import { BrandBook } from '@/components/atlantic/brand-book'
 import { TriloApp, TriloDataModel, TriloLicensing, TriloNumbers, TriloSystem } from '@/components/trilo-app/trilo-app'
 import { NiddPipeline } from '@/components/nidd/pipeline'
+import { MotionReel, ReleaseBrowser } from '@/components/youngboy/release-browser'
 import { CoverBuilder, TrispKit, TrispSitemap, TrispStyleGuide } from '@/components/trisp-ui/trisp-ui'
 import { CarouselDeck, RenderNotes, ReviewPlayer, SkillPicker } from '@/components/ai-workflow/ai-workflow'
 import { WORK, caseHref, getWork, shelfWork, shelvesFor, type GalleryItem, type Section, type Shelf, type Work } from '@/lib/work'
@@ -259,6 +260,8 @@ function Interactive({ kind }: { kind: NonNullable<Work['interactive']> }) {
       return <TrispKit />
     case 'trilo-app':
       return <TriloApp />
+    case 'yb-releases':
+      return <ReleaseBrowser />
   }
 }
 
@@ -302,5 +305,7 @@ function Widget({ kind }: { kind: NonNullable<Section['widget']> }) {
       return <TriloDataModel />
     case 'nidd-pipeline':
       return <NiddPipeline />
+    case 'yb-motion':
+      return <MotionReel />
   }
 }

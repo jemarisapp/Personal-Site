@@ -21,15 +21,19 @@ import {
   type Shelf,
   type Work,
 } from '@/lib/work'
+import { monogram } from './fonts'
+import { WelcomeBoard } from './welcome-board'
 import s from './console.module.css'
 
-// The last tile on every shelf points to the archive instead of a project.
-type Tile = { kind: 'work'; work: Work } | { kind: 'more' }
+// Every shelf opens on a Welcome tile (an intro written for that shelf), then
+// its projects, then a last tile that points to the archive.
+type Tile = { kind: 'welcome' } | { kind: 'work'; work: Work } | { kind: 'more' }
 
 const MORE_TINT = '#c9d3ea'
+const WELCOME_TINT: Record<Shelf, string> = { brand: '#ff9a5c', product: '#7dd3fc', motion: '#c084fc' }
 
 function tileKey(t: Tile) {
-  return t.kind === 'work' ? t.work.slug : 'more'
+  return t.kind === 'work' ? t.work.slug : t.kind
 }
 
 export function ConsoleHome() {
@@ -46,6 +50,7 @@ export function ConsoleHome() {
 
   const tiles: Tile[] = useMemo(
     () => [
+      { kind: 'welcome' } as Tile,
       ...shelfWork(shelf).map(
         (work) => ({ kind: 'work', work }) as Tile,
       ),
@@ -55,11 +60,23 @@ export function ConsoleHome() {
   )
   const index = Math.min(selectedByShelf[shelf], tiles.length - 1)
   const selected = tiles[index]
-  const tint = selected.kind === 'work' ? selected.work.tint : MORE_TINT
+  const tint = selected.kind === 'work' ? selected.work.tint : selected.kind === 'welcome' ? WELCOME_TINT[shelf] : MORE_TINT
+  const welcome = selected.kind === 'welcome'
 
   const tileRefs = useRef<(HTMLAnchorElement | null)[]>([])
-  const lastPointer = useRef<string>('mouse')
-  const hoverTimer = useRef<number | undefined>(undefined)
+  const rowRef = useRef<HTMLDivElement>(null)
+  // Once the tile row scrolls away, a slim Welcome bar takes its place.
+  const [rowGone, setRowGone] = useState(false)
+  useEffect(() => {
+    const el = rowRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => setRowGone(!e.isIntersecting), { rootMargin: '-40px 0px 0px 0px' })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  // Whether the tile under the pointer was already selected when the press
+  // began (focus selects it before the click lands).
+  const wasSelected = useRef(false)
 
   // Shelf can be deep-linked with ?shelf=product so a link to the site can
   // open on the side a recruiter cares about.
@@ -164,23 +181,48 @@ export function ConsoleHome() {
         </nav>
       </header>
 
+      <AnimatePresence>
+        {welcome && rowGone && (
+          <motion.div
+            className={s.compact}
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <button
+              type="button"
+              className={s.compactBack}
+              onClick={() => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })}
+            >
+              <span className={s.compactTile}>
+                <Monogram small />
+              </span>
+              <span>Welcome</span>
+              <span className={s.compactShelf}>{SHELVES.find((x) => x.id === shelf)!.label}</span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <section
         id="shelf-panel"
         role="tabpanel"
         aria-labelledby={`tab-${shelf}`}
         className={s.panel}
+        data-welcome={welcome}
       >
         <div
+          ref={rowRef}
           className={s.row}
           role="list"
           aria-label={`${SHELVES.find((x) => x.id === shelf)!.label} projects`}
           onKeyDown={onRowKeyDown}
-          onPointerLeave={() => window.clearTimeout(hoverTimer.current)}
         >
           {tiles.map((t, i) => {
             const isSelected = i === index
-            const href = t.kind === 'work' ? caseHref(t.work, shelf) : '/work'
-            const label = t.kind === 'work' ? t.work.title : 'All work'
+            const href = t.kind === 'work' ? caseHref(t.work, shelf) : t.kind === 'welcome' ? `/home?shelf=${shelf}` : '/work'
+            const label = t.kind === 'work' ? t.work.title : t.kind === 'welcome' ? 'Welcome' : 'All work'
             return (
               <div role="listitem" key={`${shelf}-${tileKey(t)}`} className={s.slot}>
                 <motion.a
@@ -196,30 +238,32 @@ export function ConsoleHome() {
                   className={s.tile}
                   data-selected={isSelected}
                   onFocus={() => select(i)}
-                  onPointerDown={(e) => {
-                    lastPointer.current = e.pointerType
-                  }}
-                  onPointerEnter={(e) => {
-                    if (e.pointerType !== 'mouse') return
-                    window.clearTimeout(hoverTimer.current)
-                    // A short delay so sweeping across the row doesn't flash
-                    // every backdrop on the way.
-                    hoverTimer.current = window.setTimeout(() => select(i), 90)
+                  onPointerDown={() => {
+                    wasSelected.current = isSelected
                   }}
                   onClick={(e) => {
                     // Let modified clicks open a new tab as usual.
                     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
                     e.preventDefault()
-                    // On touch a tap only selects, like moving focus with a
-                    // controller; the project opens from "View case study".
-                    if (lastPointer.current === 'touch' || lastPointer.current === 'pen') {
+                    // The Welcome tile opens its board in place.
+                    if (t.kind === 'welcome') {
+                      select(i)
+                      return
+                    }
+                    // Mouse, touch and pen work alike: the first click selects
+                    // (hovering doesn't, so crossing the row changes nothing),
+                    // and clicking the selected tile opens it. A keyboard
+                    // Enter (detail 0) always opens the focused tile.
+                    if (e.detail > 0 && !wasSelected.current) {
                       select(i)
                       return
                     }
                     router.push(href)
                   }}
                 >
-                  {t.kind === 'work' ? (
+                  {t.kind === 'welcome' ? (
+                    <Monogram />
+                  ) : t.kind === 'work' ? (
                     <Image
                       src={t.work.hero}
                       alt=""
@@ -253,11 +297,27 @@ export function ConsoleHome() {
           })}
         </div>
 
-        <FramedMedia tile={selected} reduceMotion={!!reduceMotion} />
-
-        <Detail tile={selected} shelf={shelf} reduceMotion={!!reduceMotion} />
+        {welcome ? (
+          <div className={s.boardSlot}>
+            <WelcomeBoard key={shelf} shelf={shelf} />
+          </div>
+        ) : (
+          <>
+            <FramedMedia tile={selected} reduceMotion={!!reduceMotion} />
+            <Detail tile={selected} shelf={shelf} reduceMotion={!!reduceMotion} />
+          </>
+        )}
       </section>
     </main>
+  )
+}
+
+// The Welcome tile's mark: a JS monogram in the shelf's accent color.
+function Monogram({ small = false }: { small?: boolean }) {
+  return (
+    <span className={s.glyph} data-small={small}>
+      <span className={`${s.mono} ${monogram.className}`}>JS</span>
+    </span>
   )
 }
 
@@ -293,6 +353,8 @@ function Backdrop({
               data-drift={!reduceMotion}
               style={{ objectPosition: tile.work.focus }}
             />
+          ) : tile.kind === 'welcome' ? (
+            <div className={s.welcomeBackdrop} />
           ) : (
             <div className={s.moreBackdrop} />
           )}
@@ -381,7 +443,7 @@ function Detail({ tile, shelf, reduceMotion }: { tile: Tile; shelf: Shelf; reduc
           transition={{ duration: reduceMotion ? 0 : 0.22 }}
           aria-live="polite"
         >
-          {tile.kind === 'work' ? (
+          {tile.kind === 'welcome' ? null : tile.kind === 'work' ? (
             <>
               {tile.work.concept && <p className={s.badge}>Concept project</p>}
               <h1 className={s.title}>{tile.work.title}</h1>

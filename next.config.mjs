@@ -37,6 +37,7 @@ const nextConfig = {
         permanent: true,
       },
       // Split into two projects.
+      { source: '/ai', destination: '/home?shelf=product', permanent: false },
       { source: '/work/trilo-app', destination: '/work/trilo', permanent: true },
       { source: '/work/trisp-website', destination: '/work/trisp-studio', permanent: true },
       {
