@@ -21,7 +21,6 @@ import {
   type Shelf,
   type Work,
 } from '@/lib/work'
-import { monogram } from './fonts'
 import { WelcomeBoard } from './welcome-board'
 import s from './console.module.css'
 
@@ -316,7 +315,7 @@ export function ConsoleHome() {
 function Monogram({ small = false }: { small?: boolean }) {
   return (
     <span className={s.glyph} data-small={small}>
-      <span className={`${s.mono} ${monogram.className}`}>JS</span>
+      <span className={s.mono}>JS</span>
     </span>
   )
 }

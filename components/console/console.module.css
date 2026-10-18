@@ -459,6 +459,8 @@
 }
 
 .mono {
+  /* The site font (Outfit, a variable font) at its heaviest. */
+  font-family: var(--font-site), sans-serif;
   font-size: 3rem;
   font-weight: 800;
   letter-spacing: -0.03em;
